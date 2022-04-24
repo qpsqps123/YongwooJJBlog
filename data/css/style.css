@@ -4,17 +4,23 @@ body {
     margin: 0;
 }
 
+
+
+
+
+
+/* 
 .tnb {
     position: fixed;
     width: 100vw;
-    height: 32px;
+    height: 25px;
     padding: 22px;
     background-color: white;
     border-bottom: 1px solid gray;
     box-shadow: 1px 1px 8px 1px  gainsboro;
 }
 
-.tnbBrandName {
+.tnb-brand-name {
     position: fixed;
     height: 32px;
     margin-left: 40vw;
@@ -26,7 +32,7 @@ body {
     text-decoration: none;
 }
 
-.tnbMenuButton {
+.tnb-Menu-button{
     position: fixed;
     height: 32px;
-}
+} */
