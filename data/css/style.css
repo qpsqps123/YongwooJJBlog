@@ -18,10 +18,13 @@ body {
     box-shadow: 1px 1px 8px 1px  gainsboro;
 }
 
-.lnb-menu-bar {
+.lnb {
     position: absolute;
-    width: 100%;
-    height: 7rem;
+    top: 2rem;
+    left: 2rem;
+    width: 2.8rem;
+    height: 2.5rem;
+    overflow: hidden;
 }
 
 .gnb-brand-name {
@@ -42,13 +45,10 @@ body {
     color: black;
 }
 
-.hamburger-menu-icon {
+.lnb-hamburger-icon {
     position: absolute;
-    top: 2rem;
-    left: 2rem;
-    width: 2.8rem;
-    height: 2.5rem;
-    overflow: hidden;
+    width: 100%;
+    height: 100%;
 }
 
 .main {
