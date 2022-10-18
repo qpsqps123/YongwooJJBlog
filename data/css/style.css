@@ -22,28 +22,69 @@ body {
     position: relative;
     top: 2rem;
     left: 2rem;
-    width: 2.8rem;
+    width: 3rem;
+    height: 2.5rem;
+}
+
+.lnb-hamburger-icon {
+    width: 3rem;
     height: 2.5rem;
 }
 
 .lnb-dropdown-content {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
     position: absolute;
     background-color: #f9f9f9;
+    top: -2.1rem;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    width: 18rem;
+    border-radius: 3rem;
+    box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.2);
 }
 
 .lnb-dropdown:hover .lnb-dropdown-content {
-    display: block;
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0.05s;
+    transition-duration: 0.5s;
 }
 
-.link-1 {
-    padding: 15rem;
+.lnb-dropdown-content-1, .lnb-dropdown-content-2, .lnb-dropdown-content-3, .lnb-dropdown-content-4, .lnb-dropdown-content-5 {
+    padding: 2rem 2rem;
+    font-size: 2rem;
+    font-weight: 1000;
+    color: black;
+    text-decoration: none;
+    text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.2);
     text-align: center;
 }
 
-.gnb-brand-name {
+.lnb-dropdown-content-1:hover {
+    animation: lnb-dropdown-content-hover 1s forwards;
+    border-radius: 3rem 3rem 0 0;
+}
+
+.lnb-dropdown-content-2:hover, .lnb-dropdown-content-3:hover, .lnb-dropdown-content-4:hover {
+    animation: lnb-dropdown-content-hover 1s forwards;
+}
+
+.lnb-dropdown-content-5:hover {
+    animation: lnb-dropdown-content-hover 1s forwards;
+    border-radius: 0 0 3rem 3rem;
+}
+
+@keyframes lnb-dropdown-content-hover {
+    0% {
+        background-color: #f9f9f9;
+    }
+
+    100% {
+        background-color: rgb(197, 197, 197)
+    }
+}
+
+.gnb-brand-name, .gnb-brand-name:hover {
     position: absolute;
     top: 1.5rem;
     left: 44%;
