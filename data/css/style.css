@@ -13,10 +13,12 @@ body {
     position: fixed;
     width: 100%;
     height: 7rem;
-    /* background-color: white;
+    /*
+    이전 gnb 디자인
+    background-color: white;
     border-bottom: 1px solid gray;
     box-shadow: 1px 1px 8px 1px  gainsboro; */
-    z-index: 0;
+    background-color: white;
 }
 
 .lnb-dropdown {
@@ -40,8 +42,8 @@ body {
     top: -2.1rem;
     min-width: 160px;
     width: 18rem;
-    border-radius: 3rem;
-    box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.2);;
+    border-radius: 2.5rem;
+    box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2);;
     transition-property: opacity, visibility;
     transition-delay: 0.05s;
     transition-duration: 0.3s;
@@ -57,9 +59,9 @@ body {
     font-size: 2rem;
     font-weight: 1000;
     color: black;
-    text-decoration: none;
-    text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.2);
+    text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
     text-align: center;
+    text-decoration: none;
 }
 
 @keyframes lnb-dropdown-content-hover {
@@ -74,7 +76,7 @@ body {
 
 .lnb-dropdown-content-1:hover {
     animation: lnb-dropdown-content-hover 1s forwards;
-    border-radius: 3rem 3rem 0 0;
+    border-radius: 2.5rem 2.5rem 0 0;
 }
 
 .lnb-dropdown-content-2:hover, .lnb-dropdown-content-3:hover, .lnb-dropdown-content-4:hover {
@@ -90,7 +92,7 @@ body {
     position: absolute;
     top: 1.5rem;
     left: 44%;
-    width: 14.5rem;
+    width: 8rem;
     line-height: 2rem;
     font-family: 'Hahmlet', serif;
     font-family: 'Jua', sans-serif;
@@ -106,7 +108,9 @@ body {
     font-size: 1.4rem;
 }
 
-/* .dropdown {
+/*
+dropdown 레퍼런스
+.dropdown {
     position: relative;
     display: inline-block;
   }
