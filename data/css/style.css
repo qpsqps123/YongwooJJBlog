@@ -23,8 +23,9 @@ body {
 
 .lnb-dropdown {
     position: relative;
-    top: 2rem;
-    left: 97%;
+    
+    top: 1.5rem;
+    left: 13rem;
     width: 3rem;
     height: 2.5rem;
 }
@@ -40,7 +41,7 @@ body {
     position: absolute;
     background-color: #f9f9f9;
     top: -2.1rem;
-    right: 0rem;
+    left: 0rem;
     min-width: 160px;
     width: 18rem;
     border-radius: 2.5rem;
@@ -90,9 +91,9 @@ body {
 }
 
 .gnb-brand-name, .gnb-brand-name:hover {
-    position: absolute;
-    top: 1.5rem;
-    left: 2%;
+    position: relative;
+    top: -1rem;
+    left: 3rem;
     width: 8rem;
     line-height: 2rem;
     font-family: 'Hahmlet', serif;
