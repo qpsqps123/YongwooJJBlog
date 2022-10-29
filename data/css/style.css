@@ -2,26 +2,45 @@
 
 html {
     font-size: 10px;
-}
-
-body {
     margin: 0;
     padding: 0;
 }
 
-.gnb {
+/* gnb */
+
+#gnb {
     position: fixed;
     width: 100%;
     height: 7rem;
+    top: 0;
+    left: 0;
+    z-index: 900;
+    /* background-color: white; */
     /*
     이전 gnb 디자인
     background-color: white;
     border-bottom: 1px solid gray;
     box-shadow: 1px 1px 8px 1px  gainsboro; */
-    background-color: white;
 }
 
-.lnb-dropdown {
+/* gnb brand name */
+
+#gnb-brand-name, #gnb-brand-name:hover {
+    position: absolute;
+    padding: 2rem 0 0 2rem;
+    width: 8rem;
+    line-height: 2rem;
+    font-family: 'Hahmlet', serif;
+    font-family: 'Jua', sans-serif;
+    font-size: 2.6rem;
+    font-weight: lighter;
+    color: black;
+    text-decoration: none;
+}
+
+/* gnb dropdown menu */
+
+#gnb-dropdown {
     position: absolute;
     padding: 2rem 5rem 0 0;
     right: 0;
@@ -29,12 +48,12 @@ body {
     height: 2.5rem;
 }
 
-.lnb-hamburger-icon {
+#gnb-hamburger-icon {
     width: 3rem;
     height: 2.5rem;
 }
 
-.lnb-dropdown-content {
+.gnb-dropdown-content {
     visibility: hidden;
     opacity: 0;
     position: absolute;
@@ -49,12 +68,12 @@ body {
     transition-duration: 0.3s;
 }
 
-.lnb-dropdown:hover .lnb-dropdown-content {
+#gnb-dropdown:hover .gnb-dropdown-content {
     visibility: visible;
     opacity: 1;
 }
 
-.lnb-dropdown-content-1, .lnb-dropdown-content-2, .lnb-dropdown-content-3, .lnb-dropdown-content-4, .lnb-dropdown-content-5 {
+.gnb-dropdown-content-1, .gnb-dropdown-content-2, .gnb-dropdown-content-3, .gnb-dropdown-content-4, .gnb-dropdown-content-5 {
     padding: 2rem 2rem;
     font-size: 2rem;
     font-weight: 1000;
@@ -64,7 +83,7 @@ body {
     text-decoration: none;
 }
 
-@keyframes lnb-dropdown-content-hover {
+@keyframes gnb-dropdown-content-hover {
     0% {
         background-color: #f9f9f9;
     }
@@ -74,44 +93,46 @@ body {
     }
 }
 
-.lnb-dropdown-content-1:hover {
-    animation: lnb-dropdown-content-hover 1s forwards;
+.gnb-dropdown-content-1:hover {
+    animation: gnb-dropdown-content-hover 1s forwards;
     border-radius: 2.5rem 2.5rem 0 0;
 }
 
-.lnb-dropdown-content-2:hover, .lnb-dropdown-content-3:hover, .lnb-dropdown-content-4:hover {
-    animation: lnb-dropdown-content-hover 1s forwards;
+.gnb-dropdown-content-2:hover, .gnb-dropdown-content-3:hover, .gnb-dropdown-content-4:hover {
+    animation: gnb-dropdown-content-hover 1s forwards;
 }
 
-.lnb-dropdown-content-5:hover {
-    animation: lnb-dropdown-content-hover 1s forwards;
+.gnb-dropdown-content-5:hover {
+    animation: gnb-dropdown-content-hover 1s forwards;
     border-radius: 0 0 2.5rem 2.5rem;
 }
 
-.gnb-brand-name, .gnb-brand-name:hover {
-    position: absolute;
-    padding: 2rem 0 0 2rem;
-    width: 8rem;
-    line-height: 2rem;
-    font-family: 'Hahmlet', serif;
-    font-family: 'Jua', sans-serif;
-    font-size: 2.6rem;
-    font-weight: lighter;
-    color: black;
-    text-decoration: none;
+/* main */
+
+#wrapper {
+    position: relative;
+    text-align: left;
+    width: 100%;
+    margin: 7rem auto 0;
+    overflow: hidden;
 }
 
-.main {
-    padding: 7rem 15%;
-    font-size: 1.4rem;
+#container {
+    position: relative;
+    margin: 0 auto;
+    max-width: 120rem;
+    padding: 5rem 4rem 0;
 }
 
-@media (max-width: 680px) {
-    .main {
-        padding: 7rem 2rem;
+@media (min-width: 120rem) {
+    #container {
+        max-width: 120rem;
     }
 }
 
+p {
+    font-size: 1.4rem;
+}
 
 
 /*
