@@ -8,7 +8,7 @@ html {
 
 /* gnb */
 
-#gnb {
+.gnb {
     position: fixed;
     width: 100%;
     height: 7rem;
@@ -20,7 +20,8 @@ html {
 
 /* gnb brand name */
 
-#gnb-brand-name, #gnb-brand-name:hover {
+.gnb__brand-name, 
+.gnb__brand-name:hover {
     position: absolute;
     padding: 2rem 0 0 2rem;
     width: 8rem;
@@ -35,7 +36,12 @@ html {
 
 /* gnb dropdown menu */
 
-#gnb-dropdown {
+.gnb__hamburger-icon {
+    width: 3rem;
+    height: 2.5rem;
+}
+
+.gnb__dropdown {
     position: absolute;
     padding: 2rem 5rem 0 0;
     right: 0;
@@ -43,12 +49,7 @@ html {
     height: 2.5rem;
 }
 
-#gnb-hamburger-icon {
-    width: 3rem;
-    height: 2.5rem;
-}
-
-.gnb-dropdown-content {
+.gnb__dropdown-content {
     visibility: hidden;
     opacity: 0;
     position: absolute;
@@ -63,12 +64,14 @@ html {
     transition-duration: 0.3s;
 }
 
-#gnb-dropdown:hover .gnb-dropdown-content {
+.gnb__dropdown:hover .gnb__dropdown-content {
     visibility: visible;
     opacity: 1;
 }
 
-.gnb-dropdown-content-1, .gnb-dropdown-content-2, .gnb-dropdown-content-3, .gnb-dropdown-content-4, .gnb-dropdown-content-5 {
+.gnb__dropdown-content--primary,
+.gnb__dropdown-content--rounded-top, 
+.gnb__dropdown-content--rounded-bottom {
     padding: 2rem 2rem;
     font-size: 2rem;
     font-weight: 1000;
@@ -78,7 +81,7 @@ html {
     text-decoration: none;
 }
 
-@keyframes gnb-dropdown-content-hover {
+@keyframes gnb__dropdown-content--hover {
     0% {
         background-color: #f9f9f9;
     }
@@ -88,23 +91,23 @@ html {
     }
 }
 
-.gnb-dropdown-content-1:hover {
-    animation: gnb-dropdown-content-hover 1s forwards;
+.gnb__dropdown-content--primary:hover {
+    animation: gnb__dropdown-content--hover 1s forwards;
+}
+
+.gnb__dropdown-content--rounded-top:hover {
+    animation: gnb__dropdown-content--hover 1s forwards;
     border-radius: 2.5rem 2.5rem 0 0;
 }
 
-.gnb-dropdown-content-2:hover, .gnb-dropdown-content-3:hover, .gnb-dropdown-content-4:hover {
-    animation: gnb-dropdown-content-hover 1s forwards;
-}
-
-.gnb-dropdown-content-5:hover {
-    animation: gnb-dropdown-content-hover 1s forwards;
+.gnb__dropdown-content--rounded-bottom:hover {
+    animation: gnb__dropdown-content--hover 1s forwards;
     border-radius: 0 0 2.5rem 2.5rem;
 }
 
 /* main */
 
-#wrapper {
+.wrapper {
     position: relative;
     text-align: left;
     width: 100%;
@@ -112,7 +115,7 @@ html {
     overflow: hidden;
 }
 
-#container {
+.wrapper__container {
     position: relative;
     margin: 0 auto;
     max-width: 120rem;
@@ -120,7 +123,7 @@ html {
 }
 
 @media (min-width: 120rem) {
-    #container {
+    .wrapper__container {
         max-width: 120rem;
     }
 }
