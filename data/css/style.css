@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@200&family=Jua&display=swap');
 
 html {
-    font-size: 10px;
+    font-size: 10px; /* 1rem = 10px */
     margin: 0;
     padding: 0;
 }
 
-/* gnb */
+/* global navigation bar */
 
 .gnb {
     position: fixed;
@@ -17,8 +17,6 @@ html {
     z-index: 900;
     /* background-color: white; */
 }
-
-/* gnb brand name */
 
 .gnb__brand-name, 
 .gnb__brand-name:hover {
@@ -33,8 +31,6 @@ html {
     color: black;
     text-decoration: none;
 }
-
-/* gnb dropdown menu */
 
 .gnb__hamburger-icon {
     width: 3rem;
