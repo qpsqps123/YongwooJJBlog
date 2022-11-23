@@ -1,0 +1,218 @@
+@font-face {
+    font-family: 'leon-sans-light';
+    src: url(./fonts/leon-sans-font/leonsans-light.otf) format(opentype);
+}
+
+@font-face {
+    font-family: 'kopub-batang-light';
+    src: url(./fonts/KOPUBWORLD_OTF_FONTS/KoPubWorld\ Batang_Pro\ Light.otf);
+}
+@font-face {
+    font-family: 'kopub-dotum-light';
+    src: url(./fonts/KOPUBWORLD_OTF_FONTS/KoPubWorld\ Dotum_Pro\ Light.otf);
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+
+}
+
+:root {
+    font-size: 10px; /* 1rem = 10px */
+    font-family: 'leon-sans-light', 'kopub-dotum-light', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.color-brown {
+    color: brown;
+}
+
+.color-red {
+    color: rgba(240, 0, 0);
+    text-decoration: none;
+}
+
+
+
+/* global navigation bar */
+
+
+
+.gnb {
+    position: fixed;
+    width: 100%;
+    height: 7rem;
+    top: 0;
+    left: 0;
+    z-index: 900;
+}
+
+.gnb__brand-name, 
+.gnb__brand-name:hover {
+    position: absolute;
+    padding: 2rem 0 0 2rem;
+    width: 8rem;
+    line-height: 2rem;
+    font-size: 2rem;
+    font-weight: lighter;
+    color: black;
+}
+
+.gnb__hamburger-icon {
+    width: 3rem;
+    height: 2.5rem;
+}
+
+.gnb__dropdown {
+    position: absolute;
+    padding: 2rem 2rem 0 0;
+    right: 0;
+    width: 3rem;
+    height: 2.5rem;
+    
+}
+
+.gnb__dropdown-content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    border-radius: 2.5rem;
+    box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2);;
+    transition-property: opacity, visibility;
+    transition-delay: 0.05s;
+    transition-duration: 0.3s;
+}
+
+.gnb__dropdown:hover .gnb__dropdown-content {
+    visibility: visible;
+    opacity: 1;
+}
+
+.gnb__dropdown-content--primary,
+.gnb__dropdown-content--rounded-top, 
+.gnb__dropdown-content--rounded-bottom {
+    padding: 2rem 0;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: black;
+    text-transform: uppercase;
+    text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+@keyframes transform-text-color-black-to-red {
+    0% {
+        color: black;
+    }
+
+    100% {
+        color: rgb(240, 0, 0);
+    }
+}
+
+.gnb__dropdown-content--primary:hover {
+    animation: transform-text-color-black-to-red 0.6s forwards;
+}
+
+.gnb__dropdown-content--rounded-top:hover {
+    animation: transform-text-color-black-to-red 0.6s forwards;
+    border-radius: 2.5rem 2.5rem 0 0;
+}
+
+.gnb__dropdown-content--rounded-bottom:hover {
+    animation: transform-text-color-black-to-red 0.6s forwards;
+    border-radius: 0 0 2.5rem 2.5rem;
+}
+
+
+
+/* main */
+
+
+
+.wrapper {
+    position: relative;
+    text-align: left;
+    width: 100%;
+    margin: 7rem auto 7rem;
+    overflow: hidden;
+}
+
+.wrapper__container {
+    position: relative;
+    margin: 0 auto;
+    max-width: 100rem;
+    padding: 5rem 4rem 0;
+}
+
+@media (max-width: 68rem) {
+    .wrapper__container {
+        padding: 5rem 3% 0;
+    }
+}
+
+
+.wrapper__entry,
+.wrapper__experience,
+.wrapper__featured-project,
+.wrapper__study-plan {
+    margin-top: 5rem;
+}
+
+.h1-primary {
+    color: black;
+    font-size: 4rem;
+    font-weight:bold;
+    text-align: center;
+}
+
+.h1-primary:hover {
+    animation: transform-text-color-black-to-red 0.6s forwards;
+}
+
+.h2-primary {
+    padding-bottom: 1rem;
+    font-size: 1.4rem;
+    opacity: 0.9;
+    text-transform: uppercase;
+}
+
+.p-primary {    
+    padding-bottom: 1rem;
+    font-size: 1.4rem;
+    font-family: 'kopub-batang-light', serif;
+    font-weight: 100;
+    opacity: 0.8;
+}
+
+.p-primary--experience-info {
+    font-size: 1.2rem;
+    font-family: 'kopub-batang-light', serif;
+    opacity: 0.6;
+}
+
+.video-primary {
+    padding-bottom: 4rem;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* footer */
+
+
+
+::selection {
+    color: white;
+    background-color: rgb(240, 0, 0);
+}
