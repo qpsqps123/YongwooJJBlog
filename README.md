@@ -1,2 +1,2 @@
-# myPesonalWebsite
+# JJ-website
 making my personal website
