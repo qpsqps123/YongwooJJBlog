@@ -5,10 +5,10 @@ dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-const config: GatsbyConfig = {
+export const config: GatsbyConfig = {
   siteMetadata: {
     title: `JJ Blog`,
-    siteUrl: `https://www.yourdomain.tld`,
+    // siteUrl: `https://www.yourdomain.tld`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -22,25 +22,22 @@ const config: GatsbyConfig = {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
       },
     },
-    "gatsby-plugin-image",
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-sass",
-    "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: "src/images/icon.png",
+        name: "JJBlog",
+        start_url: "/",
+        display: "standalone",
+        icon: "./src/images/icon.png",
+        crossOrigin: `use-credentials`,
       },
     },
-    "gatsby-transformer-remark",
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "images",
         path: "./src/images/",
       },
-      __key: "images",
     },
     {
       resolve: "gatsby-source-filesystem",
@@ -48,8 +45,20 @@ const config: GatsbyConfig = {
         name: "pages",
         path: "./src/pages/",
       },
-      __key: "pages",
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "blog",
+        path: "./blog",
+      },
+    },
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sass",
+    "gatsby-plugin-sitemap",
+    "gatsby-transformer-remark",
     "gatsby-plugin-mdx",
   ],
 };
