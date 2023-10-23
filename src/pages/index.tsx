@@ -1,4 +1,5 @@
 import * as React from "react";
+import { SEO } from "../components/seo";
 import { Link } from "gatsby";
 
 const IndexPage = () => {
@@ -9,5 +10,7 @@ const IndexPage = () => {
     </>
   );
 };
+
+export const Head = () => <SEO title={"Home"} />;
 
 export default IndexPage;
