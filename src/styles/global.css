@@ -1,0 +1,30 @@
+@font-face {
+  font-family: "LeonSans-Medium";
+  src: url("../static/fonts/leonsans/leon-sans-fonts/LeonSans-Medium.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "Kopubworld-Medium";
+  src: url("../static/fonts/kopubworld/KoPubWorld\ Batang_Pro\ Medium.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("../static/fonts/Pretendard/public/variable/PretendardVariable.ttf")
+    format("truetype");
+}
+
+html {
+  font-family: "kopubworld-Medium";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "LeonSans-Medium", "Pretendard", serif;
+}
