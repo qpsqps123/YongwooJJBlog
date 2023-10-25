@@ -12,12 +12,12 @@
 
 @font-face {
   font-family: "Pretendard";
-  src: url("../static/fonts/Pretendard/public/variable/PretendardVariable.ttf")
+  src: url("../static/fonts/Pretendard/files/variable/PretendardVariable.ttf")
     format("truetype");
 }
 
 html {
-  font-family: "kopubworld-Medium";
+  font-family: "kopubworld-Medium", serif;
 }
 
 h1,
