@@ -2,6 +2,7 @@ import * as React from "react";
 import { PageProps, graphql } from "gatsby";
 import { Link } from "gatsby";
 import { SEO } from "../../components/seo";
+import Header from "../../layout/Header";
 
 interface AllMdxNodesProps {
   id: string;
@@ -17,9 +18,10 @@ interface AllMdxDataProps {
   };
 }
 
-const BlogPost = ({ data }: PageProps<AllMdxDataProps>) => {
+const BlogPage = ({ data }: PageProps<AllMdxDataProps>) => {
   return (
     <React.Fragment>
+      <Header />
       {data.allMdx.nodes.map((node) => (
         <article key={node.id}>
           <h2>
@@ -34,10 +36,11 @@ const BlogPost = ({ data }: PageProps<AllMdxDataProps>) => {
   );
 };
 
+export default BlogPage;
+
 export const Head = () => {
   return <SEO title={"Blog"} />;
 };
-export default BlogPost;
 
 export const query = graphql`
   query BlogQuery {
