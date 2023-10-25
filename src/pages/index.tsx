@@ -1,16 +1,18 @@
 import * as React from "react";
 import { SEO } from "../components/seo";
-import { Link } from "gatsby";
+import Header from "../layout/Header";
 
-const IndexPage = () => {
+const HomePage = () => {
   return (
-    <>
-      <h1>JJBlog</h1>
-      <Link to="/blog">Blog Page</Link>
-    </>
+    <React.Fragment>
+      <Header />
+      <main>
+        <section>main section</section>
+      </main>
+    </React.Fragment>
   );
 };
 
-export const Head = () => <SEO title={"Home"} />;
+export default HomePage;
 
-export default IndexPage;
+export const Head = () => <SEO title={"Home"} />;
