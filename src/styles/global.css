@@ -1,27 +1,26 @@
 @font-face {
   font-family: "LeonSans";
   font-display: swap;
-  src: url("../static/fonts/leonsans/leon-sans-fonts/LeonSans-Medium.woff2")
+  src: url("/fonts/leonsans/leon-sans-fonts/LeonSans-Medium.woff2")
       format("woff2"),
-    url("../static/fonts/leonsans/leon-sans-fonts/LeonSans-Medium.woff")
-      format("woff");
+    url("/fonts/leonsans/leon-sans-fonts/LeonSans-Medium.woff") format("woff");
 }
 
 @font-face {
   font-family: "KopubworldBatang";
   font-display: swap;
-  src: url("../static/fonts/kopubworld/KoPubWorld\ Batang_Pro\ Medium_Subset.woff2")
+  src: url("/fonts/kopubworld/KoPubWorld\ Batang_Pro\ Medium_Subset.woff2")
       format("woff2"),
-    url("../static/fonts/kopubworld/KoPubWorld\ Batang_Pro\ Medium_Subset.woff")
+    url("/fonts/kopubworld/KoPubWorld\ Batang_Pro\ Medium_Subset.woff")
       format("woff");
 }
 
 @font-face {
   font-family: "Pretendard";
   font-display: swap;
-  src: url("../static/fonts/Pretendard/files/static/Pretendard-Medium-Subset.woff2")
+  src: url("/fonts/Pretendard/files/static/Pretendard-Medium-Subset.woff2")
       format("woff2"),
-    url("../static/fonts/Pretendard/files/static/Pretendard-Medium-Subset.woff")
+    url("/fonts/Pretendard/files/static/Pretendard-Medium-Subset.woff")
       format("woff");
 }
 
