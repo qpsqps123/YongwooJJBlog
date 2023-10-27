@@ -7,6 +7,7 @@ const InfoPage = () => {
     <React.Fragment>
       <Header />
       <h2>Info</h2>
+      <p>폰트테스트 : 가나다 깎다. ABC abc PARAGRAPH.</p>
     </React.Fragment>
   );
 };
