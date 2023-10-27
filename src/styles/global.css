@@ -1,6 +1,5 @@
 @font-face {
   font-family: "LeonSans";
-  font-display: swap;
   src: url("/fonts/leonsans/leon-sans-fonts/LeonSans-Medium.woff2")
       format("woff2"),
     url("/fonts/leonsans/leon-sans-fonts/LeonSans-Medium.woff") format("woff");
@@ -8,7 +7,6 @@
 
 @font-face {
   font-family: "KopubworldBatang";
-  font-display: swap;
   src: url("/fonts/kopubworld/KoPubWorld-Batang-Pro-Medium-Subset.woff2")
       format("woff2"),
     url("/fonts/kopubworld/KoPubWorld-Batang-Pro-Medium-Subset.woff")
@@ -17,7 +15,6 @@
 
 @font-face {
   font-family: "Pretendard";
-  font-display: swap;
   src: url("/fonts/Pretendard/files/static/Pretendard-Medium-Subset.woff2")
       format("woff2"),
     url("/fonts/Pretendard/files/static/Pretendard-Medium-Subset.woff")
@@ -26,6 +23,7 @@
 
 html {
   font-family: "KopubworldBatang", serif;
+  font-display: block;
 }
 
 h1,
