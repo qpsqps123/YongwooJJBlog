@@ -15,10 +15,9 @@
 
 @font-face {
   font-family: "Pretendard";
-  src: url("/fonts/Pretendard/files/static/Pretendard-Medium-Subset.woff2")
+  src: url("/fonts/Pretendard/files/Pretendard-Medium-Subset.woff2")
       format("woff2"),
-    url("/fonts/Pretendard/files/static/Pretendard-Medium-Subset.woff")
-      format("woff");
+    url("/fonts/Pretendard/files/Pretendard-Medium-Subset.woff") format("woff");
 }
 
 html {
