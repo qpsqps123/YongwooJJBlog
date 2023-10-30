@@ -1,6 +1,7 @@
 import * as React from "react";
 import { PageProps, graphql } from "gatsby";
-import { SEO } from "../../components/seo";
+import { SEO } from "../../../components/seo";
+import Header from "../../../layout/Header";
 
 interface mdxDataProps {
   mdx: {
@@ -11,9 +12,10 @@ interface mdxDataProps {
   };
 }
 
-const BlogPage = ({ data, children }: PageProps<mdxDataProps>) => {
+const BlogDaysPostsTemplate = ({ data, children }: PageProps<mdxDataProps>) => {
   return (
     <React.Fragment>
+      <Header />
       <main>
         <h2>{data.mdx.frontmatter.title}</h2>
         <p>{data.mdx.frontmatter.date}</p>
@@ -23,7 +25,7 @@ const BlogPage = ({ data, children }: PageProps<mdxDataProps>) => {
   );
 };
 
-export default BlogPage;
+export default BlogDaysPostsTemplate;
 
 export const Head = ({ data }: PageProps<mdxDataProps>) => (
   <SEO title={data.mdx.frontmatter.title} />

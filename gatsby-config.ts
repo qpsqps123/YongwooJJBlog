@@ -5,7 +5,7 @@ dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-export const config: GatsbyConfig = {
+const config: GatsbyConfig = {
   siteMetadata: {
     title: `Yongwoo JJ Blog`,
     siteUrl: `https://blog.yongwoo.me`,
@@ -49,8 +49,15 @@ export const config: GatsbyConfig = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "blog",
-        path: "./blog",
+        name: "days",
+        path: "./content/days",
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "learn",
+        path: "./content/learn",
       },
     },
     "gatsby-plugin-image",
