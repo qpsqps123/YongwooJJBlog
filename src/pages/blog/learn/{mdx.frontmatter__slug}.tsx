@@ -35,7 +35,7 @@ export const Head = ({ data }: PageProps<mdxDataProps>) => (
 );
 
 export const query = graphql`
-  query BlogQuery($id: String) {
+  query ($id: String) {
     mdx(id: { eq: $id }) {
       frontmatter {
         title
