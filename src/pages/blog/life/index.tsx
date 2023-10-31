@@ -24,10 +24,10 @@ const BlogDaysPage = ({ data }: PageProps<AllMdxDataProps>) => {
     <React.Fragment>
       <Header />
       {data.allMdx.nodes.map((node) =>
-        node.frontmatter.post === "days" ? (
+        node.frontmatter.post === "life" ? (
           <article key={node.id}>
             <h2>
-              <Link to={`/blog/days/${node.frontmatter.slug}`}>
+              <Link to={`/blog/life/${node.frontmatter.slug}`}>
                 {node.frontmatter.title}
               </Link>
             </h2>

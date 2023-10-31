@@ -49,8 +49,8 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "days",
-        path: "./content/days",
+        name: "life",
+        path: "./content/life",
       },
     },
     {
