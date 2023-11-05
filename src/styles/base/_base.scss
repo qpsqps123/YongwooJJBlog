@@ -6,12 +6,35 @@
   box-sizing: border-box;
 }
 
-html {
-  font-family: "KopubworldBatang", serif;
-}
-
 body {
   min-height: 100vh;
+  font-family: "KopubworldBatang", serif;
+  color: #666;
+}
+
+body::-webkit-scrollbar {
+  width: 13px;
+}
+
+body::-webkit-scrollbar-track {
+  border: 2px transparent #fff;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  background-clip: padding-box;
+  border-radius: 10px;
+  border: 2px solid transparent;
+}
+
+body::-webkit-scrollbar-button:vertical:start:decrement {
+  display: block;
+  height: 0.5rem;
+}
+
+body::-webkit-scrollbar-button:vertical:end:decrement {
+  display: block;
+  height: 0.5rem;
 }
 
 h1,
@@ -21,4 +44,5 @@ h4,
 h5,
 h6 {
   font-family: "LeonSans", "Pretendard", serif;
+  color: #111;
 }
