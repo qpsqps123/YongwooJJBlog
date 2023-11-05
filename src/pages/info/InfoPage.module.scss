@@ -1,21 +1,25 @@
 @import "../../styles/abstracts/functions";
+@import "../../styles/base/layout";
 
 .container {
   min-height: 100vh;
-  padding: 100px rem(20px) 0;
+  padding: rem(80px) rem(20px) 0;
 }
 
 section {
   margin: 0 20%;
   font-size: rem(14px);
   line-height: 1.5;
+
+  @include tablet-lg {
+    margin: 0 10px;
+  }
 }
 
 .name {
   margin-top: 80px;
   text-align: center;
   font-size: rem(40px);
-  font-weight: lighter;
 }
 
 .introduce {
