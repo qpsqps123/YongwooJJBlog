@@ -1,0 +1,61 @@
+@import "../../styles/abstracts/functions";
+
+.container {
+  min-height: 100vh;
+  padding: 100px rem(20px) 0;
+}
+
+section {
+  margin: 0 20%;
+  font-size: rem(14px);
+  line-height: 1.5;
+}
+
+.name {
+  margin-top: 80px;
+  text-align: center;
+  font-size: rem(40px);
+  font-weight: lighter;
+}
+
+.introduce {
+  margin-top: 80px;
+
+  p {
+    margin-top: 10px;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  ul {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: rem(20px);
+    margin-top: 10px;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
+  a:hover {
+    animation-duration: 0.3s;
+    animation-name: colorBlackToRed;
+    color: red;
+  }
+}
+
+@keyframes colorBlackToRed {
+  from {
+    color: black;
+  }
+
+  to {
+    color: red;
+  }
+}
