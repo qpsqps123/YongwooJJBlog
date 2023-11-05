@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+*::selection {
+  color: #fff;
+  background-color: red;
+}
+
 body {
   min-height: 100vh;
   font-family: "KopubworldBatang", serif;
