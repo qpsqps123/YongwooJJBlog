@@ -1,0 +1,34 @@
+@import "../abstracts/functions";
+@import "../base/layout";
+
+.container {
+  min-height: 100vh;
+  padding: rem(80px) rem(20px) 0;
+}
+
+.post {
+  margin: 30px 20%;
+
+  h2 {
+    font-size: rem(38px);
+    text-align: center;
+  }
+
+  @include tablet-lg {
+    margin: 30px 10px;
+  }
+}
+
+.date {
+  margin: 30px auto 0;
+  text-align: right;
+  color: #aaa;
+}
+
+.content {
+  margin: 30px auto 0;
+
+  * {
+    margin: 5px auto 0;
+  }
+}

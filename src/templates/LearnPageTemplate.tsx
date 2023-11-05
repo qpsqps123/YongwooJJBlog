@@ -34,7 +34,7 @@ const LearnPageTemplate = ({ data }: PageProps<AllMdxDataProps>) => {
                     {node.frontmatter.title}
                   </Link>
                 </h2>
-                <p>Posted: {node.frontmatter.date}</p>
+                <p className={classes.date}>Posted: {node.frontmatter.date}</p>
               </article>
             ) : (
               ""

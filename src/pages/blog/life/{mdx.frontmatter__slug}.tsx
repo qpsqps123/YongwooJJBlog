@@ -13,22 +13,22 @@ interface mdxDataProps {
   };
 }
 
-const BlogDaysPostsTemplate = ({ data, children }: PageProps<mdxDataProps>) => {
+const BlogLifePostsTemplate = ({ data, children }: PageProps<mdxDataProps>) => {
   return (
     <React.Fragment>
       <Header />
       <main className={classes.container}>
         <article className={classes.post}>
           <h2>{data.mdx.frontmatter.title}</h2>
-          <p>{data.mdx.frontmatter.date}</p>
-          {children}
+          <p className={classes.date}>{data.mdx.frontmatter.date}</p>
+          <p className={classes.content}>{children}</p>
         </article>
       </main>
     </React.Fragment>
   );
 };
 
-export default BlogDaysPostsTemplate;
+export default BlogLifePostsTemplate;
 
 export const Head = ({ data }: PageProps<mdxDataProps>) => (
   <SEO title={data.mdx.frontmatter.title} />

@@ -1,0 +1,44 @@
+@import "../abstracts/functions";
+@import "../base/layout";
+
+.container {
+  min-height: 100vh;
+  padding: rem(80px) rem(20px) 0;
+}
+
+.postsContainer {
+  margin: 0 20%;
+
+  @include tablet-lg {
+    margin: 0 10px;
+  }
+}
+
+.post {
+  margin: 30px auto;
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
+  a:hover {
+    animation-duration: 0.3s;
+    animation-name: colorBlackToRed;
+    color: red;
+  }
+}
+
+.date {
+  color: #aaa;
+}
+
+@keyframes colorBlackToRed {
+  from {
+    color: black;
+  }
+
+  to {
+    color: red;
+  }
+}
