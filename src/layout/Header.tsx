@@ -43,17 +43,17 @@ const Header = () => {
               <Link to="/projects">PROJECTS</Link>
             </li> */}
           <li className={classes.blogMenu}>
-            <Link to="/blog/learn" className={blogMenuLinkColor}>
+            <Link to="/blog/learn/0" className={blogMenuLinkColor}>
               BLOG
             </Link>
             <ul className={classes.blogSubmenuContainer}>
               <li>
-                <Link to="/blog/life" className={lifeMenuLinkColor}>
+                <Link to="/blog/life/0" className={lifeMenuLinkColor}>
                   LIFE
                 </Link>
               </li>
               <li>
-                <Link to="/blog/learn" className={learnMenuLinkColor}>
+                <Link to="/blog/learn/0" className={learnMenuLinkColor}>
                   LEARN
                 </Link>
               </li>
