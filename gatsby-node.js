@@ -36,7 +36,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   Array.from({ length: numPages }, (_, i) => {
     createPage({
-      path: i === 0 ? `/blog/learn/${i}` : `/blog/learn/${i + 1}`,
+      path: `/blog/learn/${i}`,
       component: LearnPageTemplate,
       context: {
         limit: postsPerPage,
@@ -49,7 +49,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   Array.from({ length: numPages }, (_, i) => {
     createPage({
-      path: i === 0 ? `/blog/life/${i}` : `/blog/life/${i + 1}`,
+      path: `/blog/life/${i}`,
       component: LifePageTemplate,
       context: {
         limit: postsPerPage,
