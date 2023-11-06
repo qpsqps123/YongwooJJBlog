@@ -64,6 +64,10 @@
   margin-right: rem(20px);
 }
 
+.hide {
+  display: none;
+}
+
 @keyframes colorBlackToRed {
   from {
     color: black;

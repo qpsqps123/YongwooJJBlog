@@ -6,23 +6,25 @@ import * as classes from "./Header.module.scss";
 const Header = () => {
   const location = useLocation();
 
-  const InfoMenuLinkColor = location.pathname.includes("/info/")
+  const InfoMenuHoverColor = location.pathname.includes("/info/")
     ? classes.colorRed
     : "";
 
-  const blogMenuLinkColor =
-    location.pathname.includes("/blog/learn/") ||
-    location.pathname.includes("/blog/life/")
-      ? classes.colorRed
-      : "";
-
-  const lifeMenuLinkColor = location.pathname.includes("/blog/life/")
+  const blogMenuHoverColor = location.pathname.includes("/blog")
     ? classes.colorRed
     : "";
 
-  const learnMenuLinkColor = location.pathname.includes("/blog/learn/")
+  const lifeMenuHoverColor = location.pathname.includes("/blog/life/")
     ? classes.colorRed
     : "";
+
+  const learnMenuHoverColor = location.pathname.includes("/blog/learn/")
+    ? classes.colorRed
+    : "";
+
+  const hideBlogSubmenu = location.pathname.includes("/blog")
+    ? ""
+    : classes.hide;
 
   return (
     <header>
@@ -35,7 +37,7 @@ const Header = () => {
         </div>
         <ul className={classes.menuContainer}>
           <li>
-            <Link to="/info" className={InfoMenuLinkColor}>
+            <Link to="/info" className={InfoMenuHoverColor}>
               INFO
             </Link>
           </li>
@@ -43,17 +45,19 @@ const Header = () => {
               <Link to="/projects">PROJECTS</Link>
             </li> */}
           <li className={classes.blogMenu}>
-            <Link to="/blog/learn/0" className={blogMenuLinkColor}>
+            <Link to="/blog/learn/0" className={blogMenuHoverColor}>
               BLOG
             </Link>
-            <ul className={classes.blogSubmenuContainer}>
+            <ul
+              className={`${classes.blogSubmenuContainer} ${hideBlogSubmenu}`}
+            >
               <li>
-                <Link to="/blog/life/0" className={lifeMenuLinkColor}>
+                <Link to="/blog/life/0" className={lifeMenuHoverColor}>
                   LIFE
                 </Link>
               </li>
               <li>
-                <Link to="/blog/learn/0" className={learnMenuLinkColor}>
+                <Link to="/blog/learn/0" className={learnMenuHoverColor}>
                   LEARN
                 </Link>
               </li>
