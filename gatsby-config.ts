@@ -16,13 +16,6 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     {
-      resolve: "gatsby-source-contentful",
-      options: {
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-      },
-    },
-    {
       resolve: "gatsby-plugin-manifest",
       options: {
         name: "Yongwoo JJ Blog",
