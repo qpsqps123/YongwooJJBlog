@@ -1,13 +1,18 @@
-import * as React from "react";
+import React, { useEffect } from "react";
+import { navigate } from "gatsby";
 import { SEO } from "../components/seo";
 import Header from "../layout/Header";
 
 const HomePage = () => {
+  useEffect(() => {
+    navigate("/info");
+  }, []);
+
   return (
     <React.Fragment>
       <Header />
       <main>
-        <section>main section</section>
+        <p>redirecting...</p>
       </main>
     </React.Fragment>
   );
