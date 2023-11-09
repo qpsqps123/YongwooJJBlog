@@ -9,10 +9,10 @@
 @font-face {
   font-family: "KopubworldBatang";
   font-display: swap;
-  src: url("/fonts/kopubworld/KoPubWorld-Batang-Pro-Light-Subset.woff2")
-      format("woff2"),
-    url("/fonts/kopubworld/KoPubWorld-Batang-Pro-Light-Subset.woff")
-      format("woff");
+  src: url("/fonts/kopubworld/KoPubWorld-Batang-Pro-Light-Subset.woff")
+      format("woff"),
+    url("/fonts/kopubworld/KoPubWorld-Batang-Pro-Light-Subset.otf")
+      format("opentype");
 }
 
 @font-face {
