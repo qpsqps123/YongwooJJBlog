@@ -24,7 +24,7 @@ const BlogLearnPostsTemplate = ({
         <article className={classes.post}>
           <h2>{data.mdx.frontmatter.title}</h2>
           <p className={classes.date}>{data.mdx.frontmatter.date}</p>
-          <p className={classes.content}>{children}</p>
+          <section className={classes.content}>{children}</section>
         </article>
       </main>
     </React.Fragment>
