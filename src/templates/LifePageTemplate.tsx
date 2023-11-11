@@ -1,9 +1,11 @@
-import * as React from "react";
+import React from "react";
 import { PageProps, graphql } from "gatsby";
 import { Link } from "gatsby";
+import * as classes from "../styles/templates/BlogPageTemplate.module.scss";
+import useRenderPageNavLinks from "../hooks/useRenderPageNavLinks";
+import { v4 as uuid } from "uuid";
 import { SEO } from "../components/seo";
 import Header from "../layout/Header";
-import * as classes from "../styles/templates/BlogPageTemplate.module.scss";
 
 interface AllMdxNodesProps {
   id: string;
@@ -20,7 +22,123 @@ interface AllMdxDataProps {
   };
 }
 
-const LearnPageTemplate = ({ data }: PageProps<AllMdxDataProps>) => {
+interface PageContextType {
+  limit: number;
+  skip: number;
+  numPages: number;
+  currentPage: number;
+}
+
+const LifePageTemplate = ({
+  data,
+  pageContext,
+}: PageProps<AllMdxDataProps, PageContextType>) => {
+  const { numPages, currentPage } = pageContext;
+  const { renderPageNavLinks } = useRenderPageNavLinks();
+
+  const firstPage =
+    currentPage === 1 ? (
+      <li>{"<<"}</li>
+    ) : (
+      <li>
+        <Link to={`/blog/life/1`}>{"<<"}</Link>
+      </li>
+    );
+
+  const lastPage =
+    currentPage === numPages ? (
+      <li>{">>"}</li>
+    ) : (
+      <li>
+        <Link to={`/blog/life/${numPages}`}>{">>"}</Link>
+      </li>
+    );
+
+  const prevPage =
+    currentPage === 1 ? (
+      <li>{"<"}</li>
+    ) : (
+      <li>
+        <Link to={`/blog/life/${currentPage - 1}`}>{"<"}</Link>
+      </li>
+    );
+
+  const nextPage =
+    currentPage === numPages ? (
+      <li>{">"}</li>
+    ) : (
+      <li>
+        <Link to={`/blog/life/${currentPage + 1}`}>{">"}</Link>
+      </li>
+    );
+
+  const navPageArray = [
+    currentPage - 2,
+    currentPage - 1,
+    currentPage,
+    currentPage + 1,
+    currentPage + 2,
+  ];
+
+  const navPageList = navPageArray.map((page) => {
+    const isCurrentPage = page === currentPage;
+    const isFirstPage = isCurrentPage && currentPage === 1;
+    const isSecondPage = isCurrentPage && currentPage === 2;
+    const isLastBeforePage = isCurrentPage && currentPage === numPages - 1;
+    const isLastPage = isCurrentPage && currentPage === numPages;
+    const isRestPages =
+      page > 0 &&
+      page <= numPages &&
+      currentPage !== 1 &&
+      currentPage !== 2 &&
+      currentPage !== numPages - 1 &&
+      currentPage !== numPages;
+
+    if (isFirstPage) {
+      return (
+        <React.Fragment key={uuid()}>
+          <li>1</li>
+          {renderPageNavLinks(4, 2, "life")}
+        </React.Fragment>
+      );
+    } else if (isSecondPage) {
+      return (
+        <React.Fragment key={uuid()}>
+          {renderPageNavLinks(1, 1, "life")}
+          <li>2</li>
+          {renderPageNavLinks(3, 3, "life")}
+        </React.Fragment>
+      );
+    } else if (isLastBeforePage) {
+      return (
+        <React.Fragment key={uuid()}>
+          {renderPageNavLinks(3, numPages - 4, "life")}
+          <li>{numPages - 1}</li>
+          {renderPageNavLinks(1, numPages, "life")}
+        </React.Fragment>
+      );
+    } else if (isLastPage) {
+      return (
+        <React.Fragment key={uuid()}>
+          {renderPageNavLinks(4, numPages - 4, "life")}
+          <li>{numPages}</li>
+        </React.Fragment>
+      );
+    }
+
+    if (isCurrentPage) {
+      return <li key={uuid()}>{page}</li>;
+    }
+
+    if (isRestPages) {
+      return (
+        <React.Fragment key={uuid()}>
+          {renderPageNavLinks(1, page, "life")}
+        </React.Fragment>
+      );
+    }
+  });
+
   return (
     <React.Fragment>
       <Header />
@@ -41,12 +159,19 @@ const LearnPageTemplate = ({ data }: PageProps<AllMdxDataProps>) => {
             )
           )}
         </section>
+        <ul>
+          {firstPage}
+          {prevPage}
+          {navPageList}
+          {nextPage}
+          {lastPage}
+        </ul>
       </main>
     </React.Fragment>
   );
 };
 
-export default LearnPageTemplate;
+export default LifePageTemplate;
 
 export const Head = () => {
   return <SEO title={"Blog"} />;
