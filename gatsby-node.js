@@ -31,30 +31,33 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   const posts = result.data.allMdx.nodes;
+  const lifePosts = posts.filter((node) => node.frontmatter.post === "life");
+  const learnPosts = posts.filter((node) => node.frontmatter.post === "learn");
   const postsPerPage = 10;
-  const numPages = Math.ceil(posts.length / postsPerPage);
+  const numLifePages = Math.ceil(lifePosts.length / postsPerPage);
+  const numLearnPages = Math.ceil(learnPosts.length / postsPerPage);
 
-  Array.from({ length: numPages }, (_, i) => {
+  Array.from({ length: numLearnPages }, (_, i) => {
     createPage({
       path: `/blog/learn/${i + 1}`,
       component: LearnPageTemplate,
       context: {
         limit: postsPerPage,
         skip: i * postsPerPage,
-        numPages,
+        numLearnPages,
         currentPage: i + 1,
       },
     });
   });
 
-  Array.from({ length: numPages }, (_, i) => {
+  Array.from({ length: numLifePages }, (_, i) => {
     createPage({
       path: `/blog/life/${i + 1}`,
       component: LifePageTemplate,
       context: {
         limit: postsPerPage,
         skip: i * postsPerPage,
-        numPages,
+        numLifePages,
         currentPage: i + 1,
       },
     });
