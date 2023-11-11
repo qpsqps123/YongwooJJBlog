@@ -4,7 +4,7 @@ import { SEO } from "../../components/seo";
 
 const BlogPage = () => {
   useEffect(() => {
-    navigate("/blog/learn/0");
+    navigate("/blog/learn/1");
   }, []);
 
   return null;

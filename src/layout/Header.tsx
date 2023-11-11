@@ -45,19 +45,19 @@ const Header = () => {
               <Link to="/projects">PROJECTS</Link>
             </li> */}
           <li className={classes.blogMenu}>
-            <Link to="/blog/learn/0" className={blogMenuHoverColor}>
+            <Link to="/blog/learn/1" className={blogMenuHoverColor}>
               BLOG
             </Link>
             <ul
               className={`${classes.blogSubmenuContainer} ${hideBlogSubmenu}`}
             >
               <li>
-                <Link to="/blog/life/0" className={lifeMenuHoverColor}>
+                <Link to="/blog/life/1" className={lifeMenuHoverColor}>
                   LIFE
                 </Link>
               </li>
               <li>
-                <Link to="/blog/learn/0" className={learnMenuHoverColor}>
+                <Link to="/blog/learn/1" className={learnMenuHoverColor}>
                   LEARN
                 </Link>
               </li>
