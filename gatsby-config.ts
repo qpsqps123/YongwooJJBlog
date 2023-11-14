@@ -7,7 +7,7 @@ dotenv.config({
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `Yongwoo JJ Blog`,
+    title: `YongwooJJ Blog`,
     siteUrl: `https://blog.yongwoo.me`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
@@ -21,7 +21,7 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: "Yongwoo JJ Blog",
+        name: "YongwooJJ Blog",
         start_url: "/",
         display: "standalone",
         icon: "./src/images/icon.png",
@@ -46,23 +46,46 @@ const config: GatsbyConfig = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "life",
-        path: "./content/life",
+        path: "./src/content/life",
       },
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "learn",
-        path: "./content/learn",
+        path: "./src/content/learn",
       },
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "images",
+        path: "./src/images",
+      },
+    },
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          // formats: [`auto`, `webp`, `png`, `jpg`],
+          placeholder: `none`,
+          // breakpoints: [750, 1080, 1366, 1920],
+          // backgroundColor: `white`,
+          tracedSVGOptions: {},
+          blurredOptions: {},
+          jpgOptions: {},
+          pngOptions: {},
+          webpOptions: {},
+          avifOptions: {},
+        },
+      },
+    },
+    "gatsby-plugin-mdx",
     "gatsby-plugin-image",
-    "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sass",
     "gatsby-plugin-sitemap",
     "gatsby-transformer-remark",
-    "gatsby-plugin-mdx",
   ],
 };
 

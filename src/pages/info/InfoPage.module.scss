@@ -17,7 +17,7 @@ section {
 }
 
 .name {
-  margin-top: 80px;
+  margin: 80px auto;
   text-align: center;
   font-size: rem(40px);
   font-weight: 500;
@@ -51,6 +51,18 @@ section {
     animation-duration: 0.3s;
     animation-name: colorBlackToRed;
     color: red;
+  }
+}
+
+.contact {
+  margin-top: 10px;
+
+  ul {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: left;
+    gap: 20px;
+    list-style: none;
   }
 }
 
