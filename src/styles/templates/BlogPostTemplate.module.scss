@@ -1,13 +1,12 @@
 @import "../abstracts/functions";
 @import "../base/layout";
 
-.container {
-  min-height: 100vh;
+.mainContainer {
   padding: rem(80px) rem(20px) 0;
 }
 
 .post {
-  margin: 30px 20%;
+  margin: 80px 20% 30px;
 
   h2 {
     font-size: rem(38px);
@@ -16,7 +15,7 @@
   }
 
   @include tablet-lg {
-    margin: 30px 10px;
+    margin: 80px 10px 30px;
   }
 }
 
@@ -32,4 +31,8 @@
   * {
     margin: 10px auto 0;
   }
+}
+
+.footerContainer {
+  padding: rem(40px) rem(20px);
 }

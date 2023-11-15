@@ -17,13 +17,14 @@ const BlogLifePostsTemplate = ({ data, children }: PageProps<mdxDataProps>) => {
   return (
     <React.Fragment>
       <Header />
-      <main className={classes.container}>
+      <main className={classes.mainContainer}>
         <article className={classes.post}>
           <h2>{data.mdx.frontmatter.title}</h2>
           <p className={classes.date}>{data.mdx.frontmatter.date}</p>
           <section className={classes.content}>{children}</section>
         </article>
       </main>
+      <footer className={classes.footerContainer}></footer>
     </React.Fragment>
   );
 };

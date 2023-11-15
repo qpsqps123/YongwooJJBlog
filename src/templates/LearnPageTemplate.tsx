@@ -148,7 +148,7 @@ const LearnPageTemplate = ({
   return (
     <React.Fragment>
       <Header />
-      <main className={classes.container}>
+      <main className={classes.mainContainer}>
         <section className={classes.postsContainer}>
           {data.allMdx.nodes.map((node) =>
             node.frontmatter.post === "learn" ? (
@@ -179,6 +179,7 @@ const LearnPageTemplate = ({
           {lastPage}
         </ul>
       </main>
+      <footer className={classes.footerContainer}></footer>
     </React.Fragment>
   );
 };

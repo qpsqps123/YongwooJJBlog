@@ -1,16 +1,15 @@
 @import "../abstracts/functions";
 @import "../base/layout";
 
-.container {
-  min-height: 100vh;
+.mainContainer {
   padding: rem(80px) rem(20px) 0;
 }
 
 .postsContainer {
-  margin: 0 20%;
+  margin: 80px 20% 0;
 
   @include tablet-lg {
-    margin: 0 10px;
+    margin: 80px 10px 0;
   }
 }
 
@@ -31,6 +30,10 @@
 
 .date {
   color: #aaa;
+}
+
+.footerContainer {
+  padding: rem(40px) rem(20px);
 }
 
 @keyframes colorBlackToRed {
