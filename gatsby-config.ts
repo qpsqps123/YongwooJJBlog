@@ -57,17 +57,10 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "images",
-        path: "./src/images",
-      },
-    },
-    {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaults: {
-          // formats: [`auto`, `webp`, `png`, `jpg`],
+          formats: [`auto`, `webp`, `png`, `jpg`],
           placeholder: `none`,
           // breakpoints: [750, 1080, 1366, 1920],
           // backgroundColor: `white`,
@@ -80,7 +73,17 @@ const config: GatsbyConfig = {
         },
       },
     },
-    "gatsby-plugin-mdx",
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {},
+          },
+        ],
+      },
+    },
     "gatsby-plugin-image",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sass",
