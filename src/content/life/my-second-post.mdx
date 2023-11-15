@@ -3,7 +3,15 @@ title: "My Second Post"
 date: "2021-07-24"
 slug: "my-second-post"
 post: life
+featuredImage: "../../images/logo/logo-github-white.svg"
 ---
+
+<img
+  src={`${props.data.mdx.frontmatter.featuredImage.publicURL}`}
+  alt="gmail logo"
+  width={25}
+  height={25}
+/>
 
 <h3>Second Post!</h3>
 
