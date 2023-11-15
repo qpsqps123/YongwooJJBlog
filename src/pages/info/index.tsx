@@ -13,7 +13,13 @@ const InfoPage = () => {
           <h2 className={classes.name} aria-label="name">
             Yongwoo (Jake) Jeong | 정용우
           </h2>
-          {/* <img /> */}
+          <div className={classes.profile}>
+            <StaticImage
+              src="../../images/profile/yongwoo-profile.png"
+              alt="yongwoo profile"
+              width={250}
+            />
+          </div>
           <h3 aria-label="role">UX Engineer | Front-end Developer</h3>
           <p aria-label="description">
             항상 좋은 사용자 경험을 위해 고민합니다. 인터랙션과 애니메이션에
