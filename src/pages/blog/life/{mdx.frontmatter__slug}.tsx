@@ -40,6 +40,12 @@ export const query = graphql`
       frontmatter {
         title
         date(formatString: "MMMM D, YYYY")
+        featuredImage {
+          publicURL
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
       }
     }
   }

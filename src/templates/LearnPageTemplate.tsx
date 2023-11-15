@@ -6,6 +6,7 @@ import useRenderPageNavLinks from "../hooks/useRenderPageNavLinks";
 import { v4 as uuid } from "uuid";
 import { SEO } from "../components/seo";
 import Header from "../layout/Header";
+import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
 
 interface AllMdxNodesProps {
   id: string;
@@ -14,6 +15,7 @@ interface AllMdxNodesProps {
     date: string;
     slug: string;
     post: string;
+    featuredImage: IGatsbyImageData;
   };
 }
 interface AllMdxDataProps {
@@ -157,6 +159,12 @@ const LearnPageTemplate = ({
                   </Link>
                 </h2>
                 <p className={classes.date}>Posted: {node.frontmatter.date}</p>
+                <Link to={`/blog/learn/${node.frontmatter.slug}`}>
+                  <GatsbyImage
+                    image={getImage(node.frontmatter.featuredImage)}
+                    alt={`${node.frontmatter.title} thumbnail`}
+                  />
+                </Link>
               </article>
             ) : (
               ""
@@ -191,6 +199,12 @@ export const query = graphql`
           date(formatString: "MMMM DD, YYYY")
           slug
           post
+          featuredImage {
+            publicURL
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
         }
         id
       }
