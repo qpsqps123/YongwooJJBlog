@@ -1,8 +1,7 @@
 @import "../../styles/abstracts/functions";
 @import "../../styles/base/layout";
 
-.container {
-  min-height: 100vh;
+.mainContainer {
   padding: rem(80px) rem(20px) 0;
 }
 
@@ -69,6 +68,10 @@ section {
     gap: 20px;
     list-style: none;
   }
+}
+
+.footerContainer {
+  padding: rem(40px) rem(20px);
 }
 
 @keyframes colorBlackToRed {

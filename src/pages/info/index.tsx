@@ -8,7 +8,7 @@ const InfoPage = () => {
   return (
     <React.Fragment>
       <Header />
-      <main className={classes.container}>
+      <main className={classes.mainContainer}>
         <section className={classes.introduce} aria-label="introduce">
           <h2 className={classes.name} aria-label="name">
             Yongwoo (Jake) Jeong | 정용우
@@ -80,6 +80,7 @@ const InfoPage = () => {
           </ul>
         </section>
       </main>
+      <footer className={classes.footerContainer}></footer>
     </React.Fragment>
   );
 };
