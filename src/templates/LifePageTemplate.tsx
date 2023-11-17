@@ -119,7 +119,9 @@ const LifePageTemplate = ({
     } else if (isLastBeforePage) {
       return (
         <React.Fragment key={uuid()}>
-          {renderPageNavLinks(3, numLifePages - 4, "life")}
+          {numLifePages === 4
+            ? renderPageNavLinks(2, 1, "life")
+            : renderPageNavLinks(3, numLifePages - 4, "life")}
           <li>{numLifePages - 1}</li>
           {renderPageNavLinks(1, numLifePages, "life")}
         </React.Fragment>
@@ -127,7 +129,11 @@ const LifePageTemplate = ({
     } else if (isLastPage) {
       return (
         <React.Fragment key={uuid()}>
-          {renderPageNavLinks(4, numLifePages - 4, "life")}
+          {numLifePages === 3
+            ? renderPageNavLinks(2, 1, "life")
+            : numLifePages === 4
+            ? renderPageNavLinks(3, 1, "life")
+            : renderPageNavLinks(4, numLifePages - 4, "life")}
           <li>{numLifePages}</li>
         </React.Fragment>
       );
