@@ -8,6 +8,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const LearnPageTemplate = path.resolve(`src/templates/LearnPageTemplate.tsx`);
   const LifePageTemplate = path.resolve(`src/templates/LifePageTemplate.tsx`);
+  const EmptyPage = path.resolve(`src/templates/EmptyPost.tsx`);
   const result = await graphql(`
     # prettier-ignore
     query {
@@ -37,29 +38,39 @@ exports.createPages = async ({ graphql, actions }) => {
   const numLifePages = Math.ceil(lifePosts.length / postsPerPage);
   const numLearnPages = Math.ceil(learnPosts.length / postsPerPage);
 
-  Array.from({ length: numLearnPages }, (_, i) => {
-    createPage({
-      path: `/blog/learn/${i + 1}`,
-      component: LearnPageTemplate,
-      context: {
-        limit: postsPerPage,
-        skip: i * postsPerPage,
-        numLearnPages,
-        currentPage: i + 1,
-      },
-    });
-  });
+  numLearnPages > 0
+    ? Array.from({ length: numLearnPages }, (_, i) => {
+        createPage({
+          path: `/blog/learn/${i + 1}`,
+          component: LearnPageTemplate,
+          context: {
+            limit: postsPerPage,
+            skip: i * postsPerPage,
+            numLearnPages,
+            currentPage: i + 1,
+          },
+        });
+      })
+    : createPage({
+        path: `/blog/learn/1`,
+        component: EmptyPage,
+      });
 
-  Array.from({ length: numLifePages }, (_, i) => {
-    createPage({
-      path: `/blog/life/${i + 1}`,
-      component: LifePageTemplate,
-      context: {
-        limit: postsPerPage,
-        skip: i * postsPerPage,
-        numLifePages,
-        currentPage: i + 1,
-      },
-    });
-  });
+  numLifePages > 0
+    ? Array.from({ length: numLifePages }, (_, i) => {
+        createPage({
+          path: `/blog/life/${i + 1}`,
+          component: LifePageTemplate,
+          context: {
+            limit: postsPerPage,
+            skip: i * postsPerPage,
+            numLifePages,
+            currentPage: i + 1,
+          },
+        });
+      })
+    : createPage({
+        path: `/blog/life/1`,
+        component: EmptyPage,
+      });
 };
