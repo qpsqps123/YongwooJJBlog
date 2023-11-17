@@ -47,14 +47,14 @@ section {
   }
 
   a {
-    color: black;
+    color: theme-color("primary", "base");
     text-decoration: none;
   }
 
   a:hover {
     animation-duration: 0.3s;
     animation-name: colorBlackToRed;
-    color: red;
+    color: theme-color("accent", "base");
   }
 }
 
@@ -76,10 +76,10 @@ section {
 
 @keyframes colorBlackToRed {
   from {
-    color: black;
+    color: theme-color("primary", "base");
   }
 
   to {
-    color: red;
+    color: theme-color("accent", "base");
   }
 }

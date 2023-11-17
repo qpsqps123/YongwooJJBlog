@@ -9,7 +9,10 @@
   width: 100%;
   height: rem(80px);
   box-shadow: 0 1px 10px whitesmoke;
-  background-color: rgba($color: white, $alpha: 0.6);
+  background-color: rgba(
+    $color: theme-color("background", "base"),
+    $alpha: 0.6
+  );
   backdrop-filter: blur(4px);
   z-index: 10;
 }
@@ -29,18 +32,18 @@
   a {
     text-decoration: none;
     font-family: "LeonSans", "Pretendard", sans-serif;
-    color: #111;
+    color: theme-color("primary", "base");
   }
 
   a:hover {
     animation-duration: 0.3s;
     animation-name: colorBlackToRed;
-    color: red;
+    color: theme-color("accent", "base");
   }
 
   .colorRed,
   .colorRed:hover {
-    color: red;
+    color: theme-color("accent", "base");
     animation: none;
   }
 }
@@ -71,10 +74,10 @@
 
 @keyframes colorBlackToRed {
   from {
-    color: black;
+    color: theme-color("primary", "base");
   }
 
   to {
-    color: red;
+    color: theme-color("accent", "base");
   }
 }

@@ -1,4 +1,5 @@
 @use "./typography";
+@import "../abstracts/functions";
 
 * {
   margin: 0;
@@ -7,14 +8,14 @@
 }
 
 *::selection {
-  color: #fff;
-  background-color: red;
+  color: theme-color("background", "base");
+  background-color: theme-color("accent", "base");
 }
 
 body {
   min-height: 100vh;
   font-family: "KopubworldBatang", serif;
-  color: #666;
+  color: theme-color("secondary", "base");
 }
 
 body::-webkit-scrollbar {
@@ -22,11 +23,11 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  border: 2px transparent #fff;
+  border: 2px transparent theme-color("background", "base");
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #aaa;
+  background-color: theme-color("tertiary", "base");
   background-clip: padding-box;
   border-radius: 10px;
   border: 2px solid transparent;
@@ -49,5 +50,5 @@ h4,
 h5,
 h6 {
   font-family: "LeonSans", "Pretendard", sans-serif;
-  color: #111;
+  color: theme-color("primary", "base");
 }

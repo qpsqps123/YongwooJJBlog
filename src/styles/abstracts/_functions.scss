@@ -1,10 +1,19 @@
 @use "sass:math";
+@use "sass:map";
 @import "./variables";
+@import "../theme/theme";
 
+// px to rem
 @function remove-unit($value) {
   @return math.div($value, $value * 0 + 1);
 }
 
 @function rem($px, $base: $base-rem-size) {
   @return (remove-unit(math.div($px, $base))) * 1rem;
+}
+
+// theme color
+@function theme-color($key: "primary", $variant: "base") {
+  $map: map-get($theme-colors, $key);
+  @return map-get($map, $variant);
 }
