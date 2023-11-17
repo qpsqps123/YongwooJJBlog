@@ -17,19 +17,55 @@
   margin: 30px auto;
 
   a {
-    color: black;
+    color: theme-color("primary", "base");
     text-decoration: none;
   }
 
   a:hover {
     animation-duration: 0.3s;
     animation-name: colorBlackToRed;
-    color: red;
+    color: theme-color("accent", "base");
   }
 }
 
 .date {
-  color: #aaa;
+  color: theme-color("tertiary", "base");
+}
+
+.pageNavContainer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: baseline;
+  text-align: center;
+  list-style: none;
+  margin-top: 40px;
+  color: transparent;
+  font-size: rem(12px);
+
+  li {
+    width: rem(30px);
+    height: rem(15px);
+  }
+
+  a {
+    display: inline-block;
+    color: theme-color("primary", "base");
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  a:hover {
+    animation-duration: 0.3s;
+    animation-name: colorBlackToRed;
+    color: theme-color("accent", "base");
+  }
+}
+
+.currentPage {
+  color: theme-color("accent", "base");
+  font-size: rem(20px);
 }
 
 .footerContainer {
@@ -38,10 +74,10 @@
 
 @keyframes colorBlackToRed {
   from {
-    color: black;
+    color: theme-color("primary", "base");
   }
 
   to {
-    color: red;
+    color: theme-color("accent", "base");
   }
 }

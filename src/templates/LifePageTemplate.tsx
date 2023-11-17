@@ -100,7 +100,7 @@ const LifePageTemplate = ({
     if (isFirstPage) {
       return (
         <React.Fragment key={uuid()}>
-          <li>1</li>
+          <li className={classes.currentPage}>1</li>
           {numLifePages < 6
             ? renderPageNavLinks(numLifePages - 1, 2, "life")
             : renderPageNavLinks(4, 2, "life")}
@@ -110,7 +110,7 @@ const LifePageTemplate = ({
       return (
         <React.Fragment key={uuid()}>
           {renderPageNavLinks(1, 1, "life")}
-          <li>2</li>
+          <li className={classes.currentPage}>2</li>
           {numLifePages < 6
             ? renderPageNavLinks(numLifePages - 2, 3, "life")
             : renderPageNavLinks(3, 3, "life")}
@@ -122,7 +122,7 @@ const LifePageTemplate = ({
           {numLifePages === 4
             ? renderPageNavLinks(2, 1, "life")
             : renderPageNavLinks(3, numLifePages - 4, "life")}
-          <li>{numLifePages - 1}</li>
+          <li className={classes.currentPage}>{numLifePages - 1}</li>
           {renderPageNavLinks(1, numLifePages, "life")}
         </React.Fragment>
       );
@@ -134,13 +134,17 @@ const LifePageTemplate = ({
             : numLifePages === 4
             ? renderPageNavLinks(3, 1, "life")
             : renderPageNavLinks(4, numLifePages - 4, "life")}
-          <li>{numLifePages}</li>
+          <li className={classes.currentPage}>{numLifePages}</li>
         </React.Fragment>
       );
     }
 
     if (isCurrentPage) {
-      return <li key={uuid()}>{page}</li>;
+      return (
+        <li className={classes.currentPage} key={uuid()}>
+          {page}
+        </li>
+      );
     }
 
     if (isRestPages) {
@@ -178,7 +182,7 @@ const LifePageTemplate = ({
             )
           )}
         </section>
-        <ul>
+        <ul className={classes.pageNavContainer}>
           {firstPage}
           {prevPage}
           {navPageList}
