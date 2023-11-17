@@ -1,0 +1,14 @@
+@import "../abstracts/functions";
+
+.mainContainer {
+  padding: rem(140px) rem(20px) 0;
+}
+
+.description {
+  text-align: center;
+  font-size: rem(20px);
+}
+
+.footerContainer {
+  padding: rem(40px) rem(20px);
+}
