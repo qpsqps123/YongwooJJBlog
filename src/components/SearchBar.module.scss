@@ -1,0 +1,135 @@
+@import "../styles/abstracts/functions";
+@import "../styles/base/layout";
+
+.searchContainer {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.input {
+  width: 360px;
+  height: rem(80px);
+  font-size: rem(35px);
+  background-color: transparent;
+  border: transparent;
+  outline: none;
+
+  @include tablet-lg {
+    width: 290px;
+    font-size: rem(28px);
+  }
+
+  @include tablet-sm {
+    width: 230px;
+    font-size: rem(22px);
+  }
+}
+
+.resultsContainer {
+  h3 {
+    text-align: center;
+  }
+}
+
+.resultList {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 50vw;
+  height: 60vh;
+  overflow: auto;
+  list-style: none;
+
+  p {
+    font-size: rem(14px);
+    margin-top: 10px;
+  }
+
+  @include tablet-sm {
+    width: rem(300px);
+  }
+}
+
+.resultList::-webkit-scrollbar {
+  width: 13px;
+}
+
+.resultList::-webkit-scrollbar-track {
+  border: 2px transparent theme-color("background", "base");
+}
+
+.resultList::-webkit-scrollbar-thumb {
+  background-color: theme-color("tertiary", "base");
+  background-clip: padding-box;
+  border-radius: 10px;
+  border: 2px solid transparent;
+}
+
+.resultList::-webkit-scrollbar-button:vertical:start:decrement {
+  display: block;
+  height: 2px;
+}
+
+.resultList::-webkit-scrollbar-button:vertical:end:decrement {
+  display: block;
+  height: 2px;
+}
+
+.linkToPost {
+  color: theme-color("primary", "base");
+  text-decoration: none;
+}
+
+.linkToPost:hover {
+  animation-duration: 0.3s;
+  animation-name: colorBlackToRed;
+  color: theme-color("accent", "base");
+}
+
+.resultPageNavContainer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 15px;
+  font-size: rem(20px);
+  color: theme-color("primary", "base");
+}
+
+.pageNavButton {
+  margin-bottom: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  border: transparent;
+  background-color: transparent;
+  font-size: rem(12px);
+  cursor: pointer;
+
+  &:hover {
+    animation-duration: 0.3s;
+    animation-name: colorBlackToRed;
+    color: theme-color("accent", "base");
+  }
+
+  &:disabled {
+    color: transparent;
+    cursor: default;
+  }
+
+  &:disabled:hover {
+    animation-name: none;
+  }
+}
+
+@keyframes colorBlackToRed {
+  from {
+    color: theme-color("primary", "base");
+  }
+
+  to {
+    color: theme-color("accent", "base");
+  }
+}
