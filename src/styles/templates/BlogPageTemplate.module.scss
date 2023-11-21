@@ -14,22 +14,57 @@
 }
 
 .post {
-  margin: 30px auto;
+  margin-top: 50px;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 30px;
 
-  a {
-    color: theme-color("primary", "base");
-    text-decoration: none;
+  @include tablet-sm {
+    flex-flow: column nowrap;
   }
+}
 
-  a:hover {
-    animation-duration: 0.3s;
-    animation-name: colorBlackToRed;
-    color: theme-color("accent", "base");
+.postImage {
+  width: 150px;
+  height: 150px;
+
+  @include tablet-sm {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+.thumbnailNotUploaded {
+  width: 150px;
+  height: 150px;
+
+  @include tablet-sm {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+.postCaption {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+  font-size: rem(14px);
+
+  h2 {
+    a {
+      color: theme-color("primary", "base");
+      text-decoration: none;
+    }
+
+    a:hover {
+      animation-duration: 0.3s;
+      animation-name: colorBlackToRed;
+      color: theme-color("accent", "base");
+    }
   }
 }
 
 .date {
-  margin-top: 10px;
   color: theme-color("tertiary", "base");
 }
 
