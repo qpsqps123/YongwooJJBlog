@@ -96,7 +96,9 @@ const config: GatsbyConfig = {
         // for advanced users.
         //
         // Note: Only the flexsearch engine supports options.
-        engineOptions: "speed",
+        engineOptions: {
+          tokenize: "forward",
+        },
 
         // GraphQL query used to fetch all data for the search index. This is
         // required.
@@ -111,6 +113,7 @@ const config: GatsbyConfig = {
                   post
                 }
                 body
+                excerpt(pruneLength: 200)
               }
             }
           }
@@ -123,7 +126,7 @@ const config: GatsbyConfig = {
         // List of keys to index. The values of the keys are taken from the
         // normalizer function below.
         // Default: all fields
-        // index: ["title", "body"],
+        index: ["title", "body"],
 
         // List of keys to store and make available in your UI. The values of
         // the keys are taken from the normalizer function below.
@@ -141,6 +144,7 @@ const config: GatsbyConfig = {
             slug: node.frontmatter.slug,
             post: node.frontmatter.post,
             body: node.body,
+            excerpt: node.excerpt,
           })),
       },
     },
