@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "@reach/router";
 import { Link } from "gatsby";
 import * as classes from "./Header.module.scss";
+import SearchBar from "../components/SearchBar";
+import { StaticImage } from "gatsby-plugin-image";
 
 const Header = () => {
+  const [searchOpen, setSearchOpen] = useState<boolean>(false);
   const location = useLocation();
 
   const InfoMenuHoverColor = location.pathname.includes("/info/")
@@ -26,15 +29,20 @@ const Header = () => {
     ? ""
     : classes.hide;
 
+  const handleSearchOpen = () => {
+    setSearchOpen((prevState) => !prevState);
+  };
+
   return (
-    <header>
+    <header className={classes.header}>
       <h1 className="a11yHidden">Yongwoo JJ Blog</h1>
       <nav className={classes.navigation}>
-        <div className={classes.logo}>
-          Logo
+        <h2 className="a11yHidden">Navigation</h2>
+        <Link to="/info" className={classes.logo}>
+          Yongwoo.
           <br />
-          Image
-        </div>
+          Jeong
+        </Link>
         <ul className={classes.menuContainer}>
           <li>
             <Link to="/info" className={InfoMenuHoverColor}>
@@ -64,12 +72,20 @@ const Header = () => {
             </ul>
           </li>
         </ul>
-        <div className={classes.search}>
-          Search
-          <br />
-          Image
-        </div>
+        <button
+          type="button"
+          onClick={handleSearchOpen}
+          className={classes.search}
+        >
+          <StaticImage
+            src="../images/icon/searchIcon.png"
+            alt="Search Icon"
+            width={20}
+            height={20}
+          />
+        </button>
       </nav>
+      {searchOpen && <SearchBar />}
     </header>
   );
 };
