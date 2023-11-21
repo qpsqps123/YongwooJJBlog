@@ -171,13 +171,13 @@ const LearnPageTemplate = ({
             )
           )}
         </section>
-        <ul>
+        <nav className={classes.pageNavContainer}>
           {firstPage}
           {prevPage}
           {navPageList}
           {nextPage}
           {lastPage}
-        </ul>
+        </nav>
       </main>
       <footer className={classes.footerContainer}></footer>
     </React.Fragment>
@@ -208,6 +208,7 @@ export const query = graphql`
           }
         }
         id
+        excerpt(pruneLength: 300)
       }
     }
   }
