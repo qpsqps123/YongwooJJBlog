@@ -10,12 +10,15 @@ import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
 
 interface AllMdxNodesProps {
   id: string;
+  excerpt: string;
   frontmatter: {
     title: string;
     date: string;
     slug: string;
     post: string;
-    featuredImage: IGatsbyImageData;
+    featuredImage: IGatsbyImageData & {
+      childImageSharp: any;
+    };
   };
 }
 interface AllMdxDataProps {
@@ -152,19 +155,36 @@ const LearnPageTemplate = ({
         <section className={classes.postsContainer}>
           {data.allMdx.nodes.map((node) =>
             node.frontmatter.post === "learn" ? (
-              <article key={node.id} className={classes.post}>
-                <h2>
-                  <Link to={`/blog/learn/${node.frontmatter.slug}`}>
-                    {node.frontmatter.title}
-                  </Link>
-                </h2>
-                <p className={classes.date}>Posted: {node.frontmatter.date}</p>
-                <Link to={`/blog/learn/${node.frontmatter.slug}`}>
-                  <GatsbyImage
-                    image={getImage(node.frontmatter.featuredImage)}
-                    alt={`${node.frontmatter.title} thumbnail`}
-                  />
-                </Link>
+              <article key={node.id}>
+                <section className={classes.post}>
+                  <div>
+                    {node.frontmatter.featuredImage?.childImageSharp ? (
+                      <Link to={`/blog/learn/${node.frontmatter.slug}`}>
+                        <GatsbyImage
+                          image={getImage(node.frontmatter.featuredImage)}
+                          alt={`${node.frontmatter.title} thumbnail`}
+                          className={classes.postImage}
+                        />
+                      </Link>
+                    ) : (
+                      <div
+                        aria-label="Thumbnail not uploaded"
+                        className={classes.thumbnailNotUploaded}
+                      ></div>
+                    )}
+                  </div>
+                  <div className={classes.postCaption}>
+                    <h2>
+                      <Link to={`/blog/learn/${node.frontmatter.slug}`}>
+                        {node.frontmatter.title}
+                      </Link>
+                    </h2>
+                    <p className={classes.date}>
+                      Posted: {node.frontmatter.date}
+                    </p>
+                    <p>{node.excerpt}</p>
+                  </div>
+                </section>
               </article>
             ) : (
               ""
@@ -208,7 +228,7 @@ export const query = graphql`
           }
         }
         id
-        excerpt(pruneLength: 300)
+        excerpt(pruneLength: 400)
       }
     }
   }
