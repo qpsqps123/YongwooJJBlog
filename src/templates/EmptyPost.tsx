@@ -8,7 +8,7 @@ const EmptyPost = () => {
     <React.Fragment>
       <Header />
       <main className={classes.mainContainer}>
-        <p className={classes.description}>No Post Yet...!</p>
+        <p className={classes.description}>No post yet...!</p>
       </main>
       <footer className={classes.footerContainer}></footer>
     </React.Fragment>
