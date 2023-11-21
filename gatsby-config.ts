@@ -24,7 +24,7 @@ const config: GatsbyConfig = {
         name: "YongwooJJ Blog",
         start_url: "/",
         display: "standalone",
-        icon: "./src/images/icon.png",
+        icon: "./src/images/icon/favicon.png",
         crossOrigin: `use-credentials`,
       },
     },
