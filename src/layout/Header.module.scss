@@ -1,13 +1,8 @@
 @import "../styles/abstracts/functions";
 
-.navigation {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
+.header {
   position: fixed;
-  padding: rem(20px) 0;
   width: 100%;
-  height: rem(80px);
   box-shadow: 0 1px 10px whitesmoke;
   background-color: rgba(
     $color: theme-color("background", "base"),
@@ -17,8 +12,20 @@
   z-index: 10;
 }
 
+.navigation {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  height: rem(80px);
+  padding: rem(20px) 0;
+}
+
 .logo {
+  font-family: "Leon", "Pretendard", sans-serif;
   margin-left: rem(20px);
+  text-decoration: none;
+  color: theme-color("primary", "base");
+  font-size: rem(12px);
 }
 
 .menuContainer {
@@ -32,6 +39,7 @@
   a {
     text-decoration: none;
     font-family: "LeonSans", "Pretendard", sans-serif;
+    font-size: rem(14px);
     color: theme-color("primary", "base");
   }
 
@@ -58,14 +66,24 @@
   align-items: center;
   gap: rem(10px);
   position: absolute;
-  top: rem(25px);
+  top: rem(20px);
   left: rem(-15px);
   list-style: none;
-  font-size: rem(12px);
+
+  a {
+    font-size: rem(12px);
+    color: theme-color("secondary", "base");
+  }
 }
 
 .search {
   margin-right: rem(20px);
+  width: 50px;
+  height: 40px;
+  background-color: transparent;
+  border: transparent;
+  outline: none;
+  cursor: pointer;
 }
 
 .hide {
