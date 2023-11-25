@@ -9,8 +9,8 @@
 
 .input {
   width: 360px;
-  height: rem(80px);
-  font-size: rem(35px);
+  height: rem(40px);
+  font-size: rem(34px);
   background-color: transparent;
   border: transparent;
   outline: none;
@@ -28,6 +28,7 @@
 
 .resultsContainer {
   h3 {
+    margin: 20px auto;
     text-align: center;
   }
 }
@@ -35,17 +36,11 @@
 .resultList {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 50vw;
+  width: 40vw;
   height: 60vh;
   overflow: auto;
   list-style: none;
-
-  p {
-    font-size: rem(14px);
-    margin-top: 10px;
-  }
+  gap: 3vh;
 
   @include tablet-sm {
     width: rem(300px);
@@ -57,11 +52,11 @@
 }
 
 .resultList::-webkit-scrollbar-track {
-  border: 2px transparent theme-color("background", "base");
+  border: 2px transparent $background;
 }
 
 .resultList::-webkit-scrollbar-thumb {
-  background-color: theme-color("tertiary", "base");
+  background-color: $tertiary;
   background-clip: padding-box;
   border-radius: 10px;
   border: 2px solid transparent;
@@ -78,14 +73,19 @@
 }
 
 .linkToPost {
-  color: theme-color("primary", "base");
+  color: $primary;
   text-decoration: none;
 }
 
 .linkToPost:hover {
   animation-duration: 0.3s;
   animation-name: colorBlackToRed;
-  color: theme-color("accent", "base");
+  color: $accent;
+}
+
+.resultExcerpt {
+  margin-top: 5px;
+  font-size: rem(12px);
 }
 
 .resultPageNavContainer {
@@ -95,7 +95,7 @@
   align-items: baseline;
   gap: 15px;
   font-size: rem(20px);
-  color: theme-color("primary", "base");
+  color: $primary;
 }
 
 .pageNavButton {
@@ -111,7 +111,7 @@
   &:hover {
     animation-duration: 0.3s;
     animation-name: colorBlackToRed;
-    color: theme-color("accent", "base");
+    color: $accent;
   }
 
   &:disabled {
@@ -124,12 +124,18 @@
   }
 }
 
+.noResultText {
+  margin-top: 10px;
+  font-size: rem(18px);
+  text-align: center;
+}
+
 @keyframes colorBlackToRed {
   from {
-    color: theme-color("primary", "base");
+    color: $primary;
   }
 
   to {
-    color: theme-color("accent", "base");
+    color: $accent;
   }
 }
