@@ -113,7 +113,7 @@ const config: GatsbyConfig = {
                   post
                 }
                 body
-                excerpt(pruneLength: 200)
+                excerpt(pruneLength: 195)
               }
             }
           }
