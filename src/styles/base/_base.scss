@@ -8,14 +8,21 @@
 }
 
 *::selection {
-  color: theme-color("background", "base");
-  background-color: theme-color("accent", "base");
+  color: $background;
+  background-color: $accent;
 }
 
 body {
   min-height: 100vh;
   font-family: "KopubworldBatang", serif;
-  color: theme-color("secondary", "base");
+  color: $secondary;
+  background-color: $background;
+}
+
+@each $theme in default, dark {
+  body.#{$theme}-theme {
+    @include setTheme($theme);
+  }
 }
 
 body::-webkit-scrollbar {
@@ -50,5 +57,5 @@ h4,
 h5,
 h6 {
   font-family: "LeonSans", "Pretendard", sans-serif;
-  color: theme-color("primary", "base");
+  color: $primary;
 }

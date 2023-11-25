@@ -12,8 +12,11 @@
   @return (remove-unit(math.div($px, $base))) * 1rem;
 }
 
-// theme color
-@function theme-color($key: "primary", $variant: "base") {
-  $map: map-get($theme-colors, $key);
-  @return map-get($map, $variant);
+// theme set color
+@function setColor($map, $object, $style) {
+  @if map-has-key($map, $object) {
+    @return map-get(map-get($map, $object), $style);
+  }
+  @warn "The key ´#{$object} is not available in the map.";
+  @return null;
 }

@@ -1,26 +1,34 @@
-$theme-colors: (
-  "primary": (
-    "base": #111,
-    "dark": #eee,
+$primary: var(--primary-color, #111);
+$secondary: var(--secondary-color, #666);
+$tertiary: var(--tertiary-color, #aaa);
+$accent: var(--accent-color, #ee0606);
+$foreground: var(--foreground-color, #dcdcdc);
+$background: var(--background-color, #fff);
+
+$config: (
+  default: (
+    primary: $primary,
+    secondary: $secondary,
+    tertiary: $tertiary,
+    accent: $accent,
+    foreground: $foreground,
+    background: $background,
   ),
-  "secondary": (
-    "base": #666,
-    "dark": #666,
-  ),
-  "tertiary": (
-    "base": #aaa,
-    "dark": #aaa,
-  ),
-  "accent": (
-    "base": #ee0606,
-    "dark": #ffff50,
-  ),
-  "foreground": (
-    "base": #dcdcdc,
-    "dark": #282828,
-  ),
-  "background": (
-    "base": #fff,
-    "dark": #000,
+  dark: (
+    primary: #eee,
+    secondary: #ccc,
+    tertiary: #aaa,
+    accent: #ffff50,
+    foreground: #282828,
+    background: #1b1b1b,
   ),
 );
+
+@mixin setTheme($key) {
+  --primary-color: #{setColor($config, $key, primary)};
+  --secondary-color: #{setColor($config, $key, secondary)};
+  --tertiary-color: #{setColor($config, $key, tertiary)};
+  --accent-color: #{setColor($config, $key, accent)};
+  --foreground-color: #{setColor($config, $key, foreground)};
+  --background-color: #{setColor($config, $key, background)};
+}

@@ -52,20 +52,20 @@
 
   h2 {
     a {
-      color: theme-color("primary", "base");
+      color: $primary;
       text-decoration: none;
     }
 
     a:hover {
       animation-duration: 0.3s;
       animation-name: colorBlackToRed;
-      color: theme-color("accent", "base");
+      color: $accent;
     }
   }
 }
 
 .date {
-  color: theme-color("tertiary", "base");
+  color: $tertiary;
 }
 
 .pageNavContainer {
@@ -86,7 +86,7 @@
 
   a {
     display: inline-block;
-    color: theme-color("primary", "base");
+    color: $primary;
     text-decoration: none;
     width: 100%;
     height: 100%;
@@ -95,12 +95,12 @@
   a:hover {
     animation-duration: 0.3s;
     animation-name: colorBlackToRed;
-    color: theme-color("accent", "base");
+    color: $accent;
   }
 }
 
 .currentPage {
-  color: theme-color("accent", "base");
+  color: $accent;
   font-size: rem(20px);
 }
 
@@ -110,10 +110,10 @@
 
 @keyframes colorBlackToRed {
   from {
-    color: theme-color("primary", "base");
+    color: $primary;
   }
 
   to {
-    color: theme-color("accent", "base");
+    color: $accent;
   }
 }
