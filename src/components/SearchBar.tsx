@@ -50,7 +50,7 @@ const SearchBar = () => {
   const endPoint = limit * pageNum;
 
   const currentResults = results.filter(
-    (_: never, index: number) => index > startPoint && index <= endPoint
+    (_: never, index: number) => index + 1 > startPoint && index + 1 <= endPoint
   );
 
   const handleNextPage = () => {
