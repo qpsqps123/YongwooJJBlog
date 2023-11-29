@@ -79,7 +79,7 @@
 
 .linkToPost:hover {
   animation-duration: 0.3s;
-  animation-name: colorBlackToRed;
+  animation-name: colorPrimaryToAccent;
   color: $accent;
 }
 
@@ -110,7 +110,7 @@
 
   &:hover {
     animation-duration: 0.3s;
-    animation-name: colorBlackToRed;
+    animation-name: colorPrimaryToAccent;
     color: $accent;
   }
 
@@ -130,7 +130,7 @@
   text-align: center;
 }
 
-@keyframes colorBlackToRed {
+@keyframes colorPrimaryToAccent {
   from {
     color: $primary;
   }

@@ -58,7 +58,7 @@
 
     a:hover {
       animation-duration: 0.3s;
-      animation-name: colorBlackToRed;
+      animation-name: colorPrimaryToAccent;
       color: $accent;
     }
   }
@@ -94,7 +94,7 @@
 
   a:hover {
     animation-duration: 0.3s;
-    animation-name: colorBlackToRed;
+    animation-name: colorPrimaryToAccent;
     color: $accent;
   }
 }
@@ -108,7 +108,7 @@
   padding: rem(40px) rem(20px);
 }
 
-@keyframes colorBlackToRed {
+@keyframes colorPrimaryToAccent {
   from {
     color: $primary;
   }
