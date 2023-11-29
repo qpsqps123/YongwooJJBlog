@@ -1,13 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "@reach/router";
 import { Link } from "gatsby";
 import * as classes from "./Header.module.scss";
 import SearchBar from "../components/SearchBar";
-import { StaticImage } from "gatsby-plugin-image";
+import SideMenu from "../components/SideMenu";
 
 const Header = () => {
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
+  const [sideMenuOpen, setSideMenuOpen] = useState<boolean>(false);
+
   const location = useLocation();
+
+  useEffect(() => {
+    const localStorageUserTheme = localStorage.getItem("theme");
+
+    if (!localStorageUserTheme || localStorageUserTheme === "osDefault") {
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? document.body.classList.add("dark-theme")
+        : document.body.classList.add("default-theme");
+      localStorage.setItem("theme", "osDefault");
+    } else if (localStorageUserTheme === "default") {
+      document.body.classList.add("default-theme");
+      localStorage.setItem("theme", "default");
+    } else if (localStorageUserTheme === "dark") {
+      document.body.classList.add("dark-theme");
+      localStorage.setItem("theme", "dark");
+    }
+  }, []);
 
   const InfoMenuHoverColor = location.pathname.includes("/info/")
     ? classes.colorRed
@@ -28,10 +47,6 @@ const Header = () => {
   const hideBlogSubmenu = location.pathname.includes("/blog")
     ? ""
     : classes.hide;
-
-  const handleSearchOpen = () => {
-    setSearchOpen((prevState) => !prevState);
-  };
 
   return (
     <header className={classes.header}>
@@ -72,18 +87,18 @@ const Header = () => {
             </ul>
           </li>
         </ul>
-        <button
-          type="button"
-          onClick={handleSearchOpen}
-          className={classes.search}
-        >
-          <StaticImage
-            src="../images/icon/searchIcon.png"
-            alt="Search Icon"
-            width={20}
-            height={20}
-          />
-        </button>
+        <section className={classes.sideMenuContainer}>
+          <button
+            type="button"
+            className={classes.sideMenuButton}
+            onClick={() => {
+              setSideMenuOpen((prevState) => !prevState);
+            }}
+          >
+            sideMenuButton
+          </button>
+          {sideMenuOpen && <SideMenu setSearchOpen={setSearchOpen} />}
+        </section>
       </nav>
       {searchOpen && <SearchBar />}
     </header>
