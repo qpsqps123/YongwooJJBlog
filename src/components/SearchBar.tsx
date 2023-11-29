@@ -17,10 +17,6 @@ interface SearchResults {
   excerpt: string;
 }
 
-interface refs {
-  searchOpenRef: React.ForwardedRef<HTMLDivElement>;
-}
-
 const SearchBar = () => {
   const data = useStaticQuery(graphql`
     query {
@@ -79,13 +75,13 @@ const SearchBar = () => {
             </h4>
           </header>
           <section>
-            <p>{result.excerpt}</p>
+            <p className={classes.resultExcerpt}>{result.excerpt}</p>
           </section>
         </article>
       </li>
     ))
   ) : (
-    <p>No result!</p>
+    <p className={classes.noResultText}>No result!</p>
   );
 
   const renderPrevButton =
