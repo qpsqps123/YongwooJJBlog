@@ -116,7 +116,7 @@ const Header = () => {
           {sideMenuOpen && <SideMenu setSearchOpen={setSearchOpen} />}
         </section>
       </nav>
-      {searchOpen && <SearchBar />}
+      {searchOpen && <SearchBar setSearchOpen={setSearchOpen} />}
     </header>
   );
 };

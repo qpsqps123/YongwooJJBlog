@@ -3,6 +3,7 @@ import { useFlexSearch } from "react-use-flexsearch";
 import { Formik, Form } from "formik";
 import { graphql, useStaticQuery, Link } from "gatsby";
 import * as classes from "./SearchBar.module.scss";
+import { StaticImage } from "gatsby-plugin-image";
 
 interface FormikValues {
   query: string;
@@ -17,7 +18,11 @@ interface SearchResults {
   excerpt: string;
 }
 
-const SearchBar = () => {
+interface Props {
+  setSearchOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const SearchBar = ({ setSearchOpen }: Props) => {
   const data = useStaticQuery(graphql`
     query {
       localSearchPages {
@@ -133,7 +138,7 @@ const SearchBar = () => {
   return (
     <section className={classes.searchContainer}>
       <h2 className="a11yHidden">Search</h2>
-      <section>
+      <section className={classes.searchFormContainer}>
         <h3 className="a11yHidden">Search Form</h3>
         <Formik
           initialValues={{ query: "" }}
@@ -163,6 +168,21 @@ const SearchBar = () => {
             );
           }}
         </Formik>
+        <button
+          type="button"
+          className={classes.closeSearchButton}
+          onClick={() => {
+            setSearchOpen(() => false);
+          }}
+          aria-label="검색창 닫기"
+        >
+          <StaticImage
+            src="../images/icon/close.png"
+            alt="닫기 아이콘"
+            width={25}
+            height={25}
+          />
+        </button>
       </section>
       <section className={classes.resultsContainer}>
         <h3>Results</h3>
