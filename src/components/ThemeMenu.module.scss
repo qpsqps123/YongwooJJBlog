@@ -1,0 +1,66 @@
+@import "../styles/abstracts/functions";
+
+.themeList {
+  list-style: none;
+
+  button {
+    &:hover {
+      animation-duration: 0.3s;
+      animation-name: colorPrimaryToAccent;
+      color: $accent;
+    }
+  }
+
+  button.isSelected {
+    animation: none;
+  }
+}
+
+.osThemeButton {
+  position: absolute;
+  top: -40px;
+  right: 50px;
+  background-color: transparent;
+  border: transparent;
+  outline: none;
+  color: $primary;
+  cursor: pointer;
+}
+
+.lightThemeButton {
+  color: $primary;
+  position: absolute;
+  top: 0;
+  right: 50px;
+  background-color: transparent;
+  border: transparent;
+  outline: none;
+  color: $primary;
+  cursor: pointer;
+}
+
+.darkThemeButton {
+  position: absolute;
+  top: 40px;
+  right: 50px;
+  background-color: transparent;
+  border: transparent;
+  outline: none;
+  color: $primary;
+  cursor: pointer;
+}
+
+.isSelected {
+  color: $accent;
+  cursor: default;
+}
+
+@keyframes colorPrimaryToAccent {
+  from {
+    color: $primary;
+  }
+
+  to {
+    color: $accent;
+  }
+}
