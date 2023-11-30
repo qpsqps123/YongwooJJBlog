@@ -7,6 +7,19 @@
   align-items: center;
 }
 
+.searchFormContainer {
+  position: relative;
+}
+
+.closeSearchButton {
+  position: absolute;
+  top: 0;
+  left: -15vw;
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+}
+
 .input {
   width: 360px;
   height: rem(40px);
