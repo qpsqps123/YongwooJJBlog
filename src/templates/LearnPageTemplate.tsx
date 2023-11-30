@@ -43,37 +43,45 @@ const LearnPageTemplate = ({
 
   const firstPage =
     currentPage === 1 ? (
-      <li>{"<<"}</li>
+      <li aria-hidden="true">{"<<"}</li>
     ) : (
       <li>
-        <Link to={`/blog/learn/1`}>{"<<"}</Link>
+        <Link to={`/blog/learn/1`} aria-label="처음 페이지">
+          {"<<"}
+        </Link>
       </li>
     );
 
   const lastPage =
     currentPage === numLearnPages ? (
-      <li>{">>"}</li>
+      <li aria-hidden="true">{">>"}</li>
     ) : (
       <li>
-        <Link to={`/blog/learn/${numLearnPages}`}>{">>"}</Link>
+        <Link to={`/blog/learn/${numLearnPages}`} aria-label="마지막 페이지">
+          {">>"}
+        </Link>
       </li>
     );
 
   const prevPage =
     currentPage === 1 ? (
-      <li>{"<"}</li>
+      <li aria-hidden="true">{"<"}</li>
     ) : (
       <li>
-        <Link to={`/blog/learn/${currentPage - 1}`}>{"<"}</Link>
+        <Link to={`/blog/learn/${currentPage - 1}`} aria-label="이전 페이지">
+          {"<"}
+        </Link>
       </li>
     );
 
   const nextPage =
     currentPage === numLearnPages ? (
-      <li>{">"}</li>
+      <li aria-hidden="true">{">"}</li>
     ) : (
       <li>
-        <Link to={`/blog/learn/${currentPage + 1}`}>{">"}</Link>
+        <Link to={`/blog/learn/${currentPage + 1}`} aria-label="다음 페이지">
+          {">"}
+        </Link>
       </li>
     );
 
@@ -152,7 +160,7 @@ const LearnPageTemplate = ({
     <React.Fragment>
       <Header />
       <main className={classes.mainContainer}>
-        <section className={classes.postsContainer}>
+        <section className={classes.postsContainer} aria-label="게시물">
           {data.allMdx.nodes.map((node) =>
             node.frontmatter.post === "learn" ? (
               <article key={node.id}>
@@ -191,12 +199,14 @@ const LearnPageTemplate = ({
             )
           )}
         </section>
-        <nav className={classes.pageNavContainer}>
-          {firstPage}
-          {prevPage}
-          {navPageList}
-          {nextPage}
-          {lastPage}
+        <nav aria-label="게시물 페이지 네비게이션">
+          <ul className={classes.pageNav}>
+            {firstPage}
+            {prevPage}
+            {navPageList}
+            {nextPage}
+            {lastPage}
+          </ul>
         </nav>
       </main>
       <footer className={classes.footerContainer}></footer>

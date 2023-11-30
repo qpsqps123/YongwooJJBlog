@@ -44,37 +44,45 @@ const LifePageTemplate = ({
 
   const firstPage =
     currentPage === 1 ? (
-      <li>{"<<"}</li>
+      <li aria-hidden="true">{"<<"}</li>
     ) : (
       <li>
-        <Link to={`/blog/life/1`}>{"<<"}</Link>
+        <Link to={`/blog/life/1`} aria-label="처음 페이지">
+          {"<<"}
+        </Link>
       </li>
     );
 
   const lastPage =
     currentPage === numLifePages ? (
-      <li>{">>"}</li>
+      <li aria-hidden="true">{">>"}</li>
     ) : (
       <li>
-        <Link to={`/blog/life/${numLifePages}`}>{">>"}</Link>
+        <Link to={`/blog/life/${numLifePages}`} aria-label="마지막 페이지">
+          {">>"}
+        </Link>
       </li>
     );
 
   const prevPage =
     currentPage === 1 ? (
-      <li>{"<"}</li>
+      <li aria-hidden="true">{"<"}</li>
     ) : (
       <li>
-        <Link to={`/blog/life/${currentPage - 1}`}>{"<"}</Link>
+        <Link to={`/blog/life/${currentPage - 1}`} aria-label="이전 페이지">
+          {"<"}
+        </Link>
       </li>
     );
 
   const nextPage =
     currentPage === numLifePages ? (
-      <li>{">"}</li>
+      <li aria-hidden="true">{">"}</li>
     ) : (
       <li>
-        <Link to={`/blog/life/${currentPage + 1}`}>{">"}</Link>
+        <Link to={`/blog/life/${currentPage + 1}`} aria-label="다음 페이지">
+          {">"}
+        </Link>
       </li>
     );
 
@@ -163,7 +171,7 @@ const LifePageTemplate = ({
     <React.Fragment>
       <Header />
       <main className={classes.mainContainer}>
-        <section className={classes.postsContainer}>
+        <section className={classes.postsContainer} aria-label="게시물">
           {data.allMdx.nodes.map((node) =>
             node.frontmatter.post === "life" ? (
               <article key={node.id}>
@@ -202,12 +210,14 @@ const LifePageTemplate = ({
             )
           )}
         </section>
-        <nav className={classes.pageNavContainer}>
-          {firstPage}
-          {prevPage}
-          {navPageList}
-          {nextPage}
-          {lastPage}
+        <nav aria-label="게시물 페이지 네비게이션">
+          <ul className={classes.pageNav}>
+            {firstPage}
+            {prevPage}
+            {navPageList}
+            {nextPage}
+            {lastPage}
+          </ul>
         </nav>
       </main>
       <footer className={classes.footerContainer}></footer>

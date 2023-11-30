@@ -8,7 +8,10 @@ const useRenderPageNavLinks = () => {
       Array.from({ length: iterationCount }).map((_, i) => {
         return (
           <li key={uuid()}>
-            <Link to={`/blog/${pageType}/${i + startPageNumber}`}>
+            <Link
+              to={`/blog/${pageType}/${i + startPageNumber}`}
+              aria-label={`${i + startPageNumber} 페이지`}
+            >
               {i + startPageNumber}
             </Link>
           </li>
