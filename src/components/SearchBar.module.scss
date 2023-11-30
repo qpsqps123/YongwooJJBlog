@@ -14,6 +14,7 @@
   background-color: transparent;
   border: transparent;
   outline: none;
+  color: $primary;
 
   @include tablet-lg {
     width: 290px;
@@ -106,6 +107,7 @@
   border: transparent;
   background-color: transparent;
   font-size: rem(12px);
+  color: $primary;
   cursor: pointer;
 
   &:hover {
