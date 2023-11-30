@@ -26,15 +26,15 @@ body {
 }
 
 body::-webkit-scrollbar {
-  width: 13px;
+  width: 8px;
 }
 
 body::-webkit-scrollbar-track {
-  border: 2px transparent theme-color("background", "base");
+  border: 2px transparent $background;
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: theme-color("tertiary", "base");
+  background-color: $tertiary;
   background-clip: padding-box;
   border-radius: 10px;
   border: 2px solid transparent;
@@ -42,12 +42,12 @@ body::-webkit-scrollbar-thumb {
 
 body::-webkit-scrollbar-button:vertical:start:decrement {
   display: block;
-  height: 2px;
+  height: 1px;
 }
 
 body::-webkit-scrollbar-button:vertical:end:decrement {
   display: block;
-  height: 2px;
+  height: 1px;
 }
 
 h1,
