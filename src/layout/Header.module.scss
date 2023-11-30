@@ -3,11 +3,8 @@
 .header {
   position: fixed;
   width: 100%;
-  box-shadow: 0 1px 10px whitesmoke;
-  background-color: rgba(
-    $color: theme-color("background", "base"),
-    $alpha: 0.6
-  );
+  box-shadow: 0 1px 10px $foreground;
+  background-color: rgba($color: $background, $alpha: 0.6);
   backdrop-filter: blur(4px);
   z-index: 10;
 }
@@ -24,7 +21,7 @@
   font-family: "Leon", "Pretendard", sans-serif;
   margin-left: rem(20px);
   text-decoration: none;
-  color: theme-color("primary", "base");
+  color: $primary;
   font-size: rem(12px);
 }
 
@@ -40,18 +37,18 @@
     text-decoration: none;
     font-family: "LeonSans", "Pretendard", sans-serif;
     font-size: rem(14px);
-    color: theme-color("primary", "base");
+    color: $primary;
   }
 
   a:hover {
     animation-duration: 0.3s;
-    animation-name: colorBlackToRed;
-    color: theme-color("accent", "base");
+    animation-name: colorPrimaryToAccent;
+    color: $accent;
   }
 
   .colorRed,
   .colorRed:hover {
-    color: theme-color("accent", "base");
+    color: $accent;
     animation: none;
   }
 }
@@ -72,30 +69,31 @@
 
   a {
     font-size: rem(12px);
-    color: theme-color("secondary", "base");
+    color: $secondary;
   }
 }
 
-.search {
+.sideMenuContainer {
+  position: relative;
+  top: 10px;
   margin-right: rem(20px);
+}
+
+.sideMenuButton {
   width: 50px;
   height: 40px;
-  background-color: transparent;
-  border: transparent;
-  outline: none;
-  cursor: pointer;
 }
 
 .hide {
   display: none;
 }
 
-@keyframes colorBlackToRed {
+@keyframes colorPrimaryToAccent {
   from {
-    color: theme-color("primary", "base");
+    color: $primary;
   }
 
   to {
-    color: theme-color("accent", "base");
+    color: $accent;
   }
 }
