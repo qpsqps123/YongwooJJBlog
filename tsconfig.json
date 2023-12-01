@@ -105,7 +105,7 @@
     "./src/**/*",
     "./gatsby-config.ts",
     "./plugins/**/*",
-    "gatsby-ssr.tsx",
-    "gatsby-browser.tsx"
+    "gatsby-ssr.js",
+    "gatsby-browser.js"
   ]
 }

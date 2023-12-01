@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export const onRenderBody = ({ setHeadComponents, setHtmlAttributes }: any) => {
+export const onRenderBody = ({ setHeadComponents, setHtmlAttributes }) => {
   setHtmlAttributes({ lang: "ko-KR" });
   setHeadComponents([
     <link
