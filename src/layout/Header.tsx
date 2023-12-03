@@ -4,6 +4,7 @@ import { Link } from "gatsby";
 import * as classes from "./Header.module.scss";
 import SearchBar from "../components/SearchBar";
 import SideMenu from "../components/SideMenu";
+import { StaticImage } from "gatsby-plugin-image";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/store";
 import uiSlice from "../store/ui-slice";
@@ -115,7 +116,15 @@ const Header = () => {
             onClick={() => {
               useAppDispatch(uiSlice.actions.toggleSideMenuVisibility());
             }}
-          ></button>
+            aria-label="사이드 메뉴"
+          >
+            <StaticImage
+              src="../images/icon/hamburgerMenu.png"
+              alt="햄버거 메뉴 아이콘"
+              width={25}
+              height={25}
+            />
+          </button>
           {showSideMenu && <SideMenu />}
         </section>
       </nav>
