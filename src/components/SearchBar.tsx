@@ -4,6 +4,10 @@ import { Formik, Form } from "formik";
 import { graphql, useStaticQuery, Link } from "gatsby";
 import * as classes from "./SearchBar.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
+import uiSlice from "../store/ui-slice";
+import searchSlice from "../store/search-slice";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../store/store";
 
 interface FormikValues {
   query: string;
@@ -18,11 +22,7 @@ interface SearchResults {
   excerpt: string;
 }
 
-interface Props {
-  setSearchOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const SearchBar = ({ setSearchOpen }: Props) => {
+const SearchBar = () => {
   const data = useStaticQuery(graphql`
     query {
       localSearchPages {
@@ -32,7 +32,12 @@ const SearchBar = ({ setSearchOpen }: Props) => {
     }
   `);
 
-  const [query, setQuery] = useState<string | null>(null);
+  const useAppDispatch = useDispatch<AppDispatch>();
+  const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+  const query = useAppSelector((state) => state.search.query);
+  const pageNum = useAppSelector((state) => state.search.pageNum);
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   const index = data.localSearchPages.index;
@@ -44,7 +49,6 @@ const SearchBar = ({ setSearchOpen }: Props) => {
     (result: SearchResults) => result.post === "life" || result.post === "learn"
   );
 
-  const [pageNum, setPageNum] = useState<number>(1);
   const totalNumResults = results.length;
   const limit = 5;
   const startPoint = limit * (pageNum - 1);
@@ -55,11 +59,11 @@ const SearchBar = ({ setSearchOpen }: Props) => {
   );
 
   const handleNextPage = () => {
-    setPageNum((prevState) => prevState + 1);
+    useAppDispatch(searchSlice.actions.toNextPage);
   };
 
   const handlePrevPage = () => {
-    setPageNum((prevState) => prevState - 1);
+    useAppDispatch(searchSlice.actions.toPrevPage);
   };
 
   const currentTotalNumResults = currentResults.length;
@@ -143,7 +147,7 @@ const SearchBar = ({ setSearchOpen }: Props) => {
         <Formik
           initialValues={{ query: "" }}
           onSubmit={(values: FormikValues, action: any) => {
-            setQuery(values.query);
+            useAppDispatch(searchSlice.actions.setQuery(values.query));
             action.setSubmitting(false);
           }}
         >
@@ -172,7 +176,7 @@ const SearchBar = ({ setSearchOpen }: Props) => {
           type="button"
           className={classes.closeSearchButton}
           onClick={() => {
-            setSearchOpen(() => false);
+            useAppDispatch(uiSlice.actions.toggleSearchVisibility());
           }}
           aria-label="검색창 닫기"
         >

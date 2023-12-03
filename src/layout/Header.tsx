@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "@reach/router";
 import { Link } from "gatsby";
 import * as classes from "./Header.module.scss";
 import SearchBar from "../components/SearchBar";
 import SideMenu from "../components/SideMenu";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../store/store";
+import uiSlice from "../store/ui-slice";
 
 const Header = () => {
-  const [searchOpen, setSearchOpen] = useState<boolean>(false);
-  const [sideMenuOpen, setSideMenuOpen] = useState<boolean>(false);
-
+  const useAppDispatch = useDispatch<AppDispatch>();
+  const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
   const location = useLocation();
+
+  const showSearch = useAppSelector((state) => state.ui.showSearch);
+  const showSideMenu = useAppSelector((state) => state.ui.showSideMenu);
 
   useEffect(() => {
     const localStorageUserTheme = localStorage.getItem("theme");
@@ -108,15 +113,13 @@ const Header = () => {
             type="button"
             className={classes.sideMenuButton}
             onClick={() => {
-              setSideMenuOpen((prevState) => !prevState);
+              useAppDispatch(uiSlice.actions.toggleSideMenuVisibility());
             }}
-          >
-            sideMenuButton
-          </button>
-          {sideMenuOpen && <SideMenu setSearchOpen={setSearchOpen} />}
+          ></button>
+          {showSideMenu && <SideMenu />}
         </section>
       </nav>
-      {searchOpen && <SearchBar setSearchOpen={setSearchOpen} />}
+      {showSearch && <SearchBar />}
     </header>
   );
 };

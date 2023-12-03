@@ -1,4 +1,6 @@
 import * as React from "react";
+import wrapWithProvider from "./src/store/wrap-with-provider";
+export const wrapRootElement = wrapWithProvider;
 
 export const onRenderBody = ({ setHeadComponents, setHtmlAttributes }) => {
   setHtmlAttributes({ lang: "ko-KR" });

@@ -1,21 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import * as classes from "./SideMenu.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
 import ThemeMenu from "./ThemeMenu";
+import uiSlice from "../store/ui-slice";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../store/store";
 
-interface Props {
-  setSearchOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const SideMenu = ({ setSearchOpen }: Props) => {
-  const [userThemeOpen, setUserThemeOpen] = useState<boolean>(false);
+const SideMenu = () => {
+  const useAppDispatch = useDispatch<AppDispatch>();
+  const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+  const showThemeMenu = useAppSelector((state) => state.ui.showThemeMenu);
 
   return (
     <ul className={classes.sideMenuList}>
       <li>
         <button
           type="button"
-          onClick={() => setSearchOpen((prevState) => !prevState)}
+          onClick={() => {
+            useAppDispatch(uiSlice.actions.toggleSearchVisibility());
+          }}
           className={classes.searchButton}
         >
           <StaticImage
@@ -31,12 +34,12 @@ const SideMenu = ({ setSearchOpen }: Props) => {
           type="button"
           className={classes.changeThemeButton}
           onClick={() => {
-            setUserThemeOpen((prevState) => !prevState);
+            useAppDispatch(uiSlice.actions.toggleThemeMenuVisibility());
           }}
         >
           theme
         </button>
-        {userThemeOpen && <ThemeMenu />}
+        {showThemeMenu && <ThemeMenu />}
       </li>
     </ul>
   );
