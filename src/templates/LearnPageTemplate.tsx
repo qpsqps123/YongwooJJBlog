@@ -190,7 +190,7 @@ const LearnPageTemplate = ({
                     <p className={classes.date}>
                       Posted: {node.frontmatter.date}
                     </p>
-                    <p>{node.excerpt}</p>
+                    <p className={classes.excerpt}>{node.excerpt}</p>
                   </div>
                 </section>
               </article>
@@ -238,7 +238,7 @@ export const query = graphql`
           }
         }
         id
-        excerpt(pruneLength: 400)
+        excerpt(pruneLength: 200)
       }
     }
   }

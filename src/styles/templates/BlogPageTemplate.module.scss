@@ -68,6 +68,10 @@
   color: $tertiary;
 }
 
+.excerpt {
+  line-height: 160%;
+}
+
 .pageNav {
   display: flex;
   flex-flow: row nowrap;
