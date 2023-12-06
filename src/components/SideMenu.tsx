@@ -36,10 +36,11 @@ const SideMenu = () => {
             useAppDispatch(uiSlice.actions.toggleSearchVisibility());
           }}
           className={classes.searchButton}
+          aria-label="검색 메뉴"
         >
           <StaticImage
             src="../images/icon/searchIcon.png"
-            alt="Search Icon"
+            alt="검색 아이콘"
             width={20}
             height={20}
           />
@@ -53,6 +54,7 @@ const SideMenu = () => {
           onClick={() => {
             useAppDispatch(uiSlice.actions.toggleThemeMenuVisibility());
           }}
+          aria-label="테마 변경 메뉴"
         >
           <StaticImage
             src="../images/icon/chageThemeIcon.png"
