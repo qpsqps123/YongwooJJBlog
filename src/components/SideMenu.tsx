@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as classes from "./SideMenu.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
 import ThemeMenu from "./ThemeMenu";
@@ -10,6 +10,22 @@ const SideMenu = () => {
   const useAppDispatch = useDispatch<AppDispatch>();
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
   const showThemeMenu = useAppSelector((state) => state.ui.showThemeMenu);
+  const executed = useAppSelector((state) => state.ui.executed);
+
+  useEffect(() => {
+    if (executed) {
+      document
+        .getElementById("changeThemeButton")
+        ?.classList.add("pointerEventNone");
+      setTimeout(() => {
+        document
+          .getElementById("changeThemeButton")
+          ?.classList.remove("pointerEventNone");
+      }, 1000);
+
+      useAppDispatch(uiSlice.actions.hideThemeMenu());
+    }
+  }, []);
 
   return (
     <ul className={classes.sideMenuList}>
@@ -31,6 +47,7 @@ const SideMenu = () => {
       </li>
       <li className={classes.changeThemeList}>
         <button
+          id="changeThemeButton"
           type="button"
           className={classes.changeThemeButton}
           onClick={() => {

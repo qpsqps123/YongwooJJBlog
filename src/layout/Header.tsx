@@ -34,6 +34,12 @@ const Header = () => {
     }
   }, []);
 
+  useEffect(() => {
+    useAppDispatch(uiSlice.actions.clearExecuted());
+    useAppDispatch(uiSlice.actions.hideSearch());
+    useAppDispatch(uiSlice.actions.hideSideMenu());
+  }, []);
+
   const InfoMenuHoverColor = location.pathname.includes("/info/")
     ? classes.colorRed
     : "";
@@ -111,10 +117,12 @@ const Header = () => {
         </ul>
         <section className={classes.sideMenuContainer}>
           <button
+            id="sideMenuButton"
             type="button"
             className={classes.sideMenuButton}
             onClick={() => {
               useAppDispatch(uiSlice.actions.toggleSideMenuVisibility());
+              useAppDispatch(uiSlice.actions.executeOnce());
             }}
             aria-label="사이드 메뉴"
           >

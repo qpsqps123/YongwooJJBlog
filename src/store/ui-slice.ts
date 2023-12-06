@@ -4,6 +4,7 @@ const initialUiState = {
   showSearch: false,
   showSideMenu: false,
   showThemeMenu: false,
+  executed: false,
 };
 
 const uiSlice = createSlice({
@@ -13,11 +14,26 @@ const uiSlice = createSlice({
     toggleSearchVisibility(state) {
       state.showSearch = !state.showSearch;
     },
+    hideSearch(state) {
+      state.showSearch = false;
+    },
     toggleSideMenuVisibility(state) {
       state.showSideMenu = !state.showSideMenu;
     },
+    hideSideMenu(state) {
+      state.showSideMenu = false;
+    },
     toggleThemeMenuVisibility(state) {
       state.showThemeMenu = !state.showThemeMenu;
+    },
+    hideThemeMenu(state) {
+      state.showThemeMenu = false;
+    },
+    executeOnce(state) {
+      state.executed = true;
+    },
+    clearExecuted(state) {
+      state.executed = false;
     },
   },
 });
