@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useFlexSearch } from "react-use-flexsearch";
 import { Formik, Form } from "formik";
 import { graphql, useStaticQuery, Link } from "gatsby";
