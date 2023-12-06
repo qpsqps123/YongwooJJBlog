@@ -2,6 +2,7 @@
 
 .themeList {
   list-style: none;
+  font-size: rem(14px);
 
   button {
     &:hover {
@@ -18,19 +19,20 @@
 
 .osThemeButton {
   position: absolute;
-  top: -40px;
-  right: 50px;
+  top: -7px;
+  right: 45px;
   background-color: transparent;
   border: transparent;
   outline: none;
   color: $primary;
+  white-space: nowrap;
   cursor: pointer;
 }
 
 .lightThemeButton {
   color: $primary;
   position: absolute;
-  top: 0;
+  top: 15px;
   right: 50px;
   background-color: transparent;
   border: transparent;
@@ -41,7 +43,7 @@
 
 .darkThemeButton {
   position: absolute;
-  top: 40px;
+  top: 37px;
   right: 50px;
   background-color: transparent;
   border: transparent;
