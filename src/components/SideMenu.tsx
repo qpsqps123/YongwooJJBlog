@@ -54,7 +54,12 @@ const SideMenu = () => {
             useAppDispatch(uiSlice.actions.toggleThemeMenuVisibility());
           }}
         >
-          theme
+          <StaticImage
+            src="../images/icon/chageThemeIcon.png"
+            alt="테마 변경 아이콘"
+            width={30}
+            height={30}
+          />
         </button>
         {showThemeMenu && <ThemeMenu />}
       </li>
