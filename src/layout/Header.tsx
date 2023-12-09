@@ -70,8 +70,8 @@ const Header = () => {
     : "";
 
   const hideBlogSubmenu = location.pathname.includes("/blog")
-    ? ""
-    : classes.hide;
+    ? classes.blogSubmenuContainer
+    : "hide";
 
   return (
     <header className={classes.header}>
@@ -104,9 +104,7 @@ const Header = () => {
             >
               BLOG
             </Link>
-            <ul
-              className={`${classes.blogSubmenuContainer} ${hideBlogSubmenu}`}
-            >
+            <ul className={hideBlogSubmenu}>
               <li>
                 <Link
                   to="/blog/life/1"

@@ -11,6 +11,10 @@
   white-space: nowrap;
 }
 
+.hide {
+  display: none;
+}
+
 .invertColor {
   filter: invert(100%);
 }
