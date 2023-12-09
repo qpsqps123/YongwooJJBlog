@@ -18,11 +18,17 @@
 }
 
 .logo {
-  font-family: "Leon", "Pretendard", sans-serif;
+  font-family: "LeonSans", "Pretendard", sans-serif;
   margin-left: rem(20px);
   text-decoration: none;
   color: $primary;
   font-size: rem(12px);
+}
+
+.logo:hover {
+  animation-duration: 0.3s;
+  animation-name: colorPrimaryToAccent;
+  color: $accent;
 }
 
 .menuContainer {
