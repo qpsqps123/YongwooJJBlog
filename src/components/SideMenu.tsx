@@ -11,6 +11,7 @@ const SideMenu = () => {
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
   const showThemeMenu = useAppSelector((state) => state.ui.showThemeMenu);
   const executed = useAppSelector((state) => state.ui.executed);
+  const isThemeChanged = useAppSelector((state) => state.ui.isThemeChanged);
 
   useEffect(() => {
     if (executed) {
@@ -27,10 +28,27 @@ const SideMenu = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const checkThemeIsDark = document.body.classList.contains("dark-theme");
+
+    if (checkThemeIsDark) {
+      document.getElementById("searchButton")?.classList.add("invertColor");
+      document
+        .getElementById("changeThemeButton")
+        ?.classList.add("invertColor");
+    } else if (!checkThemeIsDark) {
+      document.getElementById("searchButton")?.classList.remove("invertColor");
+      document
+        .getElementById("changeThemeButton")
+        ?.classList.remove("invertColor");
+    }
+  }, [isThemeChanged]);
+
   return (
     <ul className={classes.sideMenuList}>
       <li>
         <button
+          id="searchButton"
           type="button"
           onClick={() => {
             useAppDispatch(uiSlice.actions.toggleSearchVisibility());

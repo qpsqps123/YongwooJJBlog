@@ -11,6 +11,10 @@
   white-space: nowrap;
 }
 
+.invertColor {
+  filter: invert(100%);
+}
+
 .pointerEventNone {
   pointer-events: none;
 }

@@ -16,6 +16,7 @@ const Header = () => {
 
   const showSearch = useAppSelector((state) => state.ui.showSearch);
   const showSideMenu = useAppSelector((state) => state.ui.showSideMenu);
+  const isThemeChanged = useAppSelector((state) => state.ui.isThemeChanged);
 
   useEffect(() => {
     const localStorageUserTheme = localStorage.getItem("theme");
@@ -33,6 +34,18 @@ const Header = () => {
       localStorage.setItem("theme", "dark");
     }
   }, []);
+
+  useEffect(() => {
+    const checkThemeIsDark = document.body.classList.contains("dark-theme");
+
+    if (checkThemeIsDark) {
+      document.getElementById("sideMenuButton")?.classList.add("invertColor");
+    } else if (!checkThemeIsDark) {
+      document
+        .getElementById("sideMenuButton")
+        ?.classList.remove("invertColor");
+    }
+  }, [isThemeChanged]);
 
   useEffect(() => {
     useAppDispatch(uiSlice.actions.clearExecuted());

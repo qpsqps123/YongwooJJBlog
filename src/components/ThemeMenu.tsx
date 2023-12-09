@@ -1,7 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import * as classes from "./ThemeMenu.module.scss";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../store/store";
+import uiSlice from "../store/ui-slice";
 
 const ThemeMenu = () => {
+  const useAppDispatch = useDispatch<AppDispatch>();
+
   const themeButtonRef = useRef<HTMLButtonElement[]>([]);
 
   useEffect(() => {
@@ -64,6 +69,8 @@ const ThemeMenu = () => {
       darkThemeButtonElement.classList.add(classes.isSelected);
       localStorage.setItem("theme", "dark");
     }
+
+    useAppDispatch(uiSlice.actions.detectThemeChange());
   };
 
   return (

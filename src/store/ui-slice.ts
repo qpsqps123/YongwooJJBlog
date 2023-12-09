@@ -5,6 +5,7 @@ const initialUiState = {
   showSideMenu: false,
   showThemeMenu: false,
   executed: false,
+  isThemeChanged: false,
 };
 
 const uiSlice = createSlice({
@@ -34,6 +35,9 @@ const uiSlice = createSlice({
     },
     clearExecuted(state) {
       state.executed = false;
+    },
+    detectThemeChange(state) {
+      state.isThemeChanged = !state.isThemeChanged;
     },
   },
 });
