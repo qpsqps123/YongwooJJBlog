@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useFlexSearch } from "react-use-flexsearch";
 import { Formik, Form } from "formik";
 import { graphql, useStaticQuery, Link } from "gatsby";
@@ -25,6 +25,7 @@ interface SearchResults {
 const SearchBar = ({
   searchVisibilityRef,
   closeSearchButtonRef,
+  searchInputRef,
 }: RefPropsType) => {
   const data = useStaticQuery(graphql`
     query {
@@ -40,8 +41,6 @@ const SearchBar = ({
 
   const query = useAppSelector((state) => state.search.query);
   const pageNum = useAppSelector((state) => state.search.pageNum);
-
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const index = data.localSearchPages.index;
   const store = data.localSearchPages.store;
@@ -167,10 +166,9 @@ const SearchBar = ({
                     name="query"
                     className={classes.input}
                     placeholder="Press Enter to search"
-                    ref={inputRef}
+                    ref={searchInputRef}
                     onChange={handleChange}
                     value={values.query}
-                    autoFocus
                   />
                 </Form>
               );

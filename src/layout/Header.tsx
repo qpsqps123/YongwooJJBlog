@@ -16,6 +16,7 @@ export interface RefPropsType {
   changeThemeButtonRef?: React.RefObject<HTMLButtonElement>;
   searchButtonRef?: React.RefObject<HTMLButtonElement>;
   closeSearchButtonRef?: React.RefObject<HTMLButtonElement>;
+  searchInputRef?: React.RefObject<HTMLInputElement>;
 }
 
 const Header = () => {
@@ -31,6 +32,7 @@ const Header = () => {
   const changeThemeButtonRef = useRef<HTMLButtonElement>(null);
   const searchButtonRef = useRef<HTMLButtonElement>(null);
   const closeSearchButtonRef = useRef<HTMLButtonElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     // 사이트 최초 접속 시, 사용자 테마 설정 불러오기
@@ -175,12 +177,14 @@ const Header = () => {
             themeMenuVisibilityRef={themeMenuVisibilityRef}
             changeThemeButtonRef={changeThemeButtonRef}
             searchButtonRef={searchButtonRef}
+            searchInputRef={searchInputRef}
           />
         </section>
       </nav>
       <SearchBar
         searchVisibilityRef={searchVisibilityRef}
         closeSearchButtonRef={closeSearchButtonRef}
+        searchInputRef={searchInputRef}
       />
     </header>
   );

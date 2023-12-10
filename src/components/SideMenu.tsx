@@ -10,6 +10,7 @@ const SideMenu = ({
   themeMenuVisibilityRef,
   changeThemeButtonRef,
   searchButtonRef,
+  searchInputRef,
 }: RefPropsType) => {
   return (
     <ul
@@ -22,6 +23,7 @@ const SideMenu = ({
           ref={searchButtonRef}
           onClick={() => {
             searchVisibilityRef?.current?.classList.toggle("hide");
+            searchInputRef?.current?.focus();
           }}
           className={classes.searchButton}
           aria-label="검색 메뉴"
