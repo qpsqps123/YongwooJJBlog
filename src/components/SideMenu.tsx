@@ -1,17 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useContext } from "react";
 import * as classes from "./SideMenu.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
 import ThemeMenu from "./ThemeMenu";
-import type { RefPropsType } from "../layout/Header";
+import { RefContext } from "../context/refContext";
 
-const SideMenu = ({
-  sideMenuVisibilityRef,
-  searchVisibilityRef,
-  themeMenuVisibilityRef,
-  changeThemeButtonRef,
-  searchButtonRef,
-  searchInputRef,
-}: RefPropsType) => {
+const SideMenu = () => {
+  const {
+    sideMenuVisibilityRef,
+    searchButtonRef,
+    changeThemeButtonRef,
+    searchVisibilityRef,
+    searchInputRef,
+    themeMenuVisibilityRef,
+  } = useContext(RefContext);
+
   return (
     <ul
       className={`${classes.sideMenuList} ${"hide"}`}
@@ -53,7 +55,7 @@ const SideMenu = ({
             height={30}
           />
         </button>
-        <ThemeMenu themeMenuVisibilityRef={themeMenuVisibilityRef} />
+        <ThemeMenu />
       </li>
     </ul>
   );

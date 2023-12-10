@@ -1,14 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect } from "react";
 import * as classes from "./ThemeMenu.module.scss";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store/store";
 import uiSlice from "../store/ui-slice";
-import { RefPropsType } from "../layout/Header";
+import { RefContext } from "../context/refContext";
 
-const ThemeMenu = ({ themeMenuVisibilityRef }: RefPropsType) => {
+const ThemeMenu = () => {
   const useAppDispatch = useDispatch<AppDispatch>();
 
-  const themeButtonRef = useRef<HTMLButtonElement[]>([]);
+  const { themeMenuVisibilityRef, themeButtonRef } = useContext(RefContext);
 
   useEffect(() => {
     const localStorageUserTheme = localStorage.getItem("theme");
@@ -17,7 +17,7 @@ const ThemeMenu = ({ themeMenuVisibilityRef }: RefPropsType) => {
       osThemeButtonElement,
       defaultThemeButtonElement,
       darkThemeButtonElement,
-    ] = themeButtonRef.current;
+    ] = themeButtonRef?.current || [];
     if (localStorageUserTheme === "osDefault") {
       osThemeButtonElement.classList.add(classes.isSelected);
     } else if (localStorageUserTheme === "default") {
@@ -34,7 +34,7 @@ const ThemeMenu = ({ themeMenuVisibilityRef }: RefPropsType) => {
       osThemeButtonElement,
       defaultThemeButtonElement,
       darkThemeButtonElement,
-    ] = themeButtonRef.current;
+    ] = themeButtonRef?.current || [];
 
     if (name === "osDefault") {
       if (localStorageUserTheme === "osDefault") return;
@@ -85,9 +85,11 @@ const ThemeMenu = ({ themeMenuVisibilityRef }: RefPropsType) => {
           type="button"
           className={classes.osThemeButton}
           onClick={handleThemeSelected}
-          ref={(element) =>
-            (themeButtonRef.current[0] = element as HTMLButtonElement)
-          }
+          ref={(element) => {
+            if (themeButtonRef?.current) {
+              themeButtonRef.current[0] = element as HTMLButtonElement;
+            }
+          }}
         >
           OS Default
         </button>
@@ -98,9 +100,11 @@ const ThemeMenu = ({ themeMenuVisibilityRef }: RefPropsType) => {
           type="button"
           className={classes.lightThemeButton}
           onClick={handleThemeSelected}
-          ref={(element) =>
-            (themeButtonRef.current[1] = element as HTMLButtonElement)
-          }
+          ref={(element) => {
+            if (themeButtonRef?.current) {
+              themeButtonRef.current[1] = element as HTMLButtonElement;
+            }
+          }}
         >
           Light
         </button>
@@ -111,9 +115,11 @@ const ThemeMenu = ({ themeMenuVisibilityRef }: RefPropsType) => {
           type="button"
           className={classes.darkThemeButton}
           onClick={handleThemeSelected}
-          ref={(element) =>
-            (themeButtonRef.current[2] = element as HTMLButtonElement)
-          }
+          ref={(element) => {
+            if (themeButtonRef?.current) {
+              themeButtonRef.current[2] = element as HTMLButtonElement;
+            }
+          }}
         >
           Dark
         </button>

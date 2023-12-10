@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useFlexSearch } from "react-use-flexsearch";
 import { Formik, Form } from "formik";
 import { graphql, useStaticQuery, Link } from "gatsby";
@@ -7,7 +7,7 @@ import { StaticImage } from "gatsby-plugin-image";
 import searchSlice from "../store/search-slice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/store";
-import type { RefPropsType } from "../layout/Header";
+import { RefContext } from "../context/refContext";
 
 interface FormikValues {
   query: string;
@@ -22,11 +22,7 @@ interface SearchResults {
   excerpt: string;
 }
 
-const SearchBar = ({
-  searchVisibilityRef,
-  closeSearchButtonRef,
-  searchInputRef,
-}: RefPropsType) => {
+const SearchBar = () => {
   const data = useStaticQuery(graphql`
     query {
       localSearchPages {
@@ -41,6 +37,9 @@ const SearchBar = ({
 
   const query = useAppSelector((state) => state.search.query);
   const pageNum = useAppSelector((state) => state.search.pageNum);
+
+  const { searchVisibilityRef, searchInputRef, closeSearchButtonRef } =
+    useContext(RefContext);
 
   const index = data.localSearchPages.index;
   const store = data.localSearchPages.store;

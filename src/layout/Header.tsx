@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { useLocation } from "@reach/router";
 import { Link } from "gatsby";
 import * as classes from "./Header.module.scss";
@@ -7,17 +7,7 @@ import SideMenu from "../components/SideMenu";
 import { StaticImage } from "gatsby-plugin-image";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { RootState } from "../store/store";
-
-export interface RefPropsType {
-  sideMenuVisibilityRef?: React.RefObject<HTMLUListElement>;
-  searchVisibilityRef?: React.RefObject<HTMLDivElement>;
-  themeMenuVisibilityRef?: React.RefObject<HTMLUListElement>;
-  sideMenuButtonRef?: React.RefObject<HTMLButtonElement>;
-  changeThemeButtonRef?: React.RefObject<HTMLButtonElement>;
-  searchButtonRef?: React.RefObject<HTMLButtonElement>;
-  closeSearchButtonRef?: React.RefObject<HTMLButtonElement>;
-  searchInputRef?: React.RefObject<HTMLInputElement>;
-}
+import { RefContext } from "../context/refContext";
 
 const Header = () => {
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -25,19 +15,19 @@ const Header = () => {
 
   const themeChange = useAppSelector((state) => state.ui.themeChange);
 
-  const sideMenuVisibilityRef = useRef<HTMLUListElement>(null);
-  const searchVisibilityRef = useRef<HTMLDivElement>(null);
-  const themeMenuVisibilityRef = useRef<HTMLUListElement>(null);
-  const sideMenuButtonRef = useRef<HTMLButtonElement>(null);
-  const changeThemeButtonRef = useRef<HTMLButtonElement>(null);
-  const searchButtonRef = useRef<HTMLButtonElement>(null);
-  const closeSearchButtonRef = useRef<HTMLButtonElement>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
+  const {
+    sideMenuButtonRef,
+    sideMenuVisibilityRef,
+    changeThemeButtonRef,
+    searchButtonRef,
+    searchVisibilityRef,
+    themeMenuVisibilityRef,
+    closeSearchButtonRef,
+  } = useContext(RefContext);
 
   useEffect(() => {
     // 사이트 최초 접속 시, 사용자 테마 설정 불러오기
     const localStorageUserTheme = localStorage.getItem("theme");
-
     if (!localStorageUserTheme || localStorageUserTheme === "osDefault") {
       window.matchMedia("(prefers-color-scheme: dark)").matches
         ? document.body.classList.add("dark-theme")
@@ -57,12 +47,12 @@ const Header = () => {
     const checkThemeIsDark = document.body.classList.contains("dark-theme");
 
     if (checkThemeIsDark) {
-      sideMenuButtonRef.current?.classList.add("invertColor");
+      sideMenuButtonRef?.current?.classList.add("invertColor");
       changeThemeButtonRef?.current?.classList.add("invertColor");
       searchButtonRef?.current?.classList.add("invertColor");
       closeSearchButtonRef?.current?.classList.add("invertColor");
     } else if (!checkThemeIsDark) {
-      sideMenuButtonRef.current?.classList.remove("invertColor");
+      sideMenuButtonRef?.current?.classList.remove("invertColor");
       changeThemeButtonRef?.current?.classList.remove("invertColor");
       searchButtonRef?.current?.classList.remove("invertColor");
       closeSearchButtonRef?.current?.classList.remove("invertColor");
@@ -70,16 +60,16 @@ const Header = () => {
   }, [themeChange]);
 
   const handleSideMenuClick = () => {
-    sideMenuVisibilityRef.current?.classList.toggle("hide");
+    sideMenuVisibilityRef?.current?.classList.toggle("hide");
 
-    if (!sideMenuVisibilityRef.current?.classList.contains("hide")) {
-      changeThemeButtonRef.current?.classList.add("pointerEventNone"); // 애니메이션 실행 중 클릭 방지
+    if (!sideMenuVisibilityRef?.current?.classList.contains("hide")) {
+      changeThemeButtonRef?.current?.classList.add("pointerEventNone"); // 애니메이션 실행 중 클릭 방지
       setTimeout(() => {
-        changeThemeButtonRef.current?.classList.remove("pointerEventNone");
+        changeThemeButtonRef?.current?.classList.remove("pointerEventNone");
       }, 1000);
     } else if (sideMenuVisibilityRef.current?.classList.contains("hide")) {
-      themeMenuVisibilityRef.current?.classList.add("hide");
-      searchVisibilityRef.current?.classList.add("hide");
+      themeMenuVisibilityRef?.current?.classList.add("hide");
+      searchVisibilityRef?.current?.classList.add("hide");
     }
   };
 
@@ -171,21 +161,10 @@ const Header = () => {
               height={25}
             />
           </button>
-          <SideMenu
-            sideMenuVisibilityRef={sideMenuVisibilityRef}
-            searchVisibilityRef={searchVisibilityRef}
-            themeMenuVisibilityRef={themeMenuVisibilityRef}
-            changeThemeButtonRef={changeThemeButtonRef}
-            searchButtonRef={searchButtonRef}
-            searchInputRef={searchInputRef}
-          />
+          <SideMenu />
         </section>
       </nav>
-      <SearchBar
-        searchVisibilityRef={searchVisibilityRef}
-        closeSearchButtonRef={closeSearchButtonRef}
-        searchInputRef={searchInputRef}
-      />
+      <SearchBar />
     </header>
   );
 };
