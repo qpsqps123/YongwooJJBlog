@@ -1,9 +1,9 @@
 import React from "react";
 import { Provider } from "react-redux";
-import store from "./store";
+import store from "../store/store";
 import RefProvider from "../context/refContext";
 
-const wrapWithProvider = ({ element }) => {
+const WrapRootProvider = ({ element }: any) => {
   return (
     <Provider store={store}>
       <RefProvider>{element}</RefProvider>
@@ -11,4 +11,4 @@ const wrapWithProvider = ({ element }) => {
   );
 };
 
-export default wrapWithProvider;
+export default WrapRootProvider;
