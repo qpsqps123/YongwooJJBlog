@@ -2,56 +2,26 @@ import React, { useEffect } from "react";
 import * as classes from "./SideMenu.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
 import ThemeMenu from "./ThemeMenu";
-import uiSlice from "../store/ui-slice";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../store/store";
+import type { RefPropsType } from "../layout/Header";
 
-const SideMenu = () => {
-  const useAppDispatch = useDispatch<AppDispatch>();
-  const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
-  const showThemeMenu = useAppSelector((state) => state.ui.showThemeMenu);
-  const executed = useAppSelector((state) => state.ui.executed);
-  const isThemeChanged = useAppSelector((state) => state.ui.isThemeChanged);
-
-  useEffect(() => {
-    if (executed) {
-      document
-        .getElementById("changeThemeButton")
-        ?.classList.add("pointerEventNone");
-      setTimeout(() => {
-        document
-          .getElementById("changeThemeButton")
-          ?.classList.remove("pointerEventNone");
-      }, 1000);
-
-      useAppDispatch(uiSlice.actions.hideThemeMenu());
-    }
-  }, []);
-
-  useEffect(() => {
-    const checkThemeIsDark = document.body.classList.contains("dark-theme");
-
-    if (checkThemeIsDark) {
-      document.getElementById("searchButton")?.classList.add("invertColor");
-      document
-        .getElementById("changeThemeButton")
-        ?.classList.add("invertColor");
-    } else if (!checkThemeIsDark) {
-      document.getElementById("searchButton")?.classList.remove("invertColor");
-      document
-        .getElementById("changeThemeButton")
-        ?.classList.remove("invertColor");
-    }
-  }, [isThemeChanged]);
-
+const SideMenu = ({
+  sideMenuVisibilityRef,
+  searchVisibilityRef,
+  themeMenuVisibilityRef,
+  changeThemeButtonRef,
+  searchButtonRef,
+}: RefPropsType) => {
   return (
-    <ul className={classes.sideMenuList}>
+    <ul
+      className={`${classes.sideMenuList} ${"hide"}`}
+      ref={sideMenuVisibilityRef}
+    >
       <li>
         <button
-          id="searchButton"
           type="button"
+          ref={searchButtonRef}
           onClick={() => {
-            useAppDispatch(uiSlice.actions.toggleSearchVisibility());
+            searchVisibilityRef?.current?.classList.toggle("hide");
           }}
           className={classes.searchButton}
           aria-label="검색 메뉴"
@@ -66,11 +36,11 @@ const SideMenu = () => {
       </li>
       <li className={classes.changeThemeList}>
         <button
-          id="changeThemeButton"
           type="button"
+          ref={changeThemeButtonRef}
           className={classes.changeThemeButton}
           onClick={() => {
-            useAppDispatch(uiSlice.actions.toggleThemeMenuVisibility());
+            themeMenuVisibilityRef?.current?.classList.toggle("hide");
           }}
           aria-label="테마 변경 메뉴"
         >
@@ -81,7 +51,7 @@ const SideMenu = () => {
             height={30}
           />
         </button>
-        {showThemeMenu && <ThemeMenu />}
+        <ThemeMenu themeMenuVisibilityRef={themeMenuVisibilityRef} />
       </li>
     </ul>
   );

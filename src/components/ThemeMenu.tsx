@@ -3,8 +3,9 @@ import * as classes from "./ThemeMenu.module.scss";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store/store";
 import uiSlice from "../store/ui-slice";
+import { RefPropsType } from "../layout/Header";
 
-const ThemeMenu = () => {
+const ThemeMenu = ({ themeMenuVisibilityRef }: RefPropsType) => {
   const useAppDispatch = useDispatch<AppDispatch>();
 
   const themeButtonRef = useRef<HTMLButtonElement[]>([]);
@@ -38,16 +39,16 @@ const ThemeMenu = () => {
     if (name === "osDefault") {
       if (localStorageUserTheme === "osDefault") return;
 
-      document.body.classList.remove("osDefault-theme");
+      document.body.classList.remove("osDefault-theme"); // 기존 테마 삭제
       document.body.classList.remove("default-theme");
       document.body.classList.remove("dark-theme");
-      window.matchMedia("(prefers-color-scheme: dark)").matches
+      window.matchMedia("(prefers-color-scheme: dark)").matches // 선택된 테마 적용
         ? document.body.classList.add("dark-theme")
         : document.body.classList.add("default-theme");
-      osThemeButtonElement.classList.add(classes.isSelected);
+      osThemeButtonElement.classList.add(classes.isSelected); // 선택된 테마 메뉴 표시
       defaultThemeButtonElement.classList.remove(classes.isSelected);
       darkThemeButtonElement.classList.remove(classes.isSelected);
-      localStorage.setItem("theme", "osDefault");
+      localStorage.setItem("theme", "osDefault"); // 사용자 테마 설정 로컬 스토리지 저장
     } else if (name === "default") {
       if (localStorageUserTheme === "default") return;
 
@@ -70,11 +71,14 @@ const ThemeMenu = () => {
       localStorage.setItem("theme", "dark");
     }
 
-    useAppDispatch(uiSlice.actions.detectThemeChange());
+    useAppDispatch(uiSlice.actions.detectThemeChange()); //  사용자 테마 변경 감지
   };
 
   return (
-    <ul className={classes.themeList}>
+    <ul
+      className={`${classes.themeList} ${"hide"}`}
+      ref={themeMenuVisibilityRef}
+    >
       <li>
         <button
           name="osDefault"

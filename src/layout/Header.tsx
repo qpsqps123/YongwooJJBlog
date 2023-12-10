@@ -1,24 +1,39 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useLocation } from "@reach/router";
 import { Link } from "gatsby";
 import * as classes from "./Header.module.scss";
 import SearchBar from "../components/SearchBar";
 import SideMenu from "../components/SideMenu";
 import { StaticImage } from "gatsby-plugin-image";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../store/store";
-import uiSlice from "../store/ui-slice";
+import { TypedUseSelectorHook, useSelector } from "react-redux";
+import { RootState } from "../store/store";
+
+export interface RefPropsType {
+  sideMenuVisibilityRef?: React.RefObject<HTMLUListElement>;
+  searchVisibilityRef?: React.RefObject<HTMLDivElement>;
+  themeMenuVisibilityRef?: React.RefObject<HTMLUListElement>;
+  sideMenuButtonRef?: React.RefObject<HTMLButtonElement>;
+  changeThemeButtonRef?: React.RefObject<HTMLButtonElement>;
+  searchButtonRef?: React.RefObject<HTMLButtonElement>;
+  closeSearchButtonRef?: React.RefObject<HTMLButtonElement>;
+}
 
 const Header = () => {
-  const useAppDispatch = useDispatch<AppDispatch>();
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
   const location = useLocation();
 
-  const showSearch = useAppSelector((state) => state.ui.showSearch);
-  const showSideMenu = useAppSelector((state) => state.ui.showSideMenu);
-  const isThemeChanged = useAppSelector((state) => state.ui.isThemeChanged);
+  const themeChange = useAppSelector((state) => state.ui.themeChange);
+
+  const sideMenuVisibilityRef = useRef<HTMLUListElement>(null);
+  const searchVisibilityRef = useRef<HTMLDivElement>(null);
+  const themeMenuVisibilityRef = useRef<HTMLUListElement>(null);
+  const sideMenuButtonRef = useRef<HTMLButtonElement>(null);
+  const changeThemeButtonRef = useRef<HTMLButtonElement>(null);
+  const searchButtonRef = useRef<HTMLButtonElement>(null);
+  const closeSearchButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
+    // 사이트 최초 접속 시, 사용자 테마 설정 불러오기
     const localStorageUserTheme = localStorage.getItem("theme");
 
     if (!localStorageUserTheme || localStorageUserTheme === "osDefault") {
@@ -36,22 +51,35 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
+    // 사용자 테마 설정에 따른 이미지 변환
     const checkThemeIsDark = document.body.classList.contains("dark-theme");
 
     if (checkThemeIsDark) {
-      document.getElementById("sideMenuButton")?.classList.add("invertColor");
+      sideMenuButtonRef.current?.classList.add("invertColor");
+      changeThemeButtonRef?.current?.classList.add("invertColor");
+      searchButtonRef?.current?.classList.add("invertColor");
+      closeSearchButtonRef?.current?.classList.add("invertColor");
     } else if (!checkThemeIsDark) {
-      document
-        .getElementById("sideMenuButton")
-        ?.classList.remove("invertColor");
+      sideMenuButtonRef.current?.classList.remove("invertColor");
+      changeThemeButtonRef?.current?.classList.remove("invertColor");
+      searchButtonRef?.current?.classList.remove("invertColor");
+      closeSearchButtonRef?.current?.classList.remove("invertColor");
     }
-  }, [isThemeChanged]);
+  }, [themeChange]);
 
-  useEffect(() => {
-    useAppDispatch(uiSlice.actions.clearExecuted());
-    useAppDispatch(uiSlice.actions.hideSearch());
-    useAppDispatch(uiSlice.actions.hideSideMenu());
-  }, []);
+  const handleSideMenuClick = () => {
+    sideMenuVisibilityRef.current?.classList.toggle("hide");
+
+    if (!sideMenuVisibilityRef.current?.classList.contains("hide")) {
+      changeThemeButtonRef.current?.classList.add("pointerEventNone"); // 애니메이션 실행 중 클릭 방지
+      setTimeout(() => {
+        changeThemeButtonRef.current?.classList.remove("pointerEventNone");
+      }, 1000);
+    } else if (sideMenuVisibilityRef.current?.classList.contains("hide")) {
+      themeMenuVisibilityRef.current?.classList.add("hide");
+      searchVisibilityRef.current?.classList.add("hide");
+    }
+  };
 
   const InfoMenuHoverColor = location.pathname.includes("/info/")
     ? classes.colorRed
@@ -128,13 +156,10 @@ const Header = () => {
         </ul>
         <section className={classes.sideMenuContainer}>
           <button
-            id="sideMenuButton"
             type="button"
+            ref={sideMenuButtonRef}
             className={classes.sideMenuButton}
-            onClick={() => {
-              useAppDispatch(uiSlice.actions.toggleSideMenuVisibility());
-              useAppDispatch(uiSlice.actions.executeOnce());
-            }}
+            onClick={handleSideMenuClick}
             aria-label="사이드 메뉴"
           >
             <StaticImage
@@ -144,10 +169,19 @@ const Header = () => {
               height={25}
             />
           </button>
-          {showSideMenu && <SideMenu />}
+          <SideMenu
+            sideMenuVisibilityRef={sideMenuVisibilityRef}
+            searchVisibilityRef={searchVisibilityRef}
+            themeMenuVisibilityRef={themeMenuVisibilityRef}
+            changeThemeButtonRef={changeThemeButtonRef}
+            searchButtonRef={searchButtonRef}
+          />
         </section>
       </nav>
-      {showSearch && <SearchBar />}
+      <SearchBar
+        searchVisibilityRef={searchVisibilityRef}
+        closeSearchButtonRef={closeSearchButtonRef}
+      />
     </header>
   );
 };

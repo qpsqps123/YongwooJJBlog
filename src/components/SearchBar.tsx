@@ -4,10 +4,10 @@ import { Formik, Form } from "formik";
 import { graphql, useStaticQuery, Link } from "gatsby";
 import * as classes from "./SearchBar.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
-import uiSlice from "../store/ui-slice";
 import searchSlice from "../store/search-slice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/store";
+import type { RefPropsType } from "../layout/Header";
 
 interface FormikValues {
   query: string;
@@ -22,7 +22,10 @@ interface SearchResults {
   excerpt: string;
 }
 
-const SearchBar = () => {
+const SearchBar = ({
+  searchVisibilityRef,
+  closeSearchButtonRef,
+}: RefPropsType) => {
   const data = useStaticQuery(graphql`
     query {
       localSearchPages {
@@ -140,66 +143,69 @@ const SearchBar = () => {
   );
 
   return (
-    <section className={classes.searchContainer}>
-      <h2 className="a11yHidden">Search</h2>
-      <section className={classes.searchFormContainer}>
-        <h3 className="a11yHidden">Search Form</h3>
-        <Formik
-          initialValues={{ query: "" }}
-          onSubmit={(values: FormikValues, action: any) => {
-            useAppDispatch(searchSlice.actions.setQuery(values.query));
-            action.setSubmitting(false);
-          }}
-        >
-          {(props: any) => {
-            const { values, handleChange } = props;
-            return (
-              <Form>
-                <label htmlFor="queryId" className="a11yHidden">
-                  Type keywords. Then, Press Enter to search.
-                </label>
-                <input
-                  id="queryId"
-                  name="query"
-                  className={classes.input}
-                  placeholder="Press Enter to search"
-                  ref={inputRef}
-                  onChange={handleChange}
-                  value={values.query}
-                  autoFocus
-                />
-              </Form>
-            );
-          }}
-        </Formik>
-        <button
-          type="button"
-          className={classes.closeSearchButton}
-          onClick={() => {
-            useAppDispatch(uiSlice.actions.toggleSearchVisibility());
-          }}
-          aria-label="검색창 닫기"
-        >
-          <StaticImage
-            src="../images/icon/close.png"
-            alt="닫기 아이콘"
-            width={25}
-            height={25}
-          />
-        </button>
-      </section>
-      <section className={classes.resultsContainer}>
-        <h3>Results</h3>
-        <ul className={classes.resultList} aria-label="search results">
-          {renderCurrentResults}
-        </ul>
-        <nav className={classes.resultPageNavContainer}>
-          {renderPrevButton}
-          {renderCurrentPageNum}
-          {renderNextButton}
-        </nav>
-      </section>
-    </section>
+    <div className={`${"hide"}`} ref={searchVisibilityRef}>
+      <search className={classes.searchContainer}>
+        <h2 className="a11yHidden">Search</h2>
+        <section className={classes.searchFormContainer}>
+          <h3 className="a11yHidden">Search Form</h3>
+          <Formik
+            initialValues={{ query: "" }}
+            onSubmit={(values: FormikValues, action: any) => {
+              useAppDispatch(searchSlice.actions.setQuery(values.query));
+              action.setSubmitting(false);
+            }}
+          >
+            {(props: any) => {
+              const { values, handleChange } = props;
+              return (
+                <Form>
+                  <label htmlFor="queryId" className="a11yHidden">
+                    Type keywords. Then, Press Enter to search.
+                  </label>
+                  <input
+                    id="queryId"
+                    name="query"
+                    className={classes.input}
+                    placeholder="Press Enter to search"
+                    ref={inputRef}
+                    onChange={handleChange}
+                    value={values.query}
+                    autoFocus
+                  />
+                </Form>
+              );
+            }}
+          </Formik>
+          <button
+            type="button"
+            ref={closeSearchButtonRef}
+            className={classes.closeSearchButton}
+            onClick={() => {
+              searchVisibilityRef?.current?.classList.toggle("hide");
+            }}
+            aria-label="검색창 닫기"
+          >
+            <StaticImage
+              src="../images/icon/close.png"
+              alt="닫기 아이콘"
+              width={25}
+              height={25}
+            />
+          </button>
+        </section>
+        <section className={classes.resultsContainer}>
+          <h3>Results</h3>
+          <ul className={classes.resultList} aria-label="search results">
+            {renderCurrentResults}
+          </ul>
+          <nav className={classes.resultPageNavContainer}>
+            {renderPrevButton}
+            {renderCurrentPageNum}
+            {renderNextButton}
+          </nav>
+        </section>
+      </search>
+    </div>
   );
 };
 
