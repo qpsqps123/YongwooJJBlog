@@ -38,8 +38,12 @@ const SearchBar = () => {
   const query = useAppSelector((state) => state.search.query);
   const pageNum = useAppSelector((state) => state.search.pageNum);
 
-  const { searchVisibilityRef, searchInputRef, closeSearchButtonRef } =
-    useContext(RefContext);
+  const {
+    searchVisibilityRef,
+    searchInputRef,
+    closeSearchButtonRef,
+    changeThemeButtonRef,
+  } = useContext(RefContext);
 
   const index = data.localSearchPages.index;
   const store = data.localSearchPages.store;
@@ -179,6 +183,9 @@ const SearchBar = () => {
             className={classes.closeSearchButton}
             onClick={() => {
               searchVisibilityRef?.current?.classList.toggle("hide");
+            }}
+            onBlur={() => {
+              changeThemeButtonRef?.current?.focus();
             }}
             aria-label="검색창 닫기"
           >
