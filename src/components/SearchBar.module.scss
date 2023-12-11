@@ -92,9 +92,11 @@
 }
 
 .linkToPost:hover {
-  animation-duration: 0.3s;
-  animation-name: colorPrimaryToAccent;
   color: $accent;
+
+  :global {
+    animation: colorPrimaryToAccent 0.3s;
+  }
 }
 
 .resultExcerpt {
@@ -124,9 +126,11 @@
   cursor: pointer;
 
   &:hover {
-    animation-duration: 0.3s;
-    animation-name: colorPrimaryToAccent;
     color: $accent;
+  }
+
+  &:hover:global {
+    animation: colorPrimaryToAccent 0.3s;
   }
 
   &:disabled {
@@ -143,14 +147,4 @@
   margin-top: 10px;
   font-size: rem(18px);
   text-align: center;
-}
-
-@keyframes colorPrimaryToAccent {
-  from {
-    color: $primary;
-  }
-
-  to {
-    color: $accent;
-  }
 }

@@ -6,11 +6,11 @@
   list-style: none;
   font-size: rem(14px);
 
-  button {
-    &:hover {
-      animation-duration: 0.3s;
-      animation-name: colorPrimaryToAccent;
-      color: $accent;
+  button:hover {
+    color: $accent;
+
+    :global {
+      animation: colorPrimaryToAccent 0.3s;
     }
   }
 
@@ -57,14 +57,4 @@
 .isSelected {
   color: $accent;
   cursor: default;
-}
-
-@keyframes colorPrimaryToAccent {
-  from {
-    color: $primary;
-  }
-
-  to {
-    color: $accent;
-  }
 }

@@ -26,9 +26,11 @@
 }
 
 .logo:hover {
-  animation-duration: 0.3s;
-  animation-name: colorPrimaryToAccent;
   color: $accent;
+
+  :global {
+    animation: colorPrimaryToAccent 0.3s;
+  }
 }
 
 .menuContainer {
@@ -47,9 +49,11 @@
   }
 
   a:hover {
-    animation-duration: 0.3s;
-    animation-name: colorPrimaryToAccent;
     color: $accent;
+
+    :global {
+      animation: colorPrimaryToAccent 0.3s;
+    }
   }
 
   .colorRed,
@@ -90,14 +94,4 @@
   background-color: transparent;
   border: transparent;
   cursor: pointer;
-}
-
-@keyframes colorPrimaryToAccent {
-  from {
-    color: $primary;
-  }
-
-  to {
-    color: $accent;
-  }
 }

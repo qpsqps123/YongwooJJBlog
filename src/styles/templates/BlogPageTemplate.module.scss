@@ -57,9 +57,11 @@
     }
 
     a:hover {
-      animation-duration: 0.3s;
-      animation-name: colorPrimaryToAccent;
       color: $accent;
+    }
+
+    a:hover:global {
+      animation: colorPrimaryToAccent 0.3s;
     }
   }
 }
@@ -97,9 +99,11 @@
   }
 
   a:hover {
-    animation-duration: 0.3s;
-    animation-name: colorPrimaryToAccent;
     color: $accent;
+
+    :global {
+      animation: colorPrimaryToAccent 0.3s;
+    }
   }
 }
 
@@ -110,14 +114,4 @@
 
 .footerContainer {
   padding: rem(40px) rem(20px);
-}
-
-@keyframes colorPrimaryToAccent {
-  from {
-    color: $primary;
-  }
-
-  to {
-    color: $accent;
-  }
 }
