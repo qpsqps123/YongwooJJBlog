@@ -23,6 +23,7 @@ const Header = () => {
     searchVisibilityRef,
     themeMenuVisibilityRef,
     closeSearchButtonRef,
+    contactGithubIconRef,
   } = useContext(RefContext);
 
   // 사이트 최초 접속 시, 사용자 테마 설정 불러오기
@@ -51,11 +52,13 @@ const Header = () => {
       changeThemeButtonRef?.current?.classList.add("invertColor");
       searchButtonRef?.current?.classList.add("invertColor");
       closeSearchButtonRef?.current?.classList.add("invertColor");
+      contactGithubIconRef?.current?.classList.add("invertColor");
     } else if (!checkThemeIsDark) {
       sideMenuButtonRef?.current?.classList.remove("invertColor");
       changeThemeButtonRef?.current?.classList.remove("invertColor");
       searchButtonRef?.current?.classList.remove("invertColor");
       closeSearchButtonRef?.current?.classList.remove("invertColor");
+      contactGithubIconRef?.current?.classList.remove("invertColor");
     }
   }, [themeChange]);
 

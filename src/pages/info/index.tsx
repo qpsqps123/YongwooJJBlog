@@ -1,10 +1,13 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import Header from "../../layout/Header";
 import { SEO } from "../../components/seo";
 import * as classes from "./InfoPage.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
+import { RefContext } from "../../context/refContext";
 
 const InfoPage = () => {
+  const { contactGithubIconRef } = useContext(RefContext);
+
   return (
     <React.Fragment>
       <Header />
@@ -38,6 +41,7 @@ const InfoPage = () => {
                 title="YongwooJJ Github"
                 target="_blank"
                 rel="noopener noreferrer"
+                ref={contactGithubIconRef}
               >
                 <StaticImage
                   src="../../images/logo/logo-github-black.svg"

@@ -10,20 +10,25 @@ interface RefPropsType {
   changeThemeButtonRef?: React.RefObject<HTMLButtonElement>;
   searchButtonRef?: React.RefObject<HTMLButtonElement>;
   closeSearchButtonRef?: React.RefObject<HTMLButtonElement>;
-  searchInputRef?: React.RefObject<HTMLInputElement>;
   themeButtonRef?: React.RefObject<HTMLButtonElement[]>;
+  searchInputRef?: React.RefObject<HTMLInputElement>;
+  contactGithubIconRef?: React.RefObject<HTMLAnchorElement>;
 }
 
 const RefProvider = ({ children }: PropsWithChildren<{}>) => {
   const sideMenuVisibilityRef = useRef<HTMLUListElement>(null);
   const searchVisibilityRef = useRef<HTMLDivElement>(null);
   const themeMenuVisibilityRef = useRef<HTMLUListElement>(null);
+
   const sideMenuButtonRef = useRef<HTMLButtonElement>(null);
   const changeThemeButtonRef = useRef<HTMLButtonElement>(null);
   const searchButtonRef = useRef<HTMLButtonElement>(null);
   const closeSearchButtonRef = useRef<HTMLButtonElement>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
   const themeButtonRef = useRef<HTMLButtonElement[]>([]);
+
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const contactGithubIconRef = useRef<HTMLAnchorElement>(null);
 
   return (
     <RefContext.Provider
@@ -37,6 +42,7 @@ const RefProvider = ({ children }: PropsWithChildren<{}>) => {
         closeSearchButtonRef,
         searchInputRef,
         themeButtonRef,
+        contactGithubIconRef,
       }}
     >
       {children}
