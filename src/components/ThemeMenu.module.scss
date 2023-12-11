@@ -1,6 +1,8 @@
 @import "../styles/abstracts/functions";
 
 .themeList {
+  position: relative;
+  top: 30px;
   list-style: none;
   font-size: rem(14px);
 

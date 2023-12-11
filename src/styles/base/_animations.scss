@@ -1,0 +1,97 @@
+.showSearchButtonAnimation {
+  animation: showSearchButtonAnimation 1s ease-out 0s 1 normal backwards;
+}
+
+.hideSearchButtonAnimation {
+  animation: hideSearchButtonAnimation 0.5s;
+}
+
+.showThemeButtonAnimation {
+  animation: showThemeButtonAnimation 1s ease-out 0.2s 1 normal backwards;
+}
+
+.hideThemeButtonAnimation {
+  animation: hideThemeButtonAnimation 0.5s ease 0.1s;
+}
+
+@keyframes showSearchButtonAnimation {
+  0% {
+    opacity: 0;
+    top: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  70% {
+    top: 45px;
+    transform: rotateZ(-380deg);
+  }
+
+  90% {
+    transform: rotateZ(-350deg);
+  }
+
+  100% {
+    top: 40px;
+    transform: rotateZ(-360deg);
+  }
+}
+
+@keyframes hideSearchButtonAnimation {
+  0% {
+    top: 40px;
+    opacity: 1;
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    top: 0;
+  }
+}
+
+@keyframes showThemeButtonAnimation {
+  0% {
+    opacity: 0;
+    top: -40px;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  70% {
+    top: 40px;
+    transform: rotateZ(390deg);
+  }
+
+  90% {
+    transform: rotateZ(350deg);
+  }
+
+  100% {
+    top: 30px;
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes hideThemeButtonAnimation {
+  0% {
+    top: 30px;
+    opacity: 1;
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  100% {
+    top: -40px;
+    opacity: 0;
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect } from "react";
 import { useLocation } from "@reach/router";
 import { Link } from "gatsby";
 import * as classes from "./Header.module.scss";
@@ -25,8 +25,8 @@ const Header = () => {
     closeSearchButtonRef,
   } = useContext(RefContext);
 
+  // 사이트 최초 접속 시, 사용자 테마 설정 불러오기
   useEffect(() => {
-    // 사이트 최초 접속 시, 사용자 테마 설정 불러오기
     const localStorageUserTheme = localStorage.getItem("theme");
     if (!localStorageUserTheme || localStorageUserTheme === "osDefault") {
       window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -42,8 +42,8 @@ const Header = () => {
     }
   }, []);
 
+  // 사용자 테마 설정에 따른 이미지 변환
   useEffect(() => {
-    // 사용자 테마 설정에 따른 이미지 변환
     const checkThemeIsDark = document.body.classList.contains("dark-theme");
 
     if (checkThemeIsDark) {
@@ -59,17 +59,38 @@ const Header = () => {
     }
   }, [themeChange]);
 
+  // 사이드 메뉴의 display 속성을 이용한 동적 렌더링과 애니메이션
   const handleSideMenuClick = () => {
     sideMenuVisibilityRef?.current?.classList.toggle("hide");
+    searchButtonRef?.current?.classList.add("showSearchButtonAnimation");
+    changeThemeButtonRef?.current?.classList.add("showThemeButtonAnimation");
 
-    if (!sideMenuVisibilityRef?.current?.classList.contains("hide")) {
-      changeThemeButtonRef?.current?.classList.add("pointerEventNone"); // 애니메이션 실행 중 클릭 방지
+    // 애니메이션 실행 중 클릭 방지
+    if (sideMenuVisibilityRef?.current?.classList.contains("hide") === false) {
+      changeThemeButtonRef?.current?.classList.add("pointerEventNone");
       setTimeout(() => {
         changeThemeButtonRef?.current?.classList.remove("pointerEventNone");
       }, 1000);
-    } else if (sideMenuVisibilityRef.current?.classList.contains("hide")) {
-      themeMenuVisibilityRef?.current?.classList.add("hide");
-      searchVisibilityRef?.current?.classList.add("hide");
+    }
+
+    // 열린 하위 메뉴들 닫기
+    themeMenuVisibilityRef?.current?.classList.add("hide");
+    searchVisibilityRef?.current?.classList.add("hide");
+
+    if (sideMenuVisibilityRef?.current?.classList.contains("hide") === true) {
+      sideMenuVisibilityRef.current.classList.remove("hide"); // 애니메이션을 실행하는 동안 보이기
+
+      searchButtonRef?.current?.classList.add("hideSearchButtonAnimation");
+      changeThemeButtonRef?.current?.classList.add("hideThemeButtonAnimation");
+
+      setTimeout(() => {
+        sideMenuVisibilityRef.current?.classList.add("hide");
+
+        searchButtonRef?.current?.classList.remove("hideSearchButtonAnimation");
+        changeThemeButtonRef?.current?.classList.remove(
+          "hideThemeButtonAnimation"
+        );
+      }, 500);
     }
   };
 
