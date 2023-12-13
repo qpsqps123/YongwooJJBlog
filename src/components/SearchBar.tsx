@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { useFlexSearch } from "react-use-flexsearch";
+import React, { useContext, useEffect } from "react";
 import { Formik, Form } from "formik";
 import { graphql, useStaticQuery, Link } from "gatsby";
 import * as classes from "./SearchBar.module.scss";
@@ -14,20 +13,32 @@ interface FormikValues {
 }
 
 interface SearchResults {
-  id: string;
-  title: string;
-  post: string;
-  slug: string;
+  frontmatter: {
+    title: string;
+    date: string;
+    slug: string;
+    post: string;
+  };
   body: string;
+  id: string;
   excerpt: string;
 }
 
 const SearchBar = () => {
   const data = useStaticQuery(graphql`
     query {
-      localSearchPages {
-        index
-        store
+      allMdx {
+        nodes {
+          frontmatter {
+            title
+            date
+            slug
+            post
+          }
+          body
+          id
+          excerpt(pruneLength: 70)
+        }
       }
     }
   `);
@@ -45,13 +56,19 @@ const SearchBar = () => {
     changeThemeButtonRef,
   } = useContext(RefContext);
 
-  const index = data.localSearchPages.index;
-  const store = data.localSearchPages.store;
+  const { nodes: index } = data.allMdx;
 
-  const totalResults = useFlexSearch(query, index, store);
+  const store = index.filter(
+    (el: SearchResults) =>
+      query !== "" &&
+      (el.frontmatter.date?.toLowerCase().includes(query?.toLowerCase()) ||
+        el.frontmatter.title?.toLowerCase().includes(query?.toLowerCase()) ||
+        el.body?.toLowerCase().includes(query?.toLowerCase()))
+  );
 
-  const results = totalResults.filter(
-    (result: SearchResults) => result.post === "life" || result.post === "learn"
+  const results = store?.filter(
+    (result: SearchResults) =>
+      result.frontmatter.post === "life" || result.frontmatter.post === "learn"
   );
 
   const totalNumResults = results.length;
@@ -59,20 +76,20 @@ const SearchBar = () => {
   const startPoint = limit * (pageNum - 1);
   const endPoint = limit * pageNum;
 
-  const currentResults = results.filter(
+  const currentResults = results?.filter(
     (_: never, index: number) => index + 1 > startPoint && index + 1 <= endPoint
   );
 
   const handleNextPage = () => {
-    useAppDispatch(searchSlice.actions.toNextPage);
+    useAppDispatch(searchSlice.actions.toNextPage());
   };
 
   const handlePrevPage = () => {
-    useAppDispatch(searchSlice.actions.toPrevPage);
+    useAppDispatch(searchSlice.actions.toPrevPage());
   };
 
-  const currentTotalNumResults = currentResults.length;
-  const hasCurrentResults = currentTotalNumResults !== 0;
+  const currentResultsTotalNum = currentResults.length;
+  const hasCurrentResults = currentResultsTotalNum !== 0;
 
   const renderCurrentResults = hasCurrentResults ? (
     currentResults.map((result: SearchResults) => (
@@ -81,10 +98,10 @@ const SearchBar = () => {
           <header>
             <h4>
               <Link
-                to={`/blog/${result.post}/${result.slug}`}
+                to={`/blog/${result.frontmatter.post}/${result.frontmatter.slug}`}
                 className={classes.linkToPost}
               >
-                {result.title}
+                {result.frontmatter.title}
               </Link>
             </h4>
           </header>
@@ -154,6 +171,7 @@ const SearchBar = () => {
             initialValues={{ query: "" }}
             onSubmit={(values: FormikValues, action: any) => {
               useAppDispatch(searchSlice.actions.setQuery(values.query));
+              useAppDispatch(searchSlice.actions.initPage());
               action.setSubmitting(false);
             }}
           >
