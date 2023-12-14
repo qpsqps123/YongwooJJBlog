@@ -37,7 +37,7 @@ const SearchBar = () => {
           }
           body
           id
-          excerpt(pruneLength: 70)
+          excerpt(pruneLength: 68)
         }
       }
     }

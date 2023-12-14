@@ -22,22 +22,28 @@
 
 .input {
   width: 360px;
-  height: rem(40px);
-  font-size: rem(34px);
+  height: rem(50px);
+  font-size: rem(32px);
   background-color: transparent;
   border: transparent;
   outline: none;
+  text-shadow: rem(6px) 0 10px $background, rem(-6px) 0 10px $background;
   color: $primary;
+  text-indent: 20px;
 
   @include tablet-lg {
     width: 290px;
-    font-size: rem(28px);
+    font-size: rem(25px);
   }
 
   @include tablet-sm {
     width: 230px;
-    font-size: rem(22px);
+    font-size: rem(20px);
   }
+}
+
+.input::placeholder {
+  color: $secondary;
 }
 
 .resultsContainer {
@@ -55,6 +61,8 @@
   overflow: auto;
   list-style: none;
   gap: 3vh;
+  padding: 7px 15px 0;
+  line-height: 110%;
 
   @include tablet-sm {
     width: rem(300px);
