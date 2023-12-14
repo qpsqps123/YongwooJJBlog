@@ -110,7 +110,7 @@ const LearnPageTemplate = ({
     if (isFirstPage) {
       return (
         <React.Fragment key={uuid()}>
-          <li>1</li>
+          <li className={classes.currentPage}>1</li>
           {numLearnPages < 6
             ? renderPageNavLinks(numLearnPages - 1, 2, "learn")
             : renderPageNavLinks(4, 2, "learn")}
@@ -120,7 +120,7 @@ const LearnPageTemplate = ({
       return (
         <React.Fragment key={uuid()}>
           {renderPageNavLinks(1, 1, "learn")}
-          <li>2</li>
+          <li className={classes.currentPage}>2</li>
           {numLearnPages < 6
             ? renderPageNavLinks(numLearnPages - 2, 3, "learn")
             : renderPageNavLinks(3, 3, "learn")}
@@ -129,22 +129,32 @@ const LearnPageTemplate = ({
     } else if (isLastBeforePage) {
       return (
         <React.Fragment key={uuid()}>
-          {renderPageNavLinks(3, numLearnPages - 4, "learn")}
-          <li>{numLearnPages - 1}</li>
+          {numLearnPages === 4
+            ? renderPageNavLinks(2, 1, "learn")
+            : renderPageNavLinks(3, numLearnPages - 4, "learn")}
+          <li className={classes.currentPage}>{numLearnPages - 1}</li>
           {renderPageNavLinks(1, numLearnPages, "learn")}
         </React.Fragment>
       );
     } else if (isLastPage) {
       return (
         <React.Fragment key={uuid()}>
-          {renderPageNavLinks(4, numLearnPages - 4, "learn")}
-          <li>{numLearnPages}</li>
+          {numLearnPages === 3
+            ? renderPageNavLinks(2, 1, "learn")
+            : numLearnPages === 4
+            ? renderPageNavLinks(3, 1, "learn")
+            : renderPageNavLinks(4, numLearnPages - 4, "learn")}
+          <li className={classes.currentPage}>{numLearnPages}</li>
         </React.Fragment>
       );
     }
 
     if (isCurrentPage) {
-      return <li key={uuid()}>{page}</li>;
+      return (
+        <li className={classes.currentPage} key={uuid()}>
+          {page}
+        </li>
+      );
     }
 
     if (isRestPages) {
@@ -161,43 +171,39 @@ const LearnPageTemplate = ({
       <Header />
       <main className={classes.mainContainer}>
         <section className={classes.postsContainer} aria-label="게시물">
-          {data.allMdx.nodes.map((node) =>
-            node.frontmatter.post === "learn" ? (
-              <article key={node.id}>
-                <section className={classes.post}>
-                  <div>
-                    {node.frontmatter.featuredImage?.childImageSharp ? (
-                      <Link to={`/blog/learn/${node.frontmatter.slug}`}>
-                        <GatsbyImage
-                          image={getImage(node.frontmatter.featuredImage)}
-                          alt={`${node.frontmatter.title} thumbnail`}
-                          className={classes.postImage}
-                        />
-                      </Link>
-                    ) : (
-                      <div
-                        aria-label="Thumbnail not uploaded"
-                        className={classes.thumbnailNotUploaded}
-                      ></div>
-                    )}
-                  </div>
-                  <div className={classes.postCaption}>
-                    <h2>
-                      <Link to={`/blog/learn/${node.frontmatter.slug}`}>
-                        {node.frontmatter.title}
-                      </Link>
-                    </h2>
-                    <p className={classes.date}>
-                      Posted: {node.frontmatter.date}
-                    </p>
-                    <p className={classes.excerpt}>{node.excerpt}</p>
-                  </div>
-                </section>
-              </article>
-            ) : (
-              ""
-            )
-          )}
+          {data.allMdx.nodes.map((node) => (
+            <article key={node.id}>
+              <section className={classes.post}>
+                <div>
+                  {node.frontmatter.featuredImage?.childImageSharp ? (
+                    <Link to={`/blog/learn/${node.frontmatter.slug}`}>
+                      <GatsbyImage
+                        image={getImage(node.frontmatter.featuredImage)}
+                        alt={`${node.frontmatter.title} thumbnail`}
+                        className={classes.postImage}
+                      />
+                    </Link>
+                  ) : (
+                    <div
+                      aria-label="Thumbnail not uploaded"
+                      className={classes.thumbnailNotUploaded}
+                    ></div>
+                  )}
+                </div>
+                <div className={classes.postCaption}>
+                  <h2>
+                    <Link to={`/blog/learn/${node.frontmatter.slug}`}>
+                      {node.frontmatter.title}
+                    </Link>
+                  </h2>
+                  <p className={classes.date}>
+                    Posted: {node.frontmatter.date}
+                  </p>
+                  <p className={classes.excerpt}>{node.excerpt}</p>
+                </div>
+              </section>
+            </article>
+          ))}
         </section>
         <nav aria-label="게시물 페이지 네비게이션">
           <ul className={classes.pageNav}>
@@ -223,7 +229,7 @@ export const Head = () => {
 export const query = graphql`
   # prettier-ignore
   query ($skip: Int!, $limit: Int!) {
-    allMdx(sort: { frontmatter: { date: DESC } } limit: $limit skip: $skip) {
+    allMdx(sort: { frontmatter: { date: DESC } } filter: {frontmatter: {post: {eq: "learn"}}} limit: $limit skip: $skip) {
       nodes {
         frontmatter {
           title

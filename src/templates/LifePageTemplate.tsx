@@ -172,43 +172,39 @@ const LifePageTemplate = ({
       <Header />
       <main className={classes.mainContainer}>
         <section className={classes.postsContainer} aria-label="게시물">
-          {data.allMdx.nodes.map((node) =>
-            node.frontmatter.post === "life" ? (
-              <article key={node.id}>
-                <section className={classes.post}>
-                  <div>
-                    {node.frontmatter.featuredImage?.childImageSharp ? (
-                      <Link to={`/blog/life/${node.frontmatter.slug}`}>
-                        <GatsbyImage
-                          image={getImage(node.frontmatter.featuredImage)}
-                          alt={`${node.frontmatter.title} thumbnail`}
-                          className={classes.postImage}
-                        />
-                      </Link>
-                    ) : (
-                      <div
-                        aria-label="Thumbnail not uploaded"
-                        className={classes.thumbnailNotUploaded}
-                      ></div>
-                    )}
-                  </div>
-                  <div className={classes.postCaption}>
-                    <h2>
-                      <Link to={`/blog/life/${node.frontmatter.slug}`}>
-                        {node.frontmatter.title}
-                      </Link>
-                    </h2>
-                    <p className={classes.date}>
-                      Posted: {node.frontmatter.date}
-                    </p>
-                    <p className={classes.excerpt}>{node.excerpt}</p>
-                  </div>
-                </section>
-              </article>
-            ) : (
-              ""
-            )
-          )}
+          {data.allMdx.nodes.map((node) => (
+            <article key={node.id}>
+              <section className={classes.post}>
+                <div>
+                  {node.frontmatter.featuredImage?.childImageSharp ? (
+                    <Link to={`/blog/life/${node.frontmatter.slug}`}>
+                      <GatsbyImage
+                        image={getImage(node.frontmatter.featuredImage)}
+                        alt={`${node.frontmatter.title} thumbnail`}
+                        className={classes.postImage}
+                      />
+                    </Link>
+                  ) : (
+                    <div
+                      aria-label="Thumbnail not uploaded"
+                      className={classes.thumbnailNotUploaded}
+                    ></div>
+                  )}
+                </div>
+                <div className={classes.postCaption}>
+                  <h2>
+                    <Link to={`/blog/life/${node.frontmatter.slug}`}>
+                      {node.frontmatter.title}
+                    </Link>
+                  </h2>
+                  <p className={classes.date}>
+                    Posted: {node.frontmatter.date}
+                  </p>
+                  <p className={classes.excerpt}>{node.excerpt}</p>
+                </div>
+              </section>
+            </article>
+          ))}
         </section>
         <nav aria-label="게시물 페이지 네비게이션">
           <ul className={classes.pageNav}>
@@ -234,7 +230,7 @@ export const Head = () => {
 export const query = graphql`
   # prettier-ignore
   query ($skip: Int!, $limit: Int!) {
-    allMdx(sort: { frontmatter: { date: DESC } } limit: $limit skip: $skip) {
+    allMdx(sort: { frontmatter: { date: DESC } } filter: { frontmatter: {post: {eq: "life"}}} limit: $limit skip: $skip) {
       nodes {
         frontmatter {
           title
