@@ -34,7 +34,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const posts = result.data.allMdx.nodes;
   const lifePosts = posts.filter((node) => node.frontmatter.post === "life");
   const learnPosts = posts.filter((node) => node.frontmatter.post === "learn");
-  const postsPerPage = 10;
+  const postsPerPage = 5;
   const numLifePages = Math.ceil(lifePosts.length / postsPerPage);
   const numLearnPages = Math.ceil(learnPosts.length / postsPerPage);
 
