@@ -6,6 +6,7 @@ import { RefContext } from "../context/refContext";
 
 const SideMenu = () => {
   const {
+    headerVisibilityRef,
     sideMenuVisibilityRef,
     searchButtonRef,
     changeThemeButtonRef,
@@ -25,6 +26,9 @@ const SideMenu = () => {
           ref={searchButtonRef}
           onClick={() => {
             searchVisibilityRef?.current?.classList.toggle("hide");
+            headerVisibilityRef?.current?.classList.toggle(
+              "handleHeaderHeightOverflow"
+            );
             searchInputRef?.current?.focus();
           }}
           className={classes.searchButton}

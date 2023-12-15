@@ -20,6 +20,31 @@
     opacity: 0.8;
     z-index: -1;
   }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border: 2px transparent $background;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $tertiary;
+    background-clip: padding-box;
+    border-radius: 10px;
+    border: 2px solid transparent;
+  }
+
+  &::-webkit-scrollbar-button:vertical:start:decrement {
+    display: block;
+    height: 1px;
+  }
+
+  &::-webkit-scrollbar-button:vertical:end:decrement {
+    display: block;
+    height: 1px;
+  }
 }
 
 .navigation {
@@ -97,7 +122,7 @@
 
 .sideMenuContainer {
   position: relative;
-  margin-right: rem(20px);
+  margin-right: rem(5px);
 }
 
 .sideMenuButton {

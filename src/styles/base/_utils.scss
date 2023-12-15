@@ -22,3 +22,8 @@
 .pointerEventNone {
   pointer-events: none;
 }
+
+.handleHeaderHeightOverflow {
+  height: 100%;
+  overflow: auto;
+}

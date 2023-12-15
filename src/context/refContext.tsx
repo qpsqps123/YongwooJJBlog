@@ -3,6 +3,7 @@ import React, { useRef, createContext, PropsWithChildren } from "react";
 export const RefContext = createContext<RefPropsType>({});
 
 interface RefPropsType {
+  headerVisibilityRef?: React.RefObject<HTMLElement>;
   sideMenuVisibilityRef?: React.RefObject<HTMLUListElement>;
   searchVisibilityRef?: React.RefObject<HTMLDivElement>;
   themeMenuVisibilityRef?: React.RefObject<HTMLUListElement>;
@@ -16,6 +17,7 @@ interface RefPropsType {
 }
 
 const RefProvider = ({ children }: PropsWithChildren<{}>) => {
+  const headerVisibilityRef = useRef<HTMLElement>(null);
   const sideMenuVisibilityRef = useRef<HTMLUListElement>(null);
   const searchVisibilityRef = useRef<HTMLDivElement>(null);
   const themeMenuVisibilityRef = useRef<HTMLUListElement>(null);
@@ -33,6 +35,7 @@ const RefProvider = ({ children }: PropsWithChildren<{}>) => {
   return (
     <RefContext.Provider
       value={{
+        headerVisibilityRef,
         sideMenuVisibilityRef,
         searchVisibilityRef,
         themeMenuVisibilityRef,

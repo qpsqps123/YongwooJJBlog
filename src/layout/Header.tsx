@@ -16,6 +16,7 @@ const Header = () => {
   const themeChange = useAppSelector((state) => state.ui.themeChange);
 
   const {
+    headerVisibilityRef,
     sideMenuButtonRef,
     sideMenuVisibilityRef,
     changeThemeButtonRef,
@@ -77,8 +78,11 @@ const Header = () => {
     }
 
     // 열린 하위 메뉴들 닫기
-    themeMenuVisibilityRef?.current?.classList.add("hide");
     searchVisibilityRef?.current?.classList.add("hide");
+    themeMenuVisibilityRef?.current?.classList.add("hide");
+    headerVisibilityRef?.current?.classList.remove(
+      "handleHeaderHeightOverflow"
+    );
 
     if (sideMenuVisibilityRef?.current?.classList.contains("hide") === true) {
       sideMenuVisibilityRef.current.classList.remove("hide"); // 애니메이션을 실행하는 동안 보이기
@@ -118,7 +122,7 @@ const Header = () => {
     : "hide";
 
   return (
-    <header className={classes.header}>
+    <header className={classes.header} ref={headerVisibilityRef}>
       <h1 className="a11yHidden">Yongwoo JJ Blog</h1>
       <nav className={classes.navigation}>
         <h2 className="a11yHidden">Page Navigation</h2>

@@ -50,6 +50,7 @@ const SearchBar = () => {
   const pageNum = useAppSelector((state) => state.search.pageNum);
 
   const {
+    headerVisibilityRef,
     searchVisibilityRef,
     searchInputRef,
     closeSearchButtonRef,
@@ -201,6 +202,9 @@ const SearchBar = () => {
             className={classes.closeSearchButton}
             onClick={() => {
               searchVisibilityRef?.current?.classList.toggle("hide");
+              headerVisibilityRef?.current?.classList.toggle(
+                "handleHeaderHeightOverflow"
+              );
             }}
             onBlur={() => {
               changeThemeButtonRef?.current?.focus();
