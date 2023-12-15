@@ -8,7 +8,8 @@ import { RefContext } from "../context/refContext";
 const ThemeMenu = () => {
   const useAppDispatch = useDispatch<AppDispatch>();
 
-  const { themeMenuVisibilityRef, themeButtonRef } = useContext(RefContext);
+  const { themeMenuVisibilityRef, themeButtonRef, sideMenuButtonRef } =
+    useContext(RefContext);
 
   useEffect(() => {
     const localStorageUserTheme = localStorage.getItem("theme");
@@ -115,6 +116,9 @@ const ThemeMenu = () => {
           type="button"
           className={classes.darkThemeButton}
           onClick={handleThemeSelected}
+          onBlur={() => {
+            sideMenuButtonRef?.current?.focus();
+          }}
           ref={(element) => {
             if (themeButtonRef?.current) {
               themeButtonRef.current[2] = element as HTMLButtonElement;

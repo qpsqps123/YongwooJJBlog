@@ -8,6 +8,7 @@ const SideMenu = () => {
   const {
     headerVisibilityRef,
     sideMenuVisibilityRef,
+    sideMenuButtonRef,
     searchButtonRef,
     changeThemeButtonRef,
     searchVisibilityRef,
@@ -31,6 +32,11 @@ const SideMenu = () => {
             );
             searchInputRef?.current?.focus();
           }}
+          onBlur={() => {
+            if (!searchInputRef?.current?.classList.contains("hide")) {
+              searchInputRef?.current?.focus();
+            }
+          }}
           className={classes.searchButton}
           aria-label="검색 메뉴"
         >
@@ -49,6 +55,11 @@ const SideMenu = () => {
           className={classes.changeThemeButton}
           onClick={() => {
             themeMenuVisibilityRef?.current?.classList.toggle("hide");
+          }}
+          onBlur={() => {
+            if (themeMenuVisibilityRef?.current?.classList.contains("hide")) {
+              sideMenuButtonRef?.current?.focus();
+            }
           }}
           aria-label="테마 변경 메뉴"
         >

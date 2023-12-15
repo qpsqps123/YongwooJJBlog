@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Formik, Form } from "formik";
 import { graphql, useStaticQuery, Link } from "gatsby";
 import * as classes from "./SearchBar.module.scss";
@@ -205,8 +205,6 @@ const SearchBar = () => {
               headerVisibilityRef?.current?.classList.toggle(
                 "handleHeaderHeightOverflow"
               );
-            }}
-            onBlur={() => {
               changeThemeButtonRef?.current?.focus();
             }}
             aria-label="검색창 닫기"
@@ -231,6 +229,13 @@ const SearchBar = () => {
           </nav>
         </section>
       </search>
+      <button
+        className="a11yHidden"
+        aria-label="true"
+        onFocus={() => {
+          changeThemeButtonRef?.current?.focus();
+        }}
+      ></button>
     </div>
   );
 };
