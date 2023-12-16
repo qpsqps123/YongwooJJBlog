@@ -30,7 +30,7 @@ const config: GatsbyConfig = {
       resolve: "gatsby-plugin-robots-txt",
       options: {
         host: "https://blog.yongwoo.me/",
-        sitemap: "https://blog.yongwoo.me/sitemap.xml",
+        sitemap: "https://blog.yongwoo.me/sitemap-index.xml",
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },
