@@ -32,3 +32,12 @@ $config: (
   --foreground-color: #{setColor($config, $key, foreground)};
   --background-color: #{setColor($config, $key, background)};
 }
+
+// 배경 투명도 설정을 위해 rgba() 사용이 필요하지만, rgba()에 테마 변수 사용이 불가하므로(변수를 사용하려면, 변수에 rgb()의 숫자만 값으로 할당해야 함) 아래 코드를 사용.
+@mixin setHeaderBg($theme) {
+  @if ($theme == default) {
+    background-color: rgba($color: #fff, $alpha: 0.7);
+  } @else if ($theme == dark) {
+    background-color: rgba($color: #1b1b1b, $alpha: 0.7);
+  }
+}

@@ -22,6 +22,10 @@ body {
 @each $theme in default, dark {
   body.#{$theme}-theme {
     @include setTheme($theme);
+
+    header[class*="Header"] {
+      @include setHeaderBg($theme);
+    }
   }
 }
 

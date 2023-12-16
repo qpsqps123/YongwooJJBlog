@@ -8,19 +8,6 @@
   z-index: 10;
   text-shadow: rem(6px) 0 10px $background, rem(-6px) 0 10px $background;
 
-  &::before {
-    content: "";
-    background-color: $background;
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    opacity: 0.8;
-    z-index: -1;
-  }
-
   &::-webkit-scrollbar {
     width: 8px;
   }
