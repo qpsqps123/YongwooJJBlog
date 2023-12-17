@@ -12,10 +12,10 @@ const InfoPage = () => {
     <React.Fragment>
       <Header />
       <main className={classes.mainContainer}>
+        <h2 className={classes.name} aria-label="이름">
+          Yongwoo (Jake) Jeong | 정용우
+        </h2>
         <section className={classes.introduce} aria-label="소개">
-          <h2 className={classes.name} aria-label="이름">
-            Yongwoo (Jake) Jeong | 정용우
-          </h2>
           <div className={classes.profile}>
             <StaticImage
               src="../../images/profile/yongwoo-profile.png"
