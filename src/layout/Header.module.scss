@@ -45,29 +45,25 @@
 .logo {
   font-family: "LeonSans", "Pretendard", sans-serif;
   margin-left: rem(20px);
-  text-decoration: none;
-  color: $primary;
   font-size: rem(12px);
-}
 
-.logo:hover {
-  color: $accent;
+  a {
+    color: $primary;
+  }
 
-  :global {
-    animation: colorPrimaryToAccent 0.3s;
+  a:hover {
+    color: $accent;
+
+    :global {
+      animation: colorPrimaryToAccent 0.3s;
+    }
   }
 }
 
-.menuContainer {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  gap: rem(20px);
+.menuWrapper {
   margin: auto;
-  list-style: none;
 
   a {
-    text-decoration: none;
     font-family: "LeonSans", "Pretendard", sans-serif;
     font-size: rem(14px);
     color: $primary;
@@ -86,6 +82,14 @@
     color: $accent;
     animation: none;
   }
+}
+
+.menuContainer {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: rem(20px);
+  list-style: none;
 }
 
 .blogMenu {

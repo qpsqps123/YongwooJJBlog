@@ -168,8 +168,10 @@ const LearnPageTemplate = ({
 
   return (
     <React.Fragment>
+      <h1 className="a11yHidden">Yongwoo (Jake) Jeong Blog</h1>
       <Header />
       <main className={classes.mainContainer}>
+        <h2 className="a11yHidden">Learn Board</h2>
         <section className={classes.postsContainer} aria-label="게시물">
           {data.allMdx.nodes.map((node) => (
             <article key={node.id}>
@@ -191,11 +193,11 @@ const LearnPageTemplate = ({
                   )}
                 </div>
                 <div className={classes.postCaption}>
-                  <h2>
+                  <h3>
                     <Link to={`/blog/learn/${node.frontmatter.slug}`}>
                       {node.frontmatter.title}
                     </Link>
-                  </h2>
+                  </h3>
                   <p className={classes.date}>
                     Posted: {node.frontmatter.date}
                   </p>

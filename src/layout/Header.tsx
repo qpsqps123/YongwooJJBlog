@@ -123,58 +123,60 @@ const Header = () => {
 
   return (
     <header className={classes.header} ref={headerVisibilityRef}>
-      <h1 className="a11yHidden">Yongwoo JJ Blog</h1>
+      <h2 className="a11yHidden">Blog Navigation</h2>
       <nav className={classes.navigation}>
-        <h2 className="a11yHidden">Page Navigation</h2>
-        <Link
-          to="/info"
-          className={classes.logo}
-          aria-label="로고. 소개 페이지로 연결."
-        >
-          Yongwoo.
-          <br />
-          Jeong
-        </Link>
-        <ul className={classes.menuContainer}>
-          <li>
-            <Link to="/info" className={InfoMenuHoverColor} aria-label="소개">
-              INFO
-            </Link>
-          </li>
-          {/* <li>
+        <section className={classes.logo}>
+          <h3 className="a11yHidden">Logo</h3>
+          <Link to="/info" aria-label="소개 페이지로 이동.">
+            Yongwoo.
+            <br />
+            Jeong
+          </Link>
+        </section>
+        <section className={classes.menuWrapper}>
+          <h3 className="a11yHidden">Navigation Menu</h3>
+          <ul className={classes.menuContainer}>
+            <li>
+              <Link to="/info" className={InfoMenuHoverColor} aria-label="소개">
+                INFO
+              </Link>
+            </li>
+            {/* <li>
               <Link to="/projects">PROJECTS</Link>
             </li> */}
-          <li className={classes.blogMenu}>
-            <Link
-              to="/blog/learn/1"
-              className={blogMenuHoverColor}
-              aria-label="블로그. 하위 메뉴인 배움 게시판으로 연결."
-            >
-              BLOG
-            </Link>
-            <ul className={hideBlogSubmenu}>
-              <li>
-                <Link
-                  to="/blog/life/1"
-                  className={lifeMenuHoverColor}
-                  aria-label="일상 게시판"
-                >
-                  LIFE
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/blog/learn/1"
-                  className={learnMenuHoverColor}
-                  aria-label="배움 게시판"
-                >
-                  LEARN
-                </Link>
-              </li>
-            </ul>
-          </li>
-        </ul>
+            <li className={classes.blogMenu}>
+              <Link
+                to="/blog/learn/1"
+                className={blogMenuHoverColor}
+                aria-label="블로그. 하위 메뉴인 배움 게시판으로 연결."
+              >
+                BLOG
+              </Link>
+              <ul className={hideBlogSubmenu}>
+                <li>
+                  <Link
+                    to="/blog/life/1"
+                    className={lifeMenuHoverColor}
+                    aria-label="일상 게시판"
+                  >
+                    LIFE
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/blog/learn/1"
+                    className={learnMenuHoverColor}
+                    aria-label="배움 게시판"
+                  >
+                    LEARN
+                  </Link>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
         <section className={classes.sideMenuContainer}>
+          <h3 className="a11yHidden">Side Menu</h3>
           <button
             type="button"
             ref={sideMenuButtonRef}
