@@ -12,28 +12,31 @@ const InfoPage = () => {
     <React.Fragment>
       <Header />
       <main className={classes.mainContainer}>
-        <section className={classes.introduce} aria-label="introduce">
-          <h2 className={classes.name} aria-label="name">
+        <section className={classes.introduce} aria-label="소개">
+          <h2 className={classes.name} aria-label="이름">
             Yongwoo (Jake) Jeong | 정용우
           </h2>
           <div className={classes.profile}>
             <StaticImage
               src="../../images/profile/yongwoo-profile.png"
-              alt="yongwoo profile"
+              alt="정용우 프로필 사진"
               width={250}
             />
           </div>
-          <h3 aria-label="role">UX Engineer | Front-end Developer</h3>
-          <p aria-label="description">
-            항상 좋은 사용자 경험을 위해 고민합니다. 인터랙션과 애니메이션에
-            관심이 많고, 이와 함께 성능과 접근성의 개선을 통해 사용자에게 좋은
-            경험을 줄 수 있도록 노력합니다. 데이터가 모든 것을 말하지는 않지만,
-            데이터와 근거로 일하는 것을 지향합니다. ‘벚꽃이지면’ 프로젝트에서 팀
-            리더를 맡아 팀을 이끈 경험이 있습니다. 혼자서는 해결하기 힘든 문제를
-            함께하면 보다 쉽게 해결할 수 있다는 것을 경험으로 알고 있습니다.
+          <h3 aria-label="역할">UX Engineer</h3>
+          <p aria-label="자기소개">
+            하고자 하는 일이 공학과 디자인, 예술, 그 어딘가에 있습니다.
+            <br />
+            사용자에게 좋은 경험을 드리는 일에 기쁨을 느낍니다.
+            <br />
+            인터랙션과 애니메이션을 좋아합니다.
+            <br />
+            성능과 접근성을 향상시키는 일에 관심이 있습니다.
+            <br />
+            혼자서도 잘 놀지만, 함께 하는 작업도 좋아합니다.
           </p>
         </section>
-        <section className={classes.contact} aria-label="contact">
+        <section className={classes.contact} aria-label="연락처">
           <ul>
             <li>
               <a
@@ -42,10 +45,11 @@ const InfoPage = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 ref={contactGithubIconRef}
+                aria-label="정용우 Github"
               >
                 <StaticImage
                   src="../../images/logo/logo-github-black.svg"
-                  alt="github logo"
+                  alt="Github logo"
                   width={25}
                   height={25}
                 />
@@ -57,10 +61,11 @@ const InfoPage = () => {
                 title="YongwooJJ Linkedin"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="정용우 Linkedin"
               >
                 <StaticImage
                   src="../../images/logo/logo-linkedin.png"
-                  alt="linkedin logo"
+                  alt="Linkedin logo"
                   width={25}
                   height={25}
                 />
@@ -72,6 +77,7 @@ const InfoPage = () => {
                 title="mail to YongwooJJ"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="정용우 메일"
               >
                 <StaticImage
                   src="../../images/logo/logo-gmail.png"
