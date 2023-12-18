@@ -218,7 +218,7 @@ const SearchBar = () => {
           </button>
         </section>
         <section className={classes.resultsContainer}>
-          <h3>Results</h3>
+          <h3 className="a11yHidden">Results</h3>
           <ul className={classes.resultList} aria-label="search results">
             {renderCurrentResults}
           </ul>

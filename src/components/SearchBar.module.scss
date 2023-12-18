@@ -22,10 +22,11 @@
 
 .input {
   width: 360px;
-  height: rem(50px);
+  height: rem(40px);
   font-size: rem(32px);
   background-color: transparent;
   border: transparent;
+  border-bottom: 1px $tertiary solid;
   outline: none;
   text-shadow: rem(6px) 0 10px $background, rem(-6px) 0 10px $background;
   color: $primary;
@@ -46,16 +47,10 @@
   color: $secondary;
 }
 
-.resultsContainer {
-  h3 {
-    margin: 20px auto;
-    text-align: center;
-  }
-}
-
 .resultList {
   display: flex;
   flex-flow: column nowrap;
+  margin-top: 80px;
   width: 40vw;
   height: 60vh;
   overflow: auto;
@@ -152,7 +147,7 @@
 }
 
 .noResultText {
-  margin-top: 10px;
-  font-size: rem(18px);
+  margin-top: 30%;
+  font-size: rem(24px);
   text-align: center;
 }
