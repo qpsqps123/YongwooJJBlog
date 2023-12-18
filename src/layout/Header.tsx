@@ -101,7 +101,11 @@ const Header = () => {
     }
   };
 
-  const InfoMenuHoverColor = location.pathname.includes("/info/")
+  const infoMenuHoverColor = location.pathname.includes("/info/")
+    ? classes.colorRed
+    : "";
+
+  const projectsMenuHoverColor = location.pathname.includes("/projects/")
     ? classes.colorRed
     : "";
 
@@ -137,20 +141,26 @@ const Header = () => {
           <h3 className="a11yHidden">Navigation Menu</h3>
           <ul className={classes.menuContainer}>
             <li>
-              <Link to="/info" className={InfoMenuHoverColor} aria-label="소개">
-                INFO
+              <Link to="/info" className={infoMenuHoverColor} aria-label="소개">
+                Info
               </Link>
             </li>
-            {/* <li>
-              <Link to="/projects">PROJECTS</Link>
-            </li> */}
+            <li>
+              <Link
+                to="/projects"
+                className={projectsMenuHoverColor}
+                aria-label="프로젝트"
+              >
+                Projects
+              </Link>
+            </li>
             <li className={classes.blogMenu}>
               <Link
                 to="/blog/learn/1"
                 className={blogMenuHoverColor}
                 aria-label="블로그. 하위 메뉴인 배움 게시판으로 연결."
               >
-                BLOG
+                Blog
               </Link>
               <ul className={hideBlogSubmenu}>
                 <li>
@@ -159,7 +169,7 @@ const Header = () => {
                     className={lifeMenuHoverColor}
                     aria-label="일상 게시판"
                   >
-                    LIFE
+                    Life
                   </Link>
                 </li>
                 <li>
@@ -168,7 +178,7 @@ const Header = () => {
                     className={learnMenuHoverColor}
                     aria-label="배움 게시판"
                   >
-                    LEARN
+                    Learn
                   </Link>
                 </li>
               </ul>
