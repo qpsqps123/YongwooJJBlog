@@ -52,6 +52,7 @@ const SearchBar = () => {
   const {
     headerVisibilityRef,
     searchVisibilityRef,
+    searchButtonRef,
     searchInputRef,
     closeSearchButtonRef,
     changeThemeButtonRef,
@@ -191,6 +192,12 @@ const SearchBar = () => {
                     ref={searchInputRef}
                     onChange={handleChange}
                     value={values.query}
+                    onKeyDown={(e) => {
+                      if (e.shiftKey && e.key === "Tab") {
+                        e.preventDefault();
+                        searchButtonRef?.current?.focus();
+                      }
+                    }}
                   />
                 </Form>
               );

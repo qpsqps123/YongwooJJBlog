@@ -32,8 +32,13 @@ const SideMenu = () => {
             );
             searchInputRef?.current?.focus();
           }}
-          onBlur={() => {
-            if (!searchInputRef?.current?.classList.contains("hide")) {
+          onKeyDown={(e) => {
+            if (
+              !searchVisibilityRef?.current?.classList.contains("hide") &&
+              !e.shiftKey &&
+              e.key === "Tab"
+            ) {
+              e.preventDefault();
               searchInputRef?.current?.focus();
             }
           }}
@@ -56,9 +61,21 @@ const SideMenu = () => {
           onClick={() => {
             themeMenuVisibilityRef?.current?.classList.toggle("hide");
           }}
-          onBlur={() => {
-            if (themeMenuVisibilityRef?.current?.classList.contains("hide")) {
+          onKeyDown={(e) => {
+            if (
+              themeMenuVisibilityRef?.current?.classList.contains("hide") &&
+              !e.shiftKey &&
+              e.key === "Tab"
+            ) {
+              e.preventDefault();
               sideMenuButtonRef?.current?.focus();
+            } else if (
+              !searchVisibilityRef?.current?.classList.contains("hide") &&
+              e.shiftKey &&
+              e.key === "Tab"
+            ) {
+              e.preventDefault();
+              searchInputRef?.current?.focus();
             }
           }}
           aria-label="테마 변경 메뉴"

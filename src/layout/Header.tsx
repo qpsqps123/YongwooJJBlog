@@ -23,6 +23,7 @@ const Header = () => {
     searchButtonRef,
     searchVisibilityRef,
     themeMenuVisibilityRef,
+    themeButtonRef,
     closeSearchButtonRef,
     contactGithubIconRef,
   } = useContext(RefContext);
@@ -193,6 +194,25 @@ const Header = () => {
             className={classes.sideMenuButton}
             onClick={handleSideMenuClick}
             aria-label="사이드 메뉴"
+            onKeyDown={(e) => {
+              if (
+                themeMenuVisibilityRef?.current?.classList.contains("hide") &&
+                e.shiftKey &&
+                e.key === "Tab"
+              ) {
+                e.preventDefault();
+                changeThemeButtonRef?.current?.focus();
+              } else if (
+                !themeMenuVisibilityRef?.current?.classList.contains("hide") &&
+                e.shiftKey &&
+                e.key === "Tab"
+              ) {
+                e.preventDefault();
+                if (themeButtonRef?.current) {
+                  themeButtonRef.current[2].focus();
+                }
+              }
+            }}
           >
             <StaticImage
               src="../images/icon/hamburgerMenu.png"

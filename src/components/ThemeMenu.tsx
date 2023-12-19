@@ -116,8 +116,11 @@ const ThemeMenu = () => {
           type="button"
           className={classes.darkThemeButton}
           onClick={handleThemeSelected}
-          onBlur={() => {
-            sideMenuButtonRef?.current?.focus();
+          onKeyDown={(e) => {
+            if (!e.shiftKey && e.key === "Tab") {
+              e.preventDefault();
+              sideMenuButtonRef?.current?.focus();
+            }
           }}
           ref={(element) => {
             if (themeButtonRef?.current) {
