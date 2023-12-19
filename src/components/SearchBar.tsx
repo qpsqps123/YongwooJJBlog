@@ -164,7 +164,7 @@ const SearchBar = () => {
   );
 
   return (
-    <div className={`${"hide"}`} ref={searchVisibilityRef}>
+    <div id="searchWrapper" className={`${"hide"}`} ref={searchVisibilityRef}>
       <search className={classes.searchContainer}>
         <h2 className="a11yHidden">Search</h2>
         <section className={classes.searchFormContainer}>

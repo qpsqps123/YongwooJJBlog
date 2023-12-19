@@ -16,8 +16,41 @@ const SideMenu = () => {
     themeMenuVisibilityRef,
   } = useContext(RefContext);
 
+  const handleSearchButtonClick = () => {
+    searchVisibilityRef?.current?.classList.toggle("hide");
+    headerVisibilityRef?.current?.classList.toggle(
+      "handleHeaderHeightOverflow"
+    );
+
+    searchButtonRef?.current?.setAttribute(
+      "aria-expanded",
+      `${searchButtonRef?.current?.getAttribute("aria-expanded") === "false"}`
+    );
+
+    searchInputRef?.current?.focus();
+  };
+
+  const handleChangeThemeButtonKeyDown = (e: React.KeyboardEvent) => {
+    if (
+      themeMenuVisibilityRef?.current?.classList.contains("hide") &&
+      !e.shiftKey &&
+      e.key === "Tab"
+    ) {
+      e.preventDefault();
+      sideMenuButtonRef?.current?.focus();
+    } else if (
+      !searchVisibilityRef?.current?.classList.contains("hide") &&
+      e.shiftKey &&
+      e.key === "Tab"
+    ) {
+      e.preventDefault();
+      searchInputRef?.current?.focus();
+    }
+  };
+
   return (
     <ul
+      id="sideMenuContainer"
       className={`${classes.sideMenuList} ${"hide"}`}
       ref={sideMenuVisibilityRef}
     >
@@ -25,13 +58,7 @@ const SideMenu = () => {
         <button
           type="button"
           ref={searchButtonRef}
-          onClick={() => {
-            searchVisibilityRef?.current?.classList.toggle("hide");
-            headerVisibilityRef?.current?.classList.toggle(
-              "handleHeaderHeightOverflow"
-            );
-            searchInputRef?.current?.focus();
-          }}
+          onClick={handleSearchButtonClick}
           onKeyDown={(e) => {
             if (
               !searchVisibilityRef?.current?.classList.contains("hide") &&
@@ -44,6 +71,8 @@ const SideMenu = () => {
           }}
           className={classes.searchButton}
           aria-label="검색 메뉴"
+          aria-controls="searchWrapper"
+          aria-expanded="false"
         >
           <StaticImage
             src="../images/icon/searchIcon.png"
@@ -60,25 +89,19 @@ const SideMenu = () => {
           className={classes.changeThemeButton}
           onClick={() => {
             themeMenuVisibilityRef?.current?.classList.toggle("hide");
+
+            changeThemeButtonRef?.current?.setAttribute(
+              "aria-expanded",
+              `${
+                changeThemeButtonRef?.current?.getAttribute("aria-expanded") ===
+                "false"
+              }`
+            );
           }}
-          onKeyDown={(e) => {
-            if (
-              themeMenuVisibilityRef?.current?.classList.contains("hide") &&
-              !e.shiftKey &&
-              e.key === "Tab"
-            ) {
-              e.preventDefault();
-              sideMenuButtonRef?.current?.focus();
-            } else if (
-              !searchVisibilityRef?.current?.classList.contains("hide") &&
-              e.shiftKey &&
-              e.key === "Tab"
-            ) {
-              e.preventDefault();
-              searchInputRef?.current?.focus();
-            }
-          }}
+          onKeyDown={handleChangeThemeButtonKeyDown}
           aria-label="테마 변경 메뉴"
+          aria-controls="themeMenuContainer"
+          aria-expanded="false"
         >
           <StaticImage
             src="../images/icon/chageThemeIcon.png"

@@ -77,6 +77,7 @@ const ThemeMenu = () => {
 
   return (
     <ul
+      id="themeMenuContainer"
       className={`${classes.themeList} ${"hide"}`}
       ref={themeMenuVisibilityRef}
     >

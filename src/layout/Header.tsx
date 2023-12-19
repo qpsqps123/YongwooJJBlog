@@ -100,6 +100,12 @@ const Header = () => {
         );
       }, 500);
     }
+
+    // aria-expanded 설정
+    sideMenuButtonRef?.current?.setAttribute(
+      "aria-expanded",
+      `${sideMenuButtonRef?.current?.getAttribute("aria-expanded") === "false"}`
+    );
   };
 
   const infoMenuHoverColor = location.pathname.includes("/info/")
@@ -125,6 +131,10 @@ const Header = () => {
   const hideBlogSubmenu = location.pathname.includes("/blog")
     ? classes.blogSubmenuContainer
     : "hide";
+
+  const blogSubmenuVisibility = location.pathname.includes("/blog")
+    ? "true"
+    : "false";
 
   return (
     <header className={classes.header} ref={headerVisibilityRef}>
@@ -160,10 +170,12 @@ const Header = () => {
                 to="/blog/learn/1"
                 className={blogMenuHoverColor}
                 aria-label="블로그. 하위 메뉴인 배움 게시판으로 연결."
+                aria-controls="blogSubmenu"
+                aria-expanded={blogSubmenuVisibility}
               >
                 Blog
               </Link>
-              <ul className={hideBlogSubmenu}>
+              <ul id="blogSubmenu" className={hideBlogSubmenu}>
                 <li>
                   <Link
                     to="/blog/life/1"
@@ -194,6 +206,8 @@ const Header = () => {
             className={classes.sideMenuButton}
             onClick={handleSideMenuClick}
             aria-label="사이드 메뉴"
+            aria-controls="sideMenuContainer"
+            aria-expanded="false"
             onKeyDown={(e) => {
               if (
                 themeMenuVisibilityRef?.current?.classList.contains("hide") &&
