@@ -22,7 +22,7 @@ const InfoPage = () => {
           <section className={classes.profilePhoto}>
             <h3 className="a11yHidden">Profile Photo</h3>
             <StaticImage
-              src="../../images/profile/yongwoo-profile.png"
+              src="../../images/profile/yongwoo-profile-v1.png"
               alt="정용우 프로필 사진"
               width={250}
             />
