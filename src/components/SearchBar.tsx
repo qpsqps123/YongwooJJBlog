@@ -238,7 +238,7 @@ const SearchBar = () => {
       </search>
       <button
         className="a11yHidden"
-        aria-label="true"
+        aria-hidden="true"
         onFocus={() => {
           changeThemeButtonRef?.current?.focus();
         }}
