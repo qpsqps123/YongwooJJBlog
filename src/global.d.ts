@@ -10,3 +10,5 @@ declare module "*.mdx" {
 
 declare module "react-use-flexsearch";
 declare module "formik";
+declare module "*.gif";
+declare module "*.png";
