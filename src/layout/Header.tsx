@@ -142,7 +142,7 @@ const Header = () => {
       <nav className={classes.navigation}>
         <section className={classes.logo}>
           <h3 className="a11yHidden">Logo</h3>
-          <Link to="/info" aria-label="소개 페이지로 이동.">
+          <Link to="/info" aria-label="Yongwoo Jeong - 소개 페이지로 연결.">
             Yongwoo.
             <br />
             Jeong
@@ -152,7 +152,11 @@ const Header = () => {
           <h3 className="a11yHidden">Navigation Menu</h3>
           <ul className={classes.menuContainer}>
             <li>
-              <Link to="/info" className={infoMenuHoverColor} aria-label="소개">
+              <Link
+                to="/info"
+                className={infoMenuHoverColor}
+                aria-label="Info - 소개 페이지로 연결."
+              >
                 Info
               </Link>
             </li>
@@ -160,7 +164,7 @@ const Header = () => {
               <Link
                 to="/projects"
                 className={projectsMenuHoverColor}
-                aria-label="프로젝트"
+                aria-label="Projects - 프로젝트 페이지로 연결."
               >
                 Projects
               </Link>
@@ -169,7 +173,7 @@ const Header = () => {
               <Link
                 to="/blog/learn/1"
                 className={blogMenuHoverColor}
-                aria-label="블로그. 하위 메뉴인 배움 게시판으로 연결."
+                aria-label="Blog - 하위 메뉴인 배움 게시판으로 연결."
                 aria-controls="blogSubmenu"
                 aria-expanded={blogSubmenuVisibility}
               >
@@ -180,7 +184,7 @@ const Header = () => {
                   <Link
                     to="/blog/life/1"
                     className={lifeMenuHoverColor}
-                    aria-label="일상 게시판"
+                    aria-label="Life - 일상 게시판으로 연결."
                   >
                     Life
                   </Link>
@@ -189,7 +193,7 @@ const Header = () => {
                   <Link
                     to="/blog/learn/1"
                     className={learnMenuHoverColor}
-                    aria-label="배움 게시판"
+                    aria-label="Learn - 배움 게시판으로 연결."
                   >
                     Learn
                   </Link>
