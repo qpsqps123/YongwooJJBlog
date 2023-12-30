@@ -5,8 +5,9 @@ import * as classes from "../styles/templates/BlogPageTemplate.module.scss";
 import useRenderPageNavLinks from "../hooks/useRenderPageNavLinks";
 import { v4 as uuid } from "uuid";
 import { SEO } from "../components/seo";
-import Header from "../layout/Header";
 import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image";
+
+const Header = React.lazy(() => import("@/layout/Header"));
 
 interface AllMdxNodesProps {
   id: string;
@@ -168,58 +169,60 @@ const LifePageTemplate = ({
   });
 
   return (
-    <React.Fragment>
-      <h1 className="a11yHidden">Yongwoo (Jake) Jeong Blog</h1>
-      <Header />
-      <main className={classes.mainContainer}>
-        <h2 className="a11yHidden">Life Board</h2>
-        <section className={classes.postsContainer} aria-label="게시물">
-          {data.allMdx.nodes.map((node) => (
-            <article key={node.id}>
-              <section className={classes.post}>
-                <div>
-                  {node.frontmatter.featuredImage?.childImageSharp ? (
-                    <Link to={`/blog/life/${node.frontmatter.slug}`}>
-                      <GatsbyImage
-                        image={getImage(node.frontmatter.featuredImage)}
-                        alt={`${node.frontmatter.title} thumbnail`}
-                        className={classes.postImage}
-                      />
-                    </Link>
-                  ) : (
-                    <div
-                      aria-label="Thumbnail not uploaded"
-                      className={classes.thumbnailNotUploaded}
-                    ></div>
-                  )}
-                </div>
-                <div className={classes.postCaption}>
-                  <h3>
-                    <Link to={`/blog/life/${node.frontmatter.slug}`}>
-                      {node.frontmatter.title}
-                    </Link>
-                  </h3>
-                  <p className={classes.date}>
-                    Posted: {node.frontmatter.date}
-                  </p>
-                  <p className={classes.excerpt}>{node.excerpt}</p>
-                </div>
-              </section>
-            </article>
-          ))}
-        </section>
-        <nav aria-label="게시물 페이지 네비게이션">
-          <ul className={classes.pageNav}>
-            {firstPage}
-            {prevPage}
-            {navPageList}
-            {nextPage}
-            {lastPage}
-          </ul>
-        </nav>
-      </main>
-      <footer className={classes.footerContainer}></footer>
-    </React.Fragment>
+    <React.Suspense fallback="Loading...">
+      <React.Fragment>
+        <h1 className="a11yHidden">Yongwoo (Jake) Jeong Blog</h1>
+        <Header />
+        <main className={classes.mainContainer}>
+          <h2 className="a11yHidden">Life Board</h2>
+          <section className={classes.postsContainer} aria-label="게시물">
+            {data.allMdx.nodes.map((node) => (
+              <article key={node.id}>
+                <section className={classes.post}>
+                  <div>
+                    {node.frontmatter.featuredImage?.childImageSharp ? (
+                      <Link to={`/blog/life/${node.frontmatter.slug}`}>
+                        <GatsbyImage
+                          image={getImage(node.frontmatter.featuredImage)}
+                          alt={`${node.frontmatter.title} thumbnail`}
+                          className={classes.postImage}
+                        />
+                      </Link>
+                    ) : (
+                      <div
+                        aria-label="Thumbnail not uploaded"
+                        className={classes.thumbnailNotUploaded}
+                      ></div>
+                    )}
+                  </div>
+                  <div className={classes.postCaption}>
+                    <h3>
+                      <Link to={`/blog/life/${node.frontmatter.slug}`}>
+                        {node.frontmatter.title}
+                      </Link>
+                    </h3>
+                    <p className={classes.date}>
+                      Posted: {node.frontmatter.date}
+                    </p>
+                    <p className={classes.excerpt}>{node.excerpt}</p>
+                  </div>
+                </section>
+              </article>
+            ))}
+          </section>
+          <nav aria-label="게시물 페이지 네비게이션">
+            <ul className={classes.pageNav}>
+              {firstPage}
+              {prevPage}
+              {navPageList}
+              {nextPage}
+              {lastPage}
+            </ul>
+          </nav>
+        </main>
+        <footer className={classes.footerContainer}></footer>
+      </React.Fragment>
+    </React.Suspense>
   );
 };
 
