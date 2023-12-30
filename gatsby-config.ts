@@ -3,7 +3,7 @@ import type { GatsbyConfig } from "gatsby";
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `YongwooJJ Blog`,
-    Description: `Yongwoo (Jake) Jeong is an engineer & designer who works on the web.`,
+    description: `Yongwoo (Jake) Jeong is an engineer & designer who works on the web.`,
     siteUrl: `https://blog.yongwoo.me/`,
   },
   graphqlTypegen: true,
