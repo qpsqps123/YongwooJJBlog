@@ -1,0 +1,65 @@
+@import "@/styles/abstracts/functions";
+
+.projectContainer {
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 20px;
+  gap: 5px;
+
+  p {
+    font-size: rem(12px);
+  }
+}
+
+.roleAndWorkType {
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 10px;
+  font-size: rem(10px);
+  justify-content: space-between;
+}
+
+.role {
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 10px;
+}
+
+.thumbnailContainer {
+  background-color: $background;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  height: 180px;
+
+  a {
+    height: 100%;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.title {
+  margin-top: 5px;
+  // font-size: rem(18px);
+}
+
+.techStackContainer {
+  margin-top: 5px;
+  width: 100%;
+
+  li {
+    display: inline-block;
+    padding: 2px 5px;
+    margin-bottom: 5px;
+    margin-right: 9px;
+    font-size: rem(10px);
+    border-radius: rem(8px);
+    border: 1px solid $tertiary;
+  }
+}
