@@ -33,7 +33,7 @@ const Project = ({
           rel="noopener noreferrer"
           aria-label={linkLabel}
         >
-          <img src={imgSrc} alt={imgAlt} />
+          <img src={imgSrc} alt={imgAlt} loading="lazy" />
         </a>
       </div>
       <ul className={classes.roleAndWorkType}>
