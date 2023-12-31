@@ -33,7 +33,7 @@ const InfoPage = () => {
               <div>
                 <section>
                   <h3 className="a11yHidden">Role</h3>
-                  <p className={classes.role}>UX Engineer</p>
+                  <p className={classes.role}>Engineer & Designer</p>
                 </section>
                 <section>
                   <h3 className="a11yHidden">Description</h3>
