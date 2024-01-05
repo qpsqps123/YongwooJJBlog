@@ -127,37 +127,6 @@ const ProjectsPage = () => {
                 </li>
                 <li>
                   <Project
-                    hrefSrc="https://gangnam-delivery-service.vercel.app/"
-                    linkLabel="강남 딜리버리 프로젝트 페이지로 연결."
-                    imgSrc={gdGif}
-                    imgAlt="Gangnam delivery service thumbnail"
-                    role={
-                      <React.Fragment>
-                        <li>Development</li>
-                      </React.Fragment>
-                    }
-                    workType={<li>Assignment work</li>}
-                    title="Gangnam Delivery"
-                    description={
-                      <p>
-                        강남 레스토랑에 배달 서비스가 있으면 어떨까 싶어 만든
-                        데모 사이트.
-                      </p>
-                    }
-                    techStack={
-                      <React.Fragment>
-                        <li>CSS Module</li>
-                        <li>JavaScript</li>
-                        <li>React</li>
-                        <li>Firebase</li>
-                        <li>CRA</li>
-                        <li>Vercel</li>
-                      </React.Fragment>
-                    }
-                  />
-                </li>
-                <li>
-                  <Project
                     hrefSrc="https://qpsqps123.github.io/braun-calculator/"
                     linkLabel="브라운 계산기 프로젝트 페이지로 연결."
                     imgSrc={bcGif}
@@ -184,6 +153,37 @@ const ProjectsPage = () => {
                     }
                   />
                 </li>
+                <li>
+                  <Project
+                    hrefSrc="https://gangnam-delivery-service.vercel.app/"
+                    linkLabel="강남 딜리버리 프로젝트 페이지로 연결."
+                    imgSrc={gdGif}
+                    imgAlt="Gangnam delivery service thumbnail"
+                    role={
+                      <React.Fragment>
+                        <li>Development</li>
+                      </React.Fragment>
+                    }
+                    workType={<li>Assignment work</li>}
+                    title="Gangnam Delivery"
+                    description={
+                      <p>
+                        인터넷 강의 과제로 받은 데모 배달 서비스에, 일했던 강남
+                        레스토랑 테마를 적용해 만든 프로젝트.
+                      </p>
+                    }
+                    techStack={
+                      <React.Fragment>
+                        <li>CSS Module</li>
+                        <li>JavaScript</li>
+                        <li>React</li>
+                        <li>Firebase</li>
+                        <li>CRA</li>
+                        <li>Vercel</li>
+                      </React.Fragment>
+                    }
+                  />
+                </li>
               </ul>
             </section>
             <section>
@@ -204,8 +204,8 @@ const ProjectsPage = () => {
                     title="Simon Game"
                     description={
                       <p>
-                        단기 기억 게임인 사이먼 게임을 웹상에서 즐길 수 있도록
-                        만든 프로젝트.
+                        인터넷 강의 과제로 만든 서비스. 단기 기억 전자 게임
+                        ‘사이먼 게임’을 웹에서 즐길 수 있도록 만든 프로젝트.
                       </p>
                     }
                     techStack={
