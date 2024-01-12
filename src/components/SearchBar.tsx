@@ -73,6 +73,13 @@ const SearchBar = () => {
       result.frontmatter.post === "life" || result.frontmatter.post === "learn"
   );
 
+  results?.sort((a: SearchResults, b: SearchResults) => {
+    const dateA = parseInt(a.frontmatter.date.replace(/[^0-9]/g, ""), 10);
+    const dateB = parseInt(b.frontmatter.date.replace(/[^0-9]/g, ""), 10);
+
+    return dateB - dateA;
+  });
+
   const totalNumResults = results.length;
   const limit = 5;
   const startPoint = limit * (pageNum - 1);
