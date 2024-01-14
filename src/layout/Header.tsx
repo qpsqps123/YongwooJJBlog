@@ -4,13 +4,15 @@ import { Link } from "gatsby";
 import * as classes from "./Header.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
-import { RootState } from "../store/store";
+import { AppDispatch, RootState } from "../store/store";
 import { RefContext } from "../context/refContext";
-
-const SearchBar = React.lazy(() => import("../components/SearchBar"));
-const SideMenu = React.lazy(() => import("../components/SideMenu"));
+import SideMenu from "../components/SideMenu";
+import SearchBar from "../components/SearchBar";
+import { useDispatch } from "react-redux";
+import uiSlice from "@/store/ui-slice";
 
 const Header = () => {
+  const useAppDispatch = useDispatch<AppDispatch>();
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
   const location = useLocation();
 
@@ -107,6 +109,8 @@ const Header = () => {
       "aria-expanded",
       `${sideMenuButtonRef?.current?.getAttribute("aria-expanded") === "false"}`
     );
+
+    useAppDispatch(uiSlice.actions.detectThemeChange());
   };
 
   const infoMenuHoverColor = location.pathname.includes("/info/")
@@ -138,117 +142,113 @@ const Header = () => {
     : "false";
 
   return (
-    <React.Suspense fallback="loading...">
-      <header className={classes.header} ref={headerVisibilityRef}>
-        <h2 className="a11yHidden">Blog Navigation</h2>
-        <nav className={classes.navigation}>
-          <section className={classes.logo}>
-            <h3 className="a11yHidden">Logo</h3>
-            <Link to="/info" aria-label="Yongwoo Jeong - 소개 페이지로 연결.">
-              Yongwoo.
-              <br />
-              Jeong
-            </Link>
-          </section>
-          <section className={classes.menuWrapper}>
-            <h3 className="a11yHidden">Navigation Menu</h3>
-            <ul className={classes.menuContainer}>
-              <li>
-                <Link
-                  to="/info"
-                  className={infoMenuHoverColor}
-                  aria-label="Info - 소개 페이지로 연결."
-                >
-                  Info
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/projects"
-                  className={projectsMenuHoverColor}
-                  aria-label="Projects - 프로젝트 페이지로 연결."
-                >
-                  Projects
-                </Link>
-              </li>
-              <li className={classes.blogMenu}>
-                <Link
-                  to="/blog/learn/1"
-                  className={blogMenuHoverColor}
-                  aria-label="Blog - 하위 메뉴인 배움 게시판으로 연결."
-                  aria-controls="blogSubmenu"
-                  aria-expanded={blogSubmenuVisibility}
-                >
-                  Blog
-                </Link>
-                <ul id="blogSubmenu" className={hideBlogSubmenu}>
-                  <li>
-                    <Link
-                      to="/blog/life/1"
-                      className={lifeMenuHoverColor}
-                      aria-label="Life - 일상 게시판으로 연결."
-                    >
-                      Life
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/blog/learn/1"
-                      className={learnMenuHoverColor}
-                      aria-label="Learn - 배움 게시판으로 연결."
-                    >
-                      Learn
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </section>
-          <section className={classes.sideMenuContainer}>
-            <h3 className="a11yHidden">Side Menu</h3>
-            <button
-              type="button"
-              ref={sideMenuButtonRef}
-              className={classes.sideMenuButton}
-              onClick={handleSideMenuClick}
-              aria-label="사이드 메뉴"
-              aria-controls="sideMenuContainer"
-              aria-expanded="false"
-              onKeyDown={(e) => {
-                if (
-                  themeMenuVisibilityRef?.current?.classList.contains("hide") &&
-                  e.shiftKey &&
-                  e.key === "Tab"
-                ) {
-                  e.preventDefault();
-                  changeThemeButtonRef?.current?.focus();
-                } else if (
-                  !themeMenuVisibilityRef?.current?.classList.contains(
-                    "hide"
-                  ) &&
-                  e.shiftKey &&
-                  e.key === "Tab"
-                ) {
-                  e.preventDefault();
-                  if (themeButtonRef?.current) {
-                    themeButtonRef.current[2].focus();
-                  }
+    <header className={classes.header} ref={headerVisibilityRef}>
+      <h2 className="a11yHidden">Blog Navigation</h2>
+      <nav className={classes.navigation}>
+        <section className={classes.logo}>
+          <h3 className="a11yHidden">Logo</h3>
+          <Link to="/info" aria-label="Yongwoo Jeong - 소개 페이지로 연결.">
+            Yongwoo.
+            <br />
+            Jeong
+          </Link>
+        </section>
+        <section className={classes.menuWrapper}>
+          <h3 className="a11yHidden">Navigation Menu</h3>
+          <ul className={classes.menuContainer}>
+            <li>
+              <Link
+                to="/info"
+                className={infoMenuHoverColor}
+                aria-label="Info - 소개 페이지로 연결."
+              >
+                Info
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/projects"
+                className={projectsMenuHoverColor}
+                aria-label="Projects - 프로젝트 페이지로 연결."
+              >
+                Projects
+              </Link>
+            </li>
+            <li className={classes.blogMenu}>
+              <Link
+                to="/blog/learn/1"
+                className={blogMenuHoverColor}
+                aria-label="Blog - 하위 메뉴인 배움 게시판으로 연결."
+                aria-controls="blogSubmenu"
+                aria-expanded={blogSubmenuVisibility}
+              >
+                Blog
+              </Link>
+              <ul id="blogSubmenu" className={hideBlogSubmenu}>
+                <li>
+                  <Link
+                    to="/blog/life/1"
+                    className={lifeMenuHoverColor}
+                    aria-label="Life - 일상 게시판으로 연결."
+                  >
+                    Life
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/blog/learn/1"
+                    className={learnMenuHoverColor}
+                    aria-label="Learn - 배움 게시판으로 연결."
+                  >
+                    Learn
+                  </Link>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section className={classes.sideMenuContainer}>
+          <h3 className="a11yHidden">Side Menu</h3>
+          <button
+            type="button"
+            ref={sideMenuButtonRef}
+            className={classes.sideMenuButton}
+            onClick={handleSideMenuClick}
+            aria-label="사이드 메뉴"
+            aria-controls="sideMenuContainer"
+            aria-expanded="false"
+            onKeyDown={(e) => {
+              if (
+                themeMenuVisibilityRef?.current?.classList.contains("hide") &&
+                e.shiftKey &&
+                e.key === "Tab"
+              ) {
+                e.preventDefault();
+                changeThemeButtonRef?.current?.focus();
+              } else if (
+                !themeMenuVisibilityRef?.current?.classList.contains("hide") &&
+                e.shiftKey &&
+                e.key === "Tab"
+              ) {
+                e.preventDefault();
+                if (themeButtonRef?.current) {
+                  themeButtonRef.current[2].focus();
                 }
-              }}
-            >
-              <StaticImage
-                src="../images/icon/hamburgerMenu.png"
-                alt="햄버거 메뉴 아이콘"
-                width={25}
-                height={25}
-              />
-            </button>
-            <SideMenu />
-          </section>
-        </nav>
-        <SearchBar />
-      </header>
-    </React.Suspense>
+              }
+            }}
+          >
+            <StaticImage
+              src="../images/icon/hamburgerMenu.png"
+              alt="햄버거 메뉴 아이콘"
+              width={25}
+              height={25}
+            />
+          </button>
+          <SideMenu />
+        </section>
+      </nav>
+      <SearchBar />
+    </header>
   );
 };
 

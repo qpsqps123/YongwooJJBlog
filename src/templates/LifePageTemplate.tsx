@@ -6,8 +6,7 @@ import useRenderPageNavLinks from "../hooks/useRenderPageNavLinks";
 import { v4 as uuid } from "uuid";
 import { SEO } from "../components/seo";
 import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image";
-
-const Header = React.lazy(() => import("@/layout/Header"));
+import Header from "@/layout/Header";
 
 interface AllMdxNodesProps {
   id: string;
