@@ -1,4 +1,4 @@
-#YongwooJJ Blog
+# YongwooJJ Blog
 
 YongwooJJ Blog는 나를 소개하고, 블로그 글을 포스팅하기 위해 제작한 개인 블로그 사이트입니다.
 
@@ -20,9 +20,8 @@ YongwooJJ Blog는 나를 소개하고, 블로그 글을 포스팅하기 위해 �
 
 ## 기술 스택
 
-<img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=Sass&logoColor=white">
-<img src="https://img.shields.io/badge/CSS%20Module-1572B6?style=for-the-badge&logo=css3&logoColor=white">
-<img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white">
+<img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=Sass&logoColor=white"> <img src="https://img.shields.io/badge/CSS%20Module-1572B6?style=for-the-badge&logo=css3&logoColor=white"> 
+<img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"> 
 <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white">
 <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=redux&logoColor=white">
 <img src="https://img.shields.io/badge/Gatsby-663399?style=for-the-badge&logo=gatsby&logoColor=white">
