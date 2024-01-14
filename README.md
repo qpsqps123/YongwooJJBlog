@@ -8,15 +8,15 @@ YongwooJJ Blog는 나를 소개하고, 블로그 글을 포스팅하기 위해 �
 
 ### 다크 모드
 
-![dark mode feature image](./src/images/readme/yongwoojj-blog-readme-darkmode.gif)
+![dark mode feature example](./src/images/readme/yongwoojj-blog-readme-darkmode.gif)
 
 ### 페이지네이션
 
-![dark mode feature image](./src/images/readme/yongwoojj-blog-readme-pagination.gif)
+![Pagination feature example](./src/images/readme/yongwoojj-blog-readme-pagination.gif)
 
 ### 검색 기능
 
-![dark mode feature image](./src/images/readme/yongwoojj-blog-readme-search.gif)
+![Search feature example](./src/images/readme/yongwoojj-blog-readme-search.gif)
 
 ## 기술 스택
 
