@@ -45,7 +45,7 @@ const ProjectsPage = () => {
                     <React.Fragment>
                       <li>Sass</li>
                       <li>CSS Module</li>
-                      <li>TypeScript</li>
+                      <li>JavaScript</li>
                       <li>React</li>
                       <li>Redux</li>
                       <li>Next.js</li>
