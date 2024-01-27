@@ -139,7 +139,7 @@ const ProjectsPage = () => {
                   title="Braun Calculator"
                   description={
                     <p>
-                      좋아하는 디자인 회사인 브라운의 계산기를 웹으로 옮겨본
+                      좋아하는 브랜드인 브라운의 계산기를 웹으로 옮겨본
                       프로젝트.
                     </p>
                   }
