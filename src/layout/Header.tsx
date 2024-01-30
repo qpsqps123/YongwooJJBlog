@@ -101,7 +101,7 @@ const Header = () => {
         changeThemeButtonRef?.current?.classList.remove(
           "hideThemeButtonAnimation"
         );
-      }, 500);
+      }, 450);
     }
 
     // aria-expanded 설정
