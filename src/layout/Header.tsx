@@ -31,23 +31,6 @@ const Header = () => {
     contactGithubIconRef,
   } = useContext(RefContext);
 
-  // 사이트 최초 접속 시, 사용자 테마 설정 불러오기
-  useEffect(() => {
-    const localStorageUserTheme = localStorage.getItem("theme");
-    if (!localStorageUserTheme || localStorageUserTheme === "osDefault") {
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? document.body.classList.add("dark-theme")
-        : document.body.classList.add("default-theme");
-      localStorage.setItem("theme", "osDefault");
-    } else if (localStorageUserTheme === "default") {
-      document.body.classList.add("default-theme");
-      localStorage.setItem("theme", "default");
-    } else if (localStorageUserTheme === "dark") {
-      document.body.classList.add("dark-theme");
-      localStorage.setItem("theme", "dark");
-    }
-  }, []);
-
   // 사용자 테마 설정에 따른 이미지 변환
   useEffect(() => {
     const checkThemeIsDark = document.body.classList.contains("dark-theme");
