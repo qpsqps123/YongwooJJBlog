@@ -16,6 +16,7 @@ interface mdxDataProps {
 const BlogLifePostsTemplate = ({ data, children }: PageProps<mdxDataProps>) => {
   return (
     <React.Fragment>
+      <h1 className="a11yHidden">Yongwoo (Jake) Jeong Blog</h1>
       <Header />
       <main className={classes.mainContainer}>
         <article className={classes.post}>
