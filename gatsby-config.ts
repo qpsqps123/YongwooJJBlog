@@ -91,6 +91,17 @@ const config: GatsbyConfig = {
               noInlineHighlight: false,
             },
           },
+          {
+            resolve: `gatsby-remark-embedder`,
+            options: {
+              customTransformers: [
+                // Your custom transformers
+              ],
+              services: {
+                // The service-specific options by the name of the service
+              },
+            },
+          },
         ],
       },
     },
@@ -98,7 +109,6 @@ const config: GatsbyConfig = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-sass",
     "gatsby-transformer-remark",
-    "gatsby-plugin-mdx-embed",
   ],
 };
 
