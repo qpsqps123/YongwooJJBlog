@@ -98,6 +98,7 @@ const config: GatsbyConfig = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-sass",
     "gatsby-transformer-remark",
+    "gatsby-plugin-mdx-embed",
   ],
 };
 
