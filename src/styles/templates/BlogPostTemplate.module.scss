@@ -30,7 +30,16 @@
 
   * {
     margin-top: 10px;
-    line-height: 200%;
+    line-height: 180%;
+  }
+
+  ol,
+  ul {
+    padding-left: 2rem;
+  }
+
+  p {
+    word-break: break-all;
   }
 }
 
