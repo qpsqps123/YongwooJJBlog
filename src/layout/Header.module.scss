@@ -7,6 +7,7 @@
   backdrop-filter: blur(4px) grayscale(100%);
   z-index: 10;
   text-shadow: rem(6px) 0 10px $background, rem(-6px) 0 10px $background;
+  overscroll-behavior: contain;
 
   &::-webkit-scrollbar {
     width: 8px;
