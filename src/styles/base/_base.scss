@@ -15,6 +15,8 @@
 body {
   min-height: 100vh;
   font-family: "KopubworldBatang", serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   color: $secondary;
   background-color: $background;
 }
