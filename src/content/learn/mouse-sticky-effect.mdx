@@ -83,7 +83,7 @@ document.addEventListener(
 
 <div className={classes.imageContainer}>
   ![Description image 1 of
-  3](../../images/blog/learn/mouse-sticky-effect/description-image-1.jpg)
+  3](../../images/blog/learn/mouse-sticky-effect/description-image-1.png)
 </div>
 
 ---
@@ -155,17 +155,17 @@ displayedCursorY -= (displayedCursorY - actualCursorY) * 0.8;
 
 <div className={classes.imageContainer}>
   ![Description image 2 of
-  3](../../images/blog/learn/mouse-sticky-effect/description-image-2.jpg)
+  3](../../images/blog/learn/mouse-sticky-effect/description-image-2.png)
 </div>
 
 위 그림은 실제 커서를 움직인 순간의 장면이다.
 검은색 원은 표시 커서다.
-X축 식과 Y축 식이 X축인지 Y축인지 구분하는 표현만 제외하면 동일하므로 Y축 식은 생략했다.
+X축 식과 Y축 식이 X축인지 Y축인지 구분하는 표현만 제외하면 동일하므로 Y축 식은 생략했다.<br />
 내가 구해야 하던 건 표시 커서의 다음 위치였다.
 표시 커서의 다음 위치를 구하는 식을 짧게 표현하면 <strong>dCX - (dCX - aCX)</strong>다.
 하지만 이 식만으로는 시간차 효과를 충분히 내지 못한다.
 표시 커서와 실제 커서의 위치가 거의 일치하기 때문이다.
-따라서 완충제 역할을 하는 계수를 추가해줘야 한다.
+따라서 완충제 역할을 하는 계수를 추가해줘야 한다.<br />
 계수를 추가한 식은 <strong>dCX - 0.8(dCX - aCX)</strong>다.
 계수가 0.8이면 표시 커서의 현재 위치에서 실제 커서의 현재 위치로 80% 이동한 위치가 표시 커서의 다음 위치가 된다.
 즉, 이 계수 값이 올라갈수록 표시 커서가 실제 커서를 천천히 따라가게 된다.
@@ -343,7 +343,7 @@ displayedCursorX -=
 
 <div className={classes.imageContainer}>
   ![Description image 3 of
-  3](../../images/blog/learn/mouse-sticky-effect/description-image-3.jpg)
+  3](../../images/blog/learn/mouse-sticky-effect/description-image-3.png)
 </div>
 
 위 그림은 실제 커서를 목표 요소에 재빠르게 올린 그 순간 한 프레임의 장면이다.
