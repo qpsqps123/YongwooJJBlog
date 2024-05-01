@@ -31,6 +31,12 @@ const config: GatsbyConfig = {
       },
     },
     {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://blog.yongwoo.me`,
+      },
+    },
+    {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "images",
