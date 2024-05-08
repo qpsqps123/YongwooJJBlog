@@ -19,6 +19,6 @@
   }
 }
 
-iframe {
+iframe[src*=codepen] {
   height: 400px !important; //  gatsby-remark-embedder가 자동 생성하는 iframe의 인라인 스타일을 무시하기 위함.
 }
