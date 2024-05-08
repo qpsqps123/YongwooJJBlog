@@ -3,6 +3,7 @@ import { PageProps, graphql } from "gatsby";
 import { SEO } from "../../../components/seo";
 import Header from "../../../layout/Header";
 import * as classes from "../../../styles/templates/BlogPostTemplate.module.scss";
+import Comments from "@/components/Comments";
 
 interface mdxDataProps {
   mdx: {
@@ -25,6 +26,7 @@ const BlogLifePostsTemplate = ({ data, children }: PageProps<mdxDataProps>) => {
           <section className={classes.content}>{children}</section>
         </article>
       </main>
+      <Comments />
       <footer className={classes.footerContainer}></footer>
     </React.Fragment>
   );
