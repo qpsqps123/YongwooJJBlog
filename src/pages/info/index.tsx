@@ -31,18 +31,21 @@ const InfoPage = () => {
             <div>
               <section>
                 <h3 className="a11yHidden">Role</h3>
-                <p className={classes.role}>Engineer & Designer</p>
+                <p className={classes.role}>Front-end Developer</p>
               </section>
               <section>
                 <h3 className="a11yHidden">Description</h3>
                 <p>
-                  하고자 하는 일이 공학과 디자인, 예술, 그 어딘가에 있습니다.
+                  개발자지만 디자인에도 기웃거리고 기획에도 기웃거립니다.
                   <br />
-                  사용자에게 좋은 경험을 드리는 일에 기쁨을 느낍니다.
+                  인터랙션과 애니메이션, 그래픽스에 관심이 많습니다.
                   <br />
-                  인터랙션과 애니메이션을 좋아합니다.
+                  사용자에게 좋은 경험을 드리면 기쁨과 보람을 느낍니다.
                   <br />
-                  성능과 접근성을 향상시키는 일에 관심이 있습니다.
+                  365일 햄버거만 먹을 수 있을만큼 좋아한다는 사실을 최근에
+                  깨달았습니다.
+                  <br />
+                  페퍼로니 피자에 꽂혀 피자는 페퍼로니 피자만 먹습니다.
                   <br />
                   혼자서도 잘 놀지만, 함께 하는 작업도 좋아합니다.
                 </p>
