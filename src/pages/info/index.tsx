@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { SEO } from "../../components/seo";
+import { SEO } from "@/components/seo";
 import * as classes from "./InfoPage.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
-import { RefContext } from "../../context/refContext";
-import Header from "@/layout/Header";
+import { RefContext } from "@/context/refContext";
+import Header from "@/components/Header/Header";
 
 const InfoPage = () => {
   const { contactGithubIconRef } = useContext(RefContext);

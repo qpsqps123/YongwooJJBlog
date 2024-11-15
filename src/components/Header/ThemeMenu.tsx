@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import * as classes from "./ThemeMenu.module.scss";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../store/store";
-import uiSlice from "../store/ui-slice";
-import { RefContext } from "../context/refContext";
+import { AppDispatch } from "@/store/store";
+import uiSlice from "@/store/ui-slice";
+import { RefContext } from "@/context/refContext";
 
 const ThemeMenu = () => {
   const useAppDispatch = useDispatch<AppDispatch>();

@@ -1,12 +1,12 @@
 import * as React from "react";
 import { PageProps, graphql } from "gatsby";
 import { Link } from "gatsby";
-import * as classes from "../styles/templates/BlogPageTemplate.module.scss";
-import useRenderPageNavLinks from "../hooks/useRenderPageNavLinks";
+import * as classes from "@/styles/templates/BlogPageTemplate.module.scss";
+import useRenderPageNavLinks from "@/hooks/useRenderPageNavLinks";
 import { v4 as uuid } from "uuid";
-import { SEO } from "../components/seo";
+import { SEO } from "@/components/seo";
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
-import Header from "@/layout/Header";
+import Header from "@/components/Header/Header";
 
 interface AllMdxNodesProps {
   id: string;

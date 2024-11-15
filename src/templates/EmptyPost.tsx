@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "../layout/Header";
-import { SEO } from "../components/seo";
-import * as classes from "../styles/templates/EmptyPost.module.scss";
+import Header from "@/components/Header/Header";
+import { SEO } from "@/components/seo";
+import * as classes from "@/styles/templates/EmptyPost.module.scss";
 
 const EmptyPost = () => {
   return (

@@ -1,9 +1,9 @@
 import React from "react";
 import { PageProps, graphql } from "gatsby";
-import { SEO } from "../../../components/seo";
-import Header from "../../../layout/Header";
-import * as classes from "../../../styles/templates/BlogPostTemplate.module.scss";
-import Comments from "@/components/Comments";
+import { SEO } from "@/components/seo";
+import Header from "@/components/Header/Header";
+import * as classes from "@/styles/templates/BlogPostTemplate.module.scss";
+import Comments from "@/components/Blog/Comments";
 
 interface mdxDataProps {
   mdx: {

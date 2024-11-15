@@ -7,8 +7,8 @@ import gdGif from "@/images/projects-thumbnail/thumbnail-gangnam-delivery.gif";
 import bcGif from "@/images/projects-thumbnail/thumbnail-braun-calculator.gif";
 import sgGif from "@/images/projects-thumbnail/thumbnail-simon-game.gif";
 import ybGif from "@/images/projects-thumbnail/thumbnail-yongwoojj-blog.png";
-import Header from "@/layout/Header";
-import Project from "@/components/Project";
+import Header from "@/components/Header/Header";
+import Project from "@/components/Project/Project";
 
 const ProjectsPage = () => {
   return (

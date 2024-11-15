@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import * as classes from "./SideMenu.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
-import { RefContext } from "../context/refContext";
+import { RefContext } from "@/context/refContext";
 
-const ThemeMenu = React.lazy(() => import("./ThemeMenu"));
+const ThemeMenu = React.lazy(() => import("@/components/Header/ThemeMenu"));
 
 const SideMenu = () => {
   const {
@@ -77,7 +77,7 @@ const SideMenu = () => {
             aria-expanded="false"
           >
             <StaticImage
-              src="../images/icon/searchIcon.png"
+              src="../../images/icon/searchIcon.png"
               alt="검색 아이콘"
               width={20}
               height={20}
@@ -107,7 +107,7 @@ const SideMenu = () => {
             aria-expanded="false"
           >
             <StaticImage
-              src="../images/icon/chageThemeIcon.png"
+              src="../../images/icon/chageThemeIcon.png"
               alt="테마 변경 아이콘"
               width={30}
               height={30}

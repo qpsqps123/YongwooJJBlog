@@ -3,10 +3,10 @@ import { Formik, Form } from "formik";
 import { graphql, useStaticQuery, Link } from "gatsby";
 import * as classes from "./SearchBar.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
-import searchSlice from "../store/search-slice";
+import searchSlice from "@/store/search-slice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../store/store";
-import { RefContext } from "../context/refContext";
+import { AppDispatch, RootState } from "@/store/store";
+import { RefContext } from "@/context/refContext";
 
 interface FormikValues {
   query: string;
@@ -224,7 +224,7 @@ const SearchBar = () => {
             aria-label="검색창 닫기"
           >
             <StaticImage
-              src="../images/icon/close.png"
+              src="../../images/icon/close.png"
               alt="닫기 아이콘"
               width={25}
               height={25}

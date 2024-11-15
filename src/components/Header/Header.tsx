@@ -4,10 +4,10 @@ import { Link } from "gatsby";
 import * as classes from "./Header.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../store/store";
-import { RefContext } from "../context/refContext";
-import SideMenu from "../components/SideMenu";
-import SearchBar from "../components/SearchBar";
+import { AppDispatch, RootState } from "@/store/store";
+import { RefContext } from "@/context/refContext";
+import SideMenu from "@/components/Header/SideMenu";
+import SearchBar from "@/components/Header/SearchBar";
 import { useDispatch } from "react-redux";
 import uiSlice from "@/store/ui-slice";
 
@@ -221,7 +221,7 @@ const Header = () => {
             }}
           >
             <StaticImage
-              src="../images/icon/hamburgerMenu.png"
+              src="../../images/icon/hamburgerMenu.png"
               alt="햄버거 메뉴 아이콘"
               width={25}
               height={25}
