@@ -1,0 +1,88 @@
+@import "../abstracts/functions";
+@import "../base/layout";
+
+.post {
+  margin-top: 40px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 30px;
+
+  @include tablet-sm {
+    flex-flow: column nowrap;
+  }
+}
+
+.postImage {
+  width: 150px;
+  height: 150px;
+
+  @include tablet-sm {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+.thumbnailNotUploaded {
+  width: 150px;
+  height: 150px;
+
+  @include tablet-sm {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+.postCaption {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+  font-size: rem(14px);
+
+  h3 {
+    a {
+      color: $primary;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: $accent;
+    }
+
+    a:hover:global {
+      animation: colorPrimaryToAccent 0.3s;
+    }
+  }
+}
+
+.date {
+  font-size: rem(12px);
+}
+
+.excerpt {
+  line-height: 160%;
+}
+
+.tagList {
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: start;
+  gap: 6px;
+}
+
+.tag {
+  padding: 2px 6px;
+  background-color: $background;
+  border: 1px solid $secondary;
+  border-radius: 15px;
+  font-size: rem(10px);
+  color: $secondary;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $secondary;
+    color: $background;
+    transition: 0.3s;
+  }
+}

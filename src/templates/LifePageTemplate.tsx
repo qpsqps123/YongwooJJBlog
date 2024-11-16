@@ -5,8 +5,10 @@ import * as classes from "@/styles/templates/BlogPageTemplate.module.scss";
 import useRenderPageNavLinks from "@/hooks/useRenderPageNavLinks";
 import { v4 as uuid } from "uuid";
 import { SEO } from "@/components/seo";
-import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image";
+import { IGatsbyImageData } from "gatsby-plugin-image";
 import Header from "@/components/Header/Header";
+import PagePostTemplate from "./PagePostTemplate";
+import Footer from "@/components/Footer/Footer";
 
 interface AllMdxNodesProps {
   id: string;
@@ -176,37 +178,7 @@ const LifePageTemplate = ({
           <h2 className="a11yHidden">Life Board</h2>
           <section className={classes.postsContainer} aria-label="게시물">
             {data.allMdx.nodes.map((node) => (
-              <article key={node.id}>
-                <section className={classes.post}>
-                  <div>
-                    {node.frontmatter.featuredImage?.childImageSharp ? (
-                      <Link to={`/blog/life/${node.frontmatter.slug}`}>
-                        <GatsbyImage
-                          image={getImage(node.frontmatter.featuredImage)}
-                          alt={`${node.frontmatter.title} thumbnail`}
-                          className={classes.postImage}
-                        />
-                      </Link>
-                    ) : (
-                      <div
-                        aria-label="Thumbnail not uploaded"
-                        className={classes.thumbnailNotUploaded}
-                      ></div>
-                    )}
-                  </div>
-                  <div className={classes.postCaption}>
-                    <h3>
-                      <Link to={`/blog/life/${node.frontmatter.slug}`}>
-                        {node.frontmatter.title}
-                      </Link>
-                    </h3>
-                    <p className={classes.date}>
-                      Posted: {node.frontmatter.date}
-                    </p>
-                    <p className={classes.excerpt}>{node.excerpt}</p>
-                  </div>
-                </section>
-              </article>
+              <PagePostTemplate postNode={node} />
             ))}
           </section>
           <nav aria-label="게시물 페이지 네비게이션">
@@ -219,7 +191,7 @@ const LifePageTemplate = ({
             </ul>
           </nav>
         </main>
-        <footer className={classes.footerContainer}></footer>
+        <Footer />
       </React.Fragment>
     </React.Suspense>
   );
@@ -241,6 +213,7 @@ export const query = graphql`
           date(formatString: "MMMM DD, YYYY")
           slug
           post
+          tags
           featuredImage {
             publicURL
             childImageSharp {

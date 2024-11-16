@@ -21,7 +21,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const result = await graphql(`
     # prettier-ignore
     query {
-      allMdx(sort: { frontmatter: { date: DESC } } limit:1000) {
+      allMdx(sort: { frontmatter: { date: DESC } } limit:1000000) {
         nodes {
           frontmatter {
             title

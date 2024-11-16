@@ -2,6 +2,7 @@ import React from "react";
 import Header from "@/components/Header/Header";
 import { SEO } from "@/components/seo";
 import * as classes from "@/styles/templates/EmptyPost.module.scss";
+import Footer from "@/components/Footer/Footer";
 
 const EmptyPost = () => {
   return (
@@ -10,7 +11,7 @@ const EmptyPost = () => {
       <main className={classes.mainContainer}>
         <p className={classes.description}>No post yet...!</p>
       </main>
-      <footer className={classes.footerContainer}></footer>
+      <Footer />
     </React.Fragment>
   );
 };

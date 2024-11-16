@@ -4,6 +4,7 @@ import * as classes from "./InfoPage.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
 import { RefContext } from "@/context/refContext";
 import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 
 const InfoPage = () => {
   const { contactGithubIconRef } = useContext(RefContext);
@@ -111,7 +112,7 @@ const InfoPage = () => {
           </div>
         </section>
       </main>
-      <footer className={classes.footerContainer}></footer>
+      <Footer />
     </React.Fragment>
   );
 };

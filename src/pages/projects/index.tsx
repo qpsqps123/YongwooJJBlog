@@ -9,6 +9,7 @@ import sgGif from "@/images/projects-thumbnail/thumbnail-simon-game.gif";
 import ybGif from "@/images/projects-thumbnail/thumbnail-yongwoojj-blog.png";
 import Header from "@/components/Header/Header";
 import Project from "@/components/Project/Project";
+import Footer from "@/components/Footer/Footer";
 
 const ProjectsPage = () => {
   return (
@@ -219,7 +220,7 @@ const ProjectsPage = () => {
           </section>
         </section>
       </main>
-      <footer className={classes.footerContainer}></footer>
+      <Footer />
     </React.Fragment>
   );
 };

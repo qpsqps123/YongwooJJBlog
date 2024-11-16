@@ -25,6 +25,31 @@
   color: $tertiary;
 }
 
+.tagList {
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: start;
+  gap: 6px;
+  margin-top: 20px;
+}
+
+.tag {
+  padding: 2px 6px;
+  background-color: $background;
+  border: 1px solid $secondary;
+  border-radius: 15px;
+  font-size: rem(10px);
+  color: $secondary;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $secondary;
+    color: $background;
+    transition: 0.3s;
+  }
+}
+
 .content {
   margin: 30px auto 0;
 
@@ -82,8 +107,4 @@
   pre[class*="language-"] {
     margin-top: 1.2em;
   }
-}
-
-.footerContainer {
-  padding: rem(40px) rem(20px);
 }

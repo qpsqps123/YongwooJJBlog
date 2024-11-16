@@ -4,12 +4,15 @@ import { SEO } from "@/components/seo";
 import Header from "@/components/Header/Header";
 import * as classes from "@/styles/templates/BlogPostTemplate.module.scss";
 import Comments from "@/components/Blog/Comments";
+import Footer from "@/components/Footer/Footer";
+import Tag from "@/components/Blog/Tags/Tag";
 
 interface mdxDataProps {
   mdx: {
     frontmatter: {
       title: string;
       date: string;
+      tags: string[];
     };
   };
 }
@@ -24,10 +27,17 @@ const BlogLifePostsTemplate = ({ data, children }: PageProps<mdxDataProps>) => {
           <h2>{data.mdx.frontmatter.title}</h2>
           <p className={classes.date}>{data.mdx.frontmatter.date}</p>
           <section className={classes.content}>{children}</section>
+          <ul className={classes.tagList}>
+            {data.mdx.frontmatter.tags?.map((tag) => (
+              <li>
+                <Tag tagName={tag} className={classes.tag} />
+              </li>
+            ))}
+          </ul>
         </article>
       </main>
       <Comments />
-      <footer className={classes.footerContainer}></footer>
+      <Footer />
     </React.Fragment>
   );
 };
@@ -44,6 +54,7 @@ export const query = graphql`
       frontmatter {
         title
         date(formatString: "MMMM D, YYYY")
+        tags
         featuredImage {
           publicURL
           childImageSharp {
