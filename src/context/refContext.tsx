@@ -12,6 +12,7 @@ interface RefPropsType {
   searchButtonRef?: React.RefObject<HTMLButtonElement>;
   closeSearchButtonRef?: React.RefObject<HTMLButtonElement>;
   themeButtonRef?: React.RefObject<HTMLButtonElement[]>;
+  tagBtnRef?: React.RefObject<HTMLButtonElement>;
   searchInputRef?: React.RefObject<HTMLInputElement>;
   contactGithubIconRef?: React.RefObject<HTMLAnchorElement>;
 }
@@ -27,6 +28,7 @@ const RefProvider = ({ children }: PropsWithChildren<{}>) => {
   const searchButtonRef = useRef<HTMLButtonElement>(null);
   const closeSearchButtonRef = useRef<HTMLButtonElement>(null);
   const themeButtonRef = useRef<HTMLButtonElement[]>([]);
+  const tagBtnRef = useRef<HTMLButtonElement>(null);
 
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -45,6 +47,7 @@ const RefProvider = ({ children }: PropsWithChildren<{}>) => {
         closeSearchButtonRef,
         searchInputRef,
         themeButtonRef,
+        tagBtnRef,
         contactGithubIconRef,
       }}
     >

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import * as classes from "./SideMenu.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
 import { RefContext } from "@/context/refContext";
+import { navigate } from "gatsby";
 
 const ThemeMenu = React.lazy(() => import("@/components/Header/ThemeMenu"));
 
@@ -12,6 +13,7 @@ const SideMenu = () => {
     sideMenuButtonRef,
     searchButtonRef,
     changeThemeButtonRef,
+    tagBtnRef,
     searchVisibilityRef,
     searchInputRef,
     themeMenuVisibilityRef,
@@ -19,9 +21,7 @@ const SideMenu = () => {
 
   const handleSearchButtonClick = () => {
     searchVisibilityRef?.current?.classList.toggle("hide");
-    headerVisibilityRef?.current?.classList.toggle(
-      "handleHeaderHeightOverflow"
-    );
+    headerVisibilityRef?.current?.classList.toggle("handleHeaderHeightOverflow");
 
     searchButtonRef?.current?.setAttribute(
       "aria-expanded",
@@ -32,18 +32,10 @@ const SideMenu = () => {
   };
 
   const handleChangeThemeButtonKeyDown = (e: React.KeyboardEvent) => {
-    if (
-      themeMenuVisibilityRef?.current?.classList.contains("hide") &&
-      !e.shiftKey &&
-      e.key === "Tab"
-    ) {
+    if (themeMenuVisibilityRef?.current?.classList.contains("hide") && !e.shiftKey && e.key === "Tab") {
       e.preventDefault();
       sideMenuButtonRef?.current?.focus();
-    } else if (
-      !searchVisibilityRef?.current?.classList.contains("hide") &&
-      e.shiftKey &&
-      e.key === "Tab"
-    ) {
+    } else if (!searchVisibilityRef?.current?.classList.contains("hide") && e.shiftKey && e.key === "Tab") {
       e.preventDefault();
       searchInputRef?.current?.focus();
     }
@@ -51,22 +43,14 @@ const SideMenu = () => {
 
   return (
     <React.Suspense fallback="Loading...">
-      <ul
-        id="sideMenuContainer"
-        className={`${classes.sideMenuList} ${"hide"}`}
-        ref={sideMenuVisibilityRef}
-      >
+      <ul id="sideMenuContainer" className={classes.sideMenuList} ref={sideMenuVisibilityRef}>
         <li>
           <button
             type="button"
             ref={searchButtonRef}
             onClick={handleSearchButtonClick}
             onKeyDown={(e) => {
-              if (
-                !searchVisibilityRef?.current?.classList.contains("hide") &&
-                !e.shiftKey &&
-                e.key === "Tab"
-              ) {
+              if (!searchVisibilityRef?.current?.classList.contains("hide") && !e.shiftKey && e.key === "Tab") {
                 e.preventDefault();
                 searchInputRef?.current?.focus();
               }
@@ -76,12 +60,7 @@ const SideMenu = () => {
             aria-controls="searchWrapper"
             aria-expanded="false"
           >
-            <StaticImage
-              src="../../images/icon/searchIcon.png"
-              alt="검색 아이콘"
-              width={20}
-              height={20}
-            />
+            <StaticImage src="../../images/icon/searchIcon.png" alt="검색 아이콘" width={20} height={20} />
           </button>
         </li>
         <li className={classes.changeThemeList}>
@@ -94,11 +73,7 @@ const SideMenu = () => {
 
               changeThemeButtonRef?.current?.setAttribute(
                 "aria-expanded",
-                `${
-                  changeThemeButtonRef?.current?.getAttribute(
-                    "aria-expanded"
-                  ) === "false"
-                }`
+                `${changeThemeButtonRef?.current?.getAttribute("aria-expanded") === "false"}`
               );
             }}
             onKeyDown={handleChangeThemeButtonKeyDown}
@@ -106,14 +81,14 @@ const SideMenu = () => {
             aria-controls="themeMenuContainer"
             aria-expanded="false"
           >
-            <StaticImage
-              src="../../images/icon/chageThemeIcon.png"
-              alt="테마 변경 아이콘"
-              width={30}
-              height={30}
-            />
+            <StaticImage src="../../images/icon/chageThemeIcon.png" alt="테마 변경 아이콘" width={30} height={30} />
           </button>
           <ThemeMenu />
+        </li>
+        <li>
+          <button type="button" ref={tagBtnRef} className={classes.tagBtn} onClick={() => navigate("/blog/tags")}>
+            <StaticImage src="../../images/icon/tag.png" alt="태그 아이콘" width={20} height={20} />
+          </button>
         </li>
       </ul>
     </React.Suspense>

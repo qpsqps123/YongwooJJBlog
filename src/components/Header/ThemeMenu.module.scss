@@ -2,14 +2,14 @@
 
 .themeMenuContainer {
   position: relative;
-  top: 30px;
+  top: 50px;
   list-style: none;
   font-size: rem(14px);
   z-index: 1;
 
   button {
-    text-shadow: rem(6px) 0 10px $background, rem(-6px) 0 10px $background,
-      rem(6px) 0 10px $background, rem(-6px) 0 10px $background;
+    text-shadow: rem(6px) 0 10px $background, rem(-6px) 0 10px $background, rem(6px) 0 10px $background,
+      rem(-6px) 0 10px $background;
   }
 
   button:hover {

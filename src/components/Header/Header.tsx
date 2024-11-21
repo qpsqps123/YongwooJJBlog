@@ -10,6 +10,8 @@ import SideMenu from "@/components/Header/SideMenu";
 import SearchBar from "@/components/Header/SearchBar";
 import { useDispatch } from "react-redux";
 import uiSlice from "@/store/ui-slice";
+import { animSideMenuFadeAway, animSideMenuPop } from "@/animation/anim-side-menu";
+import { preventClick } from "@/animation/anim-utils";
 
 const Header = () => {
   const useAppDispatch = useDispatch<AppDispatch>();
@@ -28,10 +30,10 @@ const Header = () => {
     themeMenuVisibilityRef,
     themeButtonRef,
     closeSearchButtonRef,
+    tagBtnRef,
     contactGithubIconRef,
   } = useContext(RefContext);
 
-  // 사용자 테마 설정에 따른 이미지 변환
   useEffect(() => {
     const checkThemeIsDark = document.body.classList.contains("dark-theme");
 
@@ -40,54 +42,40 @@ const Header = () => {
       changeThemeButtonRef?.current?.classList.add("invertColor");
       searchButtonRef?.current?.classList.add("invertColor");
       closeSearchButtonRef?.current?.classList.add("invertColor");
+      tagBtnRef?.current?.classList.add("invertColor");
       contactGithubIconRef?.current?.classList.add("invertColor");
     } else if (!checkThemeIsDark) {
       sideMenuButtonRef?.current?.classList.remove("invertColor");
       changeThemeButtonRef?.current?.classList.remove("invertColor");
       searchButtonRef?.current?.classList.remove("invertColor");
       closeSearchButtonRef?.current?.classList.remove("invertColor");
+      tagBtnRef?.current?.classList.remove("invertColor");
       contactGithubIconRef?.current?.classList.remove("invertColor");
     }
   }, [themeChange]);
 
-  // 사이드 메뉴의 display 속성을 이용한 동적 렌더링과 애니메이션
   const handleSideMenuClick = () => {
-    sideMenuVisibilityRef?.current?.classList.toggle("hide");
-    searchButtonRef?.current?.classList.add("showSearchButtonAnimation");
-    changeThemeButtonRef?.current?.classList.add("showThemeButtonAnimation");
+    sideMenuVisibilityRef?.current?.classList.toggle("sideMenuPoped");
 
-    // 애니메이션 실행 중 클릭 방지
-    if (sideMenuVisibilityRef?.current?.classList.contains("hide") === false) {
-      changeThemeButtonRef?.current?.classList.add("pointerEventNone");
-      setTimeout(() => {
-        changeThemeButtonRef?.current?.classList.remove("pointerEventNone");
-      }, 1000);
+    if (sideMenuButtonRef?.current && searchButtonRef?.current && changeThemeButtonRef?.current && tagBtnRef?.current) {
+      preventClick([sideMenuButtonRef.current, searchButtonRef?.current, changeThemeButtonRef?.current, tagBtnRef?.current], 1.3);
     }
 
-    // 열린 하위 메뉴들 닫기
-    searchVisibilityRef?.current?.classList.add("hide");
-    themeMenuVisibilityRef?.current?.classList.add("hide");
-    headerVisibilityRef?.current?.classList.remove(
-      "handleHeaderHeightOverflow"
-    );
+    if (sideMenuVisibilityRef?.current?.classList.contains("sideMenuPoped") === false) {
+      // 열린 하위 메뉴들 닫기
+      searchVisibilityRef?.current?.classList.add("hide");
+      themeMenuVisibilityRef?.current?.classList.add("hide");
+      headerVisibilityRef?.current?.classList.remove("handleHeaderHeightOverflow");
 
-    if (sideMenuVisibilityRef?.current?.classList.contains("hide") === true) {
-      sideMenuVisibilityRef.current.classList.remove("hide"); // 애니메이션을 실행하는 동안 보이기
-
-      searchButtonRef?.current?.classList.add("hideSearchButtonAnimation");
-      changeThemeButtonRef?.current?.classList.add("hideThemeButtonAnimation");
-
-      setTimeout(() => {
-        sideMenuVisibilityRef.current?.classList.add("hide");
-
-        searchButtonRef?.current?.classList.remove("hideSearchButtonAnimation");
-        changeThemeButtonRef?.current?.classList.remove(
-          "hideThemeButtonAnimation"
-        );
-      }, 450);
+      if (searchButtonRef?.current && changeThemeButtonRef?.current && tagBtnRef?.current) {
+        animSideMenuFadeAway([searchButtonRef?.current, changeThemeButtonRef?.current, tagBtnRef?.current]);
+      }
+    } else if (sideMenuVisibilityRef?.current?.classList.contains("sideMenuPoped") === true) {
+      if (searchButtonRef?.current && changeThemeButtonRef?.current && tagBtnRef?.current) {
+        animSideMenuPop([searchButtonRef?.current, changeThemeButtonRef?.current, tagBtnRef?.current]);
+      }
     }
 
-    // aria-expanded 설정
     sideMenuButtonRef?.current?.setAttribute(
       "aria-expanded",
       `${sideMenuButtonRef?.current?.getAttribute("aria-expanded") === "false"}`
@@ -96,33 +84,19 @@ const Header = () => {
     useAppDispatch(uiSlice.actions.detectThemeChange());
   };
 
-  const infoMenuHoverColor = location.pathname.includes("/info/")
-    ? classes.colorRed
-    : "";
+  const infoMenuHoverColor = location.pathname.includes("/info/") ? classes.colorRed : "";
 
-  const projectsMenuHoverColor = location.pathname.includes("/projects/")
-    ? classes.colorRed
-    : "";
+  const projectsMenuHoverColor = location.pathname.includes("/projects/") ? classes.colorRed : "";
 
-  const blogMenuHoverColor = location.pathname.includes("/blog")
-    ? classes.colorRed
-    : "";
+  const blogMenuHoverColor = location.pathname.includes("/blog") ? classes.colorRed : "";
 
-  const lifeMenuHoverColor = location.pathname.includes("/blog/life/")
-    ? classes.colorRed
-    : "";
+  const lifeMenuHoverColor = location.pathname.includes("/blog/life/") ? classes.colorRed : "";
 
-  const learnMenuHoverColor = location.pathname.includes("/blog/learn/")
-    ? classes.colorRed
-    : "";
+  const learnMenuHoverColor = location.pathname.includes("/blog/learn/") ? classes.colorRed : "";
 
-  const hideBlogSubmenu = location.pathname.includes("/blog")
-    ? classes.blogSubmenuContainer
-    : "hide";
+  const hideBlogSubmenu = location.pathname.includes("/blog") ? classes.blogSubmenuContainer : "hide";
 
-  const blogSubmenuVisibility = location.pathname.includes("/blog")
-    ? "true"
-    : "false";
+  const blogSubmenuVisibility = location.pathname.includes("/blog") ? "true" : "false";
 
   return (
     <header className={classes.header} ref={headerVisibilityRef}>
@@ -140,20 +114,12 @@ const Header = () => {
           <h3 className="a11yHidden">Navigation Menu</h3>
           <ul className={classes.menuContainer}>
             <li>
-              <Link
-                to="/info"
-                className={infoMenuHoverColor}
-                aria-label="Info - 소개 페이지로 연결."
-              >
+              <Link to="/info" className={infoMenuHoverColor} aria-label="Info - 소개 페이지로 연결.">
                 Info
               </Link>
             </li>
             <li>
-              <Link
-                to="/projects"
-                className={projectsMenuHoverColor}
-                aria-label="Projects - 프로젝트 페이지로 연결."
-              >
+              <Link to="/projects" className={projectsMenuHoverColor} aria-label="Projects - 프로젝트 페이지로 연결.">
                 Projects
               </Link>
             </li>
@@ -169,20 +135,12 @@ const Header = () => {
               </Link>
               <ul id="blogSubmenu" className={hideBlogSubmenu}>
                 <li>
-                  <Link
-                    to="/blog/life/1"
-                    className={lifeMenuHoverColor}
-                    aria-label="Life - 일상 게시판으로 연결."
-                  >
+                  <Link to="/blog/life/1" className={lifeMenuHoverColor} aria-label="Life - 일상 게시판으로 연결.">
                     Life
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    to="/blog/learn/1"
-                    className={learnMenuHoverColor}
-                    aria-label="Learn - 배움 게시판으로 연결."
-                  >
+                  <Link to="/blog/learn/1" className={learnMenuHoverColor} aria-label="Learn - 배움 게시판으로 연결.">
                     Learn
                   </Link>
                 </li>
@@ -201,18 +159,10 @@ const Header = () => {
             aria-controls="sideMenuContainer"
             aria-expanded="false"
             onKeyDown={(e) => {
-              if (
-                themeMenuVisibilityRef?.current?.classList.contains("hide") &&
-                e.shiftKey &&
-                e.key === "Tab"
-              ) {
+              if (themeMenuVisibilityRef?.current?.classList.contains("hide") && e.shiftKey && e.key === "Tab") {
                 e.preventDefault();
                 changeThemeButtonRef?.current?.focus();
-              } else if (
-                !themeMenuVisibilityRef?.current?.classList.contains("hide") &&
-                e.shiftKey &&
-                e.key === "Tab"
-              ) {
+              } else if (!themeMenuVisibilityRef?.current?.classList.contains("hide") && e.shiftKey && e.key === "Tab") {
                 e.preventDefault();
                 if (themeButtonRef?.current) {
                   themeButtonRef.current[2].focus();
@@ -220,12 +170,7 @@ const Header = () => {
               }
             }}
           >
-            <StaticImage
-              src="../../images/icon/hamburgerMenu.png"
-              alt="햄버거 메뉴 아이콘"
-              width={25}
-              height={25}
-            />
+            <StaticImage src="../../images/icon/hamburgerMenu.png" alt="햄버거 메뉴 아이콘" width={25} height={25} />
           </button>
           <SideMenu />
         </section>
