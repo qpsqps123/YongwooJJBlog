@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import * as classes from "./SideMenu.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
-import { RefContext } from "@/context/refContext";
+import { RefContext } from "@/context/ref-context";
 import { navigate } from "gatsby";
 
-const ThemeMenu = React.lazy(() => import("@/components/Header/ThemeMenu"));
+const ThemeMenu = React.lazy(() => import("@/components/header/ThemeMenu"));
 
 const SideMenu = () => {
   const {

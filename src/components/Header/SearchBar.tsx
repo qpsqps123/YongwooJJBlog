@@ -6,26 +6,12 @@ import { StaticImage } from "gatsby-plugin-image";
 import searchSlice from "@/store/search-slice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
-import { RefContext } from "@/context/refContext";
-
-interface FormikValues {
-  query: string;
-}
-
-interface SearchResults {
-  frontmatter: {
-    title: string;
-    date: string;
-    slug: string;
-    post: string;
-  };
-  body: string;
-  id: string;
-  excerpt: string;
-}
+import { RefContext } from "@/context/ref-context";
+import { FormikValues } from "@/types/common/formik/formik";
+import { TQueryAllMdx } from "@/types/api/query";
 
 const SearchBar = () => {
-  const data = useStaticQuery(graphql`
+  const data = useStaticQuery<TQueryAllMdx>(graphql`
     query {
       allMdx {
         nodes {
@@ -61,19 +47,16 @@ const SearchBar = () => {
   const { nodes: index } = data.allMdx;
 
   const store = index.filter(
-    (el: SearchResults) =>
+    (el) =>
       query !== "" &&
       (el.frontmatter.date?.toLowerCase().includes(query?.toLowerCase()) ||
         el.frontmatter.title?.toLowerCase().includes(query?.toLowerCase()) ||
         el.body?.toLowerCase().includes(query?.toLowerCase()))
   );
 
-  const results = store?.filter(
-    (result: SearchResults) =>
-      result.frontmatter.post === "life" || result.frontmatter.post === "learn"
-  );
+  const results = store?.filter((result) => result.frontmatter.post === "life" || result.frontmatter.post === "learn");
 
-  results?.sort((a: SearchResults, b: SearchResults) => {
+  results?.sort((a, b) => {
     const dateA = parseInt(a.frontmatter.date.replace(/[^0-9]/g, ""), 10);
     const dateB = parseInt(b.frontmatter.date.replace(/[^0-9]/g, ""), 10);
 
@@ -85,9 +68,7 @@ const SearchBar = () => {
   const startPoint = limit * (pageNum - 1);
   const endPoint = limit * pageNum;
 
-  const currentResults = results?.filter(
-    (_: never, index: number) => index + 1 > startPoint && index + 1 <= endPoint
-  );
+  const currentResults = results?.filter((_, index) => index + 1 > startPoint && index + 1 <= endPoint);
 
   const handleNextPage = () => {
     useAppDispatch(searchSlice.actions.toNextPage());
@@ -101,15 +82,12 @@ const SearchBar = () => {
   const hasCurrentResults = currentResultsTotalNum !== 0;
 
   const renderCurrentResults = hasCurrentResults ? (
-    currentResults.map((result: SearchResults) => (
+    currentResults.map((result) => (
       <li key={result.id}>
         <article>
           <header>
             <h4>
-              <Link
-                to={`/blog/${result.frontmatter.post}/${result.frontmatter.slug}`}
-                className={classes.linkToPost}
-              >
+              <Link to={`/blog/${result.frontmatter.post}/${result.frontmatter.slug}`} className={classes.linkToPost}>
                 {result.frontmatter.title}
               </Link>
             </h4>
@@ -135,40 +113,23 @@ const SearchBar = () => {
         {"<"}
       </button>
     ) : (
-      <button
-        type="button"
-        className={classes.pageNavButton}
-        aria-label="Back to the previous results page"
-        disabled
-      >
+      <button type="button" className={classes.pageNavButton} aria-label="Back to the previous results page" disabled>
         {"<"}
       </button>
     );
 
   const renderNextButton =
     hasCurrentResults && endPoint < totalNumResults ? (
-      <button
-        type="button"
-        onClick={handleNextPage}
-        className={classes.pageNavButton}
-        aria-label="Go to the next results page"
-      >
+      <button type="button" onClick={handleNextPage} className={classes.pageNavButton} aria-label="Go to the next results page">
         {">"}
       </button>
     ) : (
-      <button
-        type="button"
-        className={classes.pageNavButton}
-        aria-label="Go to the next results page"
-        disabled
-      >
+      <button type="button" className={classes.pageNavButton} aria-label="Go to the next results page" disabled>
         {">"}
       </button>
     );
 
-  const renderCurrentPageNum = hasCurrentResults && (
-    <span aria-label="Current page number">{pageNum}</span>
-  );
+  const renderCurrentPageNum = hasCurrentResults && <span aria-label="Current page number">{pageNum}</span>;
 
   return (
     <div id="searchWrapper" className={`${"hide"}`} ref={searchVisibilityRef}>
@@ -216,19 +177,12 @@ const SearchBar = () => {
             className={classes.closeSearchButton}
             onClick={() => {
               searchVisibilityRef?.current?.classList.toggle("hide");
-              headerVisibilityRef?.current?.classList.toggle(
-                "handleHeaderHeightOverflow"
-              );
+              headerVisibilityRef?.current?.classList.toggle("handleHeaderHeightOverflow");
               changeThemeButtonRef?.current?.focus();
             }}
             aria-label="검색창 닫기"
           >
-            <StaticImage
-              src="../../images/icon/close.png"
-              alt="닫기 아이콘"
-              width={25}
-              height={25}
-            />
+            <StaticImage src="../../images/icon/close.png" alt="닫기 아이콘" width={25} height={25} />
           </button>
         </section>
         <section>

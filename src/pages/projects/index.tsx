@@ -7,9 +7,9 @@ import gdGif from "@/images/projects-thumbnail/thumbnail-gangnam-delivery.gif";
 import bcGif from "@/images/projects-thumbnail/thumbnail-braun-calculator.gif";
 import sgGif from "@/images/projects-thumbnail/thumbnail-simon-game.gif";
 import ybGif from "@/images/projects-thumbnail/thumbnail-yongwoojj-blog.png";
-import Header from "@/components/Header/Header";
-import Project from "@/components/Project/Project";
-import Footer from "@/components/Footer/Footer";
+import Header from "@/components/header/Header";
+import Project from "@/components/project/Project";
+import Footer from "@/components/footer/Footer";
 
 const ProjectsPage = () => {
   return (
@@ -36,12 +36,7 @@ const ProjectsPage = () => {
                   }
                   workType={<li>Personal work</li>}
                   title="X-Mas Gift 4 U."
-                  description={
-                    <p>
-                      2023 크리스마스 맞이해, 아내를 위해 준비한 랜덤 추첨 박스
-                      선물 프로젝트.
-                    </p>
-                  }
+                  description={<p>2023 크리스마스 맞이해, 아내를 위해 준비한 랜덤 추첨 박스 선물 프로젝트.</p>}
                   techStack={
                     <React.Fragment>
                       <li>Sass</li>
@@ -70,12 +65,7 @@ const ProjectsPage = () => {
                   }
                   workType={<li>Personal work</li>}
                   title="YongwooJJ Blog"
-                  description={
-                    <p>
-                      나를 소개하고 글을 포스팅하기 위한 목적으로 만든 개인
-                      블로그.
-                    </p>
-                  }
+                  description={<p>나를 소개하고 글을 포스팅하기 위한 목적으로 만든 개인 블로그.</p>}
                   techStack={
                     <React.Fragment>
                       <li>Sass</li>
@@ -105,12 +95,7 @@ const ProjectsPage = () => {
                   }
                   workType={<li>Collaborative work</li>}
                   title="Message of Cherry Blossom"
-                  description={
-                    <p>
-                      벚꽃 개화시기에 사람들과 편지를 주고 받는 롤링 페이퍼
-                      서비스. 한국어 제목은 '벚꽃이지면'.
-                    </p>
-                  }
+                  description={<p>벚꽃 개화시기에 사람들과 편지를 주고 받는 롤링 페이퍼 서비스. 한국어 제목은 '벚꽃이지면'.</p>}
                   techStack={
                     <React.Fragment>
                       <li>Sass</li>
@@ -138,12 +123,7 @@ const ProjectsPage = () => {
                   }
                   workType={<li>Personal work</li>}
                   title="Braun Calculator"
-                  description={
-                    <p>
-                      좋아하는 브랜드인 브라운의 계산기를 웹으로 옮겨본
-                      프로젝트.
-                    </p>
-                  }
+                  description={<p>좋아하는 브랜드인 브라운의 계산기를 웹으로 옮겨본 프로젝트.</p>}
                   techStack={
                     <React.Fragment>
                       <li>CSS</li>
@@ -166,10 +146,7 @@ const ProjectsPage = () => {
                   workType={<li>Assignment work</li>}
                   title="Gangnam Delivery"
                   description={
-                    <p>
-                      인터넷 강의 과제로 받은 데모 배달 서비스에, 일했던 강남
-                      레스토랑 테마를 적용해 만든 프로젝트.
-                    </p>
+                    <p>인터넷 강의 과제로 받은 데모 배달 서비스에, 일했던 강남 레스토랑 테마를 적용해 만든 프로젝트.</p>
                   }
                   techStack={
                     <React.Fragment>
@@ -203,8 +180,7 @@ const ProjectsPage = () => {
                   title="Simon Game"
                   description={
                     <p>
-                      인터넷 강의 과제로 만든 서비스. 단기 기억 전자 게임
-                      ‘사이먼 게임’을 웹에서 즐길 수 있도록 만든 프로젝트.
+                      인터넷 강의 과제로 만든 서비스. 단기 기억 전자 게임 ‘사이먼 게임’을 웹에서 즐길 수 있도록 만든 프로젝트.
                     </p>
                   }
                   techStack={

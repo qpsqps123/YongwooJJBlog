@@ -1,8 +1,8 @@
 import React from "react";
-import Header from "@/components/Header/Header";
+import Header from "@/components/header/Header";
 import { SEO } from "@/components/seo";
 import * as classes from "@/styles/templates/EmptyPost.module.scss";
-import Footer from "@/components/Footer/Footer";
+import Footer from "@/components/footer/Footer";
 
 const EmptyPost = () => {
   return (

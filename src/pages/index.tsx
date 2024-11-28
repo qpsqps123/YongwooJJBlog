@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { navigate } from "gatsby";
 import { SEO } from "@/components/seo";
-import Header from "@/components/Header/Header";
+import Header from "@/components/header/Header";
 
 const HomePage = () => {
   useEffect(() => {

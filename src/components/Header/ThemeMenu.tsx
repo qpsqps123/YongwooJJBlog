@@ -3,22 +3,17 @@ import * as classes from "./ThemeMenu.module.scss";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
 import uiSlice from "@/store/ui-slice";
-import { RefContext } from "@/context/refContext";
+import { RefContext } from "@/context/ref-context";
 
 const ThemeMenu = () => {
   const useAppDispatch = useDispatch<AppDispatch>();
 
-  const { themeMenuVisibilityRef, themeButtonRef, sideMenuButtonRef } =
-    useContext(RefContext);
+  const { themeMenuVisibilityRef, themeButtonRef, sideMenuButtonRef } = useContext(RefContext);
 
   useEffect(() => {
     const localStorageUserTheme = localStorage.getItem("theme");
 
-    const [
-      osThemeButtonElement,
-      defaultThemeButtonElement,
-      darkThemeButtonElement,
-    ] = themeButtonRef?.current || [];
+    const [osThemeButtonElement, defaultThemeButtonElement, darkThemeButtonElement] = themeButtonRef?.current || [];
     if (localStorageUserTheme === "osDefault") {
       osThemeButtonElement.classList.add(classes.isSelected);
     } else if (localStorageUserTheme === "default") {
@@ -31,11 +26,7 @@ const ThemeMenu = () => {
   const handleThemeSelected = (e: React.MouseEvent) => {
     const localStorageUserTheme = localStorage.getItem("theme");
     const { name } = e.target as HTMLButtonElement;
-    const [
-      osThemeButtonElement,
-      defaultThemeButtonElement,
-      darkThemeButtonElement,
-    ] = themeButtonRef?.current || [];
+    const [osThemeButtonElement, defaultThemeButtonElement, darkThemeButtonElement] = themeButtonRef?.current || [];
 
     if (name === "osDefault") {
       if (localStorageUserTheme === "osDefault") return;
@@ -76,11 +67,7 @@ const ThemeMenu = () => {
   };
 
   return (
-    <ul
-      id="themeMenuContainer"
-      className={`${classes.themeMenuContainer} ${"hide"}`}
-      ref={themeMenuVisibilityRef}
-    >
+    <ul id="themeMenuContainer" className={`${classes.themeMenuContainer} ${"hide"}`} ref={themeMenuVisibilityRef}>
       <li>
         <button
           name="osDefault"

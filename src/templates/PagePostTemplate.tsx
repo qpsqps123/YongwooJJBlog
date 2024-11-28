@@ -2,7 +2,7 @@ import React from "react";
 import * as classes from "@/styles/templates/PagePostTempplate.module.scss";
 import { Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import Tag from "@/components/Blog/Tags/Tag";
+import Tag from "@/components/blog/tags/Tag";
 
 export default function PagePostTemplate({ postNode }) {
   return (
@@ -18,17 +18,12 @@ export default function PagePostTemplate({ postNode }) {
               />
             </Link>
           ) : (
-            <div
-              aria-label="Thumbnail not uploaded"
-              className={classes.thumbnailNotUploaded}
-            ></div>
+            <div aria-label="Thumbnail not uploaded" className={classes.thumbnailNotUploaded}></div>
           )}
         </div>
         <div className={classes.postCaption}>
           <h3>
-            <Link to={`/blog/life/${postNode.frontmatter.slug}`}>
-              {postNode.frontmatter.title}
-            </Link>
+            <Link to={`/blog/life/${postNode.frontmatter.slug}`}>{postNode.frontmatter.title}</Link>
           </h3>
           <p className={classes.date}>Posted: {postNode.frontmatter.date}</p>
           <p className={classes.excerpt}>{postNode.excerpt}</p>

@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { SEO } from "@/components/seo";
 import * as classes from "./InfoPage.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
-import { RefContext } from "@/context/refContext";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
+import { RefContext } from "@/context/ref-context";
+import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 
 const InfoPage = () => {
   const { contactGithubIconRef } = useContext(RefContext);
@@ -22,11 +22,7 @@ const InfoPage = () => {
           </section>
           <section className={classes.profilePhoto}>
             <h3 className="a11yHidden">Profile Photo</h3>
-            <StaticImage
-              src="../../images/profile/yongwoo-profile-v1.png"
-              alt="정용우 프로필 사진"
-              width={250}
-            />
+            <StaticImage src="../../images/profile/yongwoo-profile-v1.png" alt="정용우 프로필 사진" width={250} />
           </section>
           <div className={classes.RoleDescriptionContactContainer}>
             <div>
@@ -43,13 +39,11 @@ const InfoPage = () => {
                   <br />
                   사용자에게 좋은 경험을 드리면 기쁨과 보람을 느낍니다.
                   <br />
-                  365일 햄버거만 먹을 수 있을만큼 좋아한다는 사실을 최근에
-                  깨달았습니다.
+                  365일 햄버거만 먹을 수 있을만큼 좋아한다는 사실을 최근에 깨달았습니다.
                   <br />
                   페퍼로니 피자에 꽂혀 피자는 페퍼로니 피자만 먹습니다.
                   <br />
-                  스트레스는 수면과 운동으로 푸는 편입니다. 운동은 헬스를
-                  좋아합니다.
+                  스트레스는 수면과 운동으로 푸는 편입니다. 운동은 헬스를 좋아합니다.
                   <br />
                   혼자서도 잘 놀지만, 함께 하는 작업도 좋아합니다.
                 </p>
@@ -66,12 +60,7 @@ const InfoPage = () => {
                       ref={contactGithubIconRef}
                       aria-label="정용우 Github"
                     >
-                      <StaticImage
-                        src="../../images/logo/logo-github-black.svg"
-                        alt="Github logo"
-                        width={25}
-                        height={25}
-                      />
+                      <StaticImage src="../../images/logo/logo-github-black.svg" alt="Github logo" width={25} height={25} />
                     </a>
                   </li>
                   <li>
@@ -82,12 +71,7 @@ const InfoPage = () => {
                       rel="noopener noreferrer"
                       aria-label="정용우 Linkedin"
                     >
-                      <StaticImage
-                        src="../../images/logo/logo-linkedin.png"
-                        alt="Linkedin logo"
-                        width={25}
-                        height={25}
-                      />
+                      <StaticImage src="../../images/logo/logo-linkedin.png" alt="Linkedin logo" width={25} height={25} />
                     </a>
                   </li>
                   <li>
@@ -98,12 +82,7 @@ const InfoPage = () => {
                       rel="noopener noreferrer"
                       aria-label="정용우 메일"
                     >
-                      <StaticImage
-                        src="../../images/logo/logo-gmail.png"
-                        alt="gmail logo"
-                        width={25}
-                        height={25}
-                      />
+                      <StaticImage src="../../images/logo/logo-gmail.png" alt="gmail logo" width={25} height={25} />
                     </a>
                   </li>
                 </ul>

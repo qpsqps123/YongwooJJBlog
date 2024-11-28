@@ -1,21 +1,7 @@
+import { IRefProps } from "@/types/context/ref-context";
 import React, { useRef, createContext, PropsWithChildren } from "react";
 
-export const RefContext = createContext<RefPropsType>({});
-
-interface RefPropsType {
-  headerVisibilityRef?: React.RefObject<HTMLElement>;
-  sideMenuVisibilityRef?: React.RefObject<HTMLUListElement>;
-  searchVisibilityRef?: React.RefObject<HTMLDivElement>;
-  themeMenuVisibilityRef?: React.RefObject<HTMLUListElement>;
-  sideMenuButtonRef?: React.RefObject<HTMLButtonElement>;
-  changeThemeButtonRef?: React.RefObject<HTMLButtonElement>;
-  searchButtonRef?: React.RefObject<HTMLButtonElement>;
-  closeSearchButtonRef?: React.RefObject<HTMLButtonElement>;
-  themeButtonRef?: React.RefObject<HTMLButtonElement[]>;
-  tagBtnRef?: React.RefObject<HTMLButtonElement>;
-  searchInputRef?: React.RefObject<HTMLInputElement>;
-  contactGithubIconRef?: React.RefObject<HTMLAnchorElement>;
-}
+export const RefContext = createContext<IRefProps>({});
 
 const RefProvider = ({ children }: PropsWithChildren<{}>) => {
   const headerVisibilityRef = useRef<HTMLElement>(null);

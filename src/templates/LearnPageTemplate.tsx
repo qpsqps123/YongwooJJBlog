@@ -6,9 +6,9 @@ import useRenderPageNavLinks from "@/hooks/useRenderPageNavLinks";
 import { v4 as uuid } from "uuid";
 import { SEO } from "@/components/seo";
 import { IGatsbyImageData } from "gatsby-plugin-image";
-import Header from "@/components/Header/Header";
+import Header from "@/components/header/Header";
 import PagePostTemplate from "./PagePostTemplate";
-import Footer from "@/components/Footer/Footer";
+import Footer from "@/components/footer/Footer";
 
 interface AllMdxNodesProps {
   id: string;
@@ -36,10 +36,7 @@ interface PageContextType {
   currentPage: number;
 }
 
-const LearnPageTemplate = ({
-  data,
-  pageContext,
-}: PageProps<AllMdxDataProps, PageContextType>) => {
+const LearnPageTemplate = ({ data, pageContext }: PageProps<AllMdxDataProps, PageContextType>) => {
   const { numLearnPages, currentPage } = pageContext;
   const { renderPageNavLinks } = useRenderPageNavLinks();
 
@@ -87,13 +84,7 @@ const LearnPageTemplate = ({
       </li>
     );
 
-  const navPageArray = [
-    currentPage - 2,
-    currentPage - 1,
-    currentPage,
-    currentPage + 1,
-    currentPage + 2,
-  ];
+  const navPageArray = [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2];
 
   const navPageList = navPageArray.map((page) => {
     const isCurrentPage = page === currentPage;
@@ -113,9 +104,7 @@ const LearnPageTemplate = ({
       return (
         <React.Fragment key={uuid()}>
           <li className={classes.currentPage}>1</li>
-          {numLearnPages < 6
-            ? renderPageNavLinks(numLearnPages - 1, 2, "learn")
-            : renderPageNavLinks(4, 2, "learn")}
+          {numLearnPages < 6 ? renderPageNavLinks(numLearnPages - 1, 2, "learn") : renderPageNavLinks(4, 2, "learn")}
         </React.Fragment>
       );
     } else if (isSecondPage) {
@@ -123,17 +112,13 @@ const LearnPageTemplate = ({
         <React.Fragment key={uuid()}>
           {renderPageNavLinks(1, 1, "learn")}
           <li className={classes.currentPage}>2</li>
-          {numLearnPages < 6
-            ? renderPageNavLinks(numLearnPages - 2, 3, "learn")
-            : renderPageNavLinks(3, 3, "learn")}
+          {numLearnPages < 6 ? renderPageNavLinks(numLearnPages - 2, 3, "learn") : renderPageNavLinks(3, 3, "learn")}
         </React.Fragment>
       );
     } else if (isLastBeforePage) {
       return (
         <React.Fragment key={uuid()}>
-          {numLearnPages === 4
-            ? renderPageNavLinks(2, 1, "learn")
-            : renderPageNavLinks(3, numLearnPages - 4, "learn")}
+          {numLearnPages === 4 ? renderPageNavLinks(2, 1, "learn") : renderPageNavLinks(3, numLearnPages - 4, "learn")}
           <li className={classes.currentPage}>{numLearnPages - 1}</li>
           {renderPageNavLinks(1, numLearnPages, "learn")}
         </React.Fragment>
@@ -160,11 +145,7 @@ const LearnPageTemplate = ({
     }
 
     if (isRestPages) {
-      return (
-        <React.Fragment key={uuid()}>
-          {renderPageNavLinks(1, page, "learn")}
-        </React.Fragment>
-      );
+      return <React.Fragment key={uuid()}>{renderPageNavLinks(1, page, "learn")}</React.Fragment>;
     }
   });
 

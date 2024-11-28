@@ -1,26 +1,14 @@
 import React from "react";
 import { PageProps, graphql } from "gatsby";
 import { SEO } from "@/components/seo";
-import Header from "@/components/Header/Header";
+import Header from "@/components/header/Header";
 import * as classes from "@/styles/templates/BlogPostTemplate.module.scss";
-import Comments from "@/components/Blog/Comments";
-import Footer from "@/components/Footer/Footer";
-import Tag from "@/components/Blog/Tags/Tag";
+import Comments from "@/components/blog/Comments";
+import Footer from "@/components/footer/Footer";
+import Tag from "@/components/blog/tags/Tag";
+import { TQueryMdx } from "@/types/api/query";
 
-interface mdxDataProps {
-  mdx: {
-    frontmatter: {
-      title: string;
-      date: string;
-      tags: string[];
-    };
-  };
-}
-
-const BlogLearnPostsTemplate = ({
-  data,
-  children,
-}: PageProps<mdxDataProps>) => {
+const BlogLearnPostsTemplate = ({ data, children }: PageProps<TQueryMdx>) => {
   return (
     <React.Fragment>
       <h1 className="a11yHidden">Yongwoo (Jake) Jeong Blog</h1>
@@ -47,9 +35,7 @@ const BlogLearnPostsTemplate = ({
 
 export default BlogLearnPostsTemplate;
 
-export const Head = ({ data }: PageProps<mdxDataProps>) => (
-  <SEO title={data.mdx.frontmatter.title} />
-);
+export const Head = ({ data }: PageProps<TQueryMdx>) => <SEO title={data.mdx.frontmatter.title} />;
 
 export const query = graphql`
   query ($id: String) {

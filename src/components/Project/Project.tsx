@@ -1,38 +1,12 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import * as classes from "./Project.module.scss";
+import { IProjectProps } from "@/types/components/project/project";
 
-interface PropType {
-  hrefSrc: string;
-  linkLabel: string;
-  imgSrc: string;
-  imgAlt: string;
-  role: ReactElement;
-  workType: ReactElement;
-  title: string;
-  description: ReactElement;
-  techStack: ReactElement;
-}
-
-const Project = ({
-  hrefSrc,
-  linkLabel,
-  imgSrc,
-  imgAlt,
-  role,
-  workType,
-  title,
-  description,
-  techStack,
-}: PropType) => {
+const Project = ({ hrefSrc, linkLabel, imgSrc, imgAlt, role, workType, title, description, techStack }: IProjectProps) => {
   return (
     <article className={classes.projectContainer}>
       <div className={classes.thumbnailContainer}>
-        <a
-          href={hrefSrc}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={linkLabel}
-        >
+        <a href={hrefSrc} target="_blank" rel="noopener noreferrer" aria-label={linkLabel}>
           <img src={imgSrc} alt={imgAlt} loading="lazy" />
         </a>
       </div>

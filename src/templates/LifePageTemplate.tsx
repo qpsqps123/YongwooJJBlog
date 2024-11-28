@@ -6,9 +6,9 @@ import useRenderPageNavLinks from "@/hooks/useRenderPageNavLinks";
 import { v4 as uuid } from "uuid";
 import { SEO } from "@/components/seo";
 import { IGatsbyImageData } from "gatsby-plugin-image";
-import Header from "@/components/Header/Header";
+import Header from "@/components/header/Header";
 import PagePostTemplate from "./PagePostTemplate";
-import Footer from "@/components/Footer/Footer";
+import Footer from "@/components/footer/Footer";
 
 interface AllMdxNodesProps {
   id: string;
@@ -37,10 +37,7 @@ interface PageContextType {
   currentPage: number;
 }
 
-const LifePageTemplate = ({
-  data,
-  pageContext,
-}: PageProps<AllMdxDataProps, PageContextType>) => {
+const LifePageTemplate = ({ data, pageContext }: PageProps<AllMdxDataProps, PageContextType>) => {
   const { numLifePages, currentPage } = pageContext;
   const { renderPageNavLinks } = useRenderPageNavLinks();
 
@@ -88,13 +85,7 @@ const LifePageTemplate = ({
       </li>
     );
 
-  const navPageArray = [
-    currentPage - 2,
-    currentPage - 1,
-    currentPage,
-    currentPage + 1,
-    currentPage + 2,
-  ];
+  const navPageArray = [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2];
 
   const navPageList = navPageArray.map((page) => {
     const isCurrentPage = page === currentPage;
@@ -114,9 +105,7 @@ const LifePageTemplate = ({
       return (
         <React.Fragment key={uuid()}>
           <li className={classes.currentPage}>1</li>
-          {numLifePages < 6
-            ? renderPageNavLinks(numLifePages - 1, 2, "life")
-            : renderPageNavLinks(4, 2, "life")}
+          {numLifePages < 6 ? renderPageNavLinks(numLifePages - 1, 2, "life") : renderPageNavLinks(4, 2, "life")}
         </React.Fragment>
       );
     } else if (isSecondPage) {
@@ -124,17 +113,13 @@ const LifePageTemplate = ({
         <React.Fragment key={uuid()}>
           {renderPageNavLinks(1, 1, "life")}
           <li className={classes.currentPage}>2</li>
-          {numLifePages < 6
-            ? renderPageNavLinks(numLifePages - 2, 3, "life")
-            : renderPageNavLinks(3, 3, "life")}
+          {numLifePages < 6 ? renderPageNavLinks(numLifePages - 2, 3, "life") : renderPageNavLinks(3, 3, "life")}
         </React.Fragment>
       );
     } else if (isLastBeforePage) {
       return (
         <React.Fragment key={uuid()}>
-          {numLifePages === 4
-            ? renderPageNavLinks(2, 1, "life")
-            : renderPageNavLinks(3, numLifePages - 4, "life")}
+          {numLifePages === 4 ? renderPageNavLinks(2, 1, "life") : renderPageNavLinks(3, numLifePages - 4, "life")}
           <li className={classes.currentPage}>{numLifePages - 1}</li>
           {renderPageNavLinks(1, numLifePages, "life")}
         </React.Fragment>
@@ -161,11 +146,7 @@ const LifePageTemplate = ({
     }
 
     if (isRestPages) {
-      return (
-        <React.Fragment key={uuid()}>
-          {renderPageNavLinks(1, page, "life")}
-        </React.Fragment>
-      );
+      return <React.Fragment key={uuid()}>{renderPageNavLinks(1, page, "life")}</React.Fragment>;
     }
   });
 

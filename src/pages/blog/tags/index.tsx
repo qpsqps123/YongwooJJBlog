@@ -1,34 +1,27 @@
 import React, { useLayoutEffect, useState } from "react";
 import { SEO } from "@/components/seo";
-import Header from "@/components/Header/Header";
+import Header from "@/components/header/Header";
 import * as classes from "./TagsPage.module.scss";
-import Tag from "@/components/Blog/Tags/Tag";
-import { graphql } from "gatsby";
+import Tag from "@/components/blog/tags/Tag";
+import { graphql, Page, PageProps } from "gatsby";
 import PagePostTemplate from "@/templates/PagePostTemplate";
-import Footer from "@/components/Footer/Footer";
+import Footer from "@/components/footer/Footer";
+import { TQueryAllMdx } from "@/types/api/query";
 
-const TagsPage = ({ data, location }) => {
-  const [selectedTag, setSeletedTag] = useState<string | null>(null);
+const TagsPage = ({ data, location }: PageProps<TQueryAllMdx>) => {
+  const [selectedTag, setSeletedTag] = useState<string>("");
 
   const query = new URLSearchParams(location.search);
   const pressedTagFromPost = query?.get("tag");
 
   useLayoutEffect(() => {
-    setSeletedTag(() => pressedTagFromPost);
+    if (pressedTagFromPost) setSeletedTag(() => pressedTagFromPost);
   }, [pressedTagFromPost]);
 
   const posts = data.allMdx.nodes;
-  const tags = Array.from(
-    new Set(
-      posts
-        .flatMap((post) => post.frontmatter.tags || [])
-        .filter((tag) => tag != null)
-    )
-  );
+  const tags = Array.from(new Set(posts.flatMap((post) => post.frontmatter.tags || []).filter((tag) => tag != null)));
 
-  const selectedTagPosts = posts?.filter((post) =>
-    post.frontmatter.tags?.includes(selectedTag)
-  );
+  const selectedTagPosts = posts?.filter((post) => post.frontmatter.tags?.includes(selectedTag));
 
   return (
     <React.Fragment>
@@ -39,12 +32,7 @@ const TagsPage = ({ data, location }) => {
           <ul className={classes.tagsList}>
             {tags.map((tag) => (
               <li>
-                <Tag
-                  tagName={tag}
-                  className={`${classes.tag} ${
-                    tag === selectedTag && classes.tagSelected
-                  }`}
-                />
+                <Tag tagName={tag} className={`${classes.tag} ${tag === selectedTag && classes.tagSelected}`} />
               </li>
             ))}
           </ul>
