@@ -5,7 +5,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Tag from "@/components/blog/tags/Tag";
 import { TQueryAllMdxNode } from "@/types/api/query";
 
-export default function PagePostTemplate({ node }: TQueryAllMdxNode) {
+export default function PagePostTemplate({ node }: { node: TQueryAllMdxNode }) {
   return (
     <article key={node.id}>
       <section className={classes.post}>

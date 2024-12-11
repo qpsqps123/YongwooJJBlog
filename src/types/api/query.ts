@@ -7,21 +7,19 @@ export type TQueryAllMdx = {
 };
 
 export type TQueryAllMdxNode = {
-  node: {
-    frontmatter: {
-      title: string;
-      date: string;
-      slug: string;
-      post: string;
-      tags: string[];
-      featuredImage: IGatsbyImageData & {
-        childImageSharp: any;
-      };
+  frontmatter: {
+    title: string;
+    date: string;
+    slug: string;
+    post: string;
+    tags: string[];
+    featuredImage: IGatsbyImageData & {
+      childImageSharp: any;
     };
-    id: string;
-    excerpt: string;
-    body: string;
   };
+  id: string;
+  excerpt: string;
+  body: string;
 };
 
 export type TQueryMdx = {

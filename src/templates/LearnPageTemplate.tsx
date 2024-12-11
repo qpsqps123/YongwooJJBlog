@@ -131,8 +131,8 @@ const LearnPageTemplate = ({ data, pageContext }: PageProps<TQueryAllMdx, TQuery
         <main className={classes.mainContainer}>
           <h2 className="a11yHidden">Learn Board</h2>
           <section className={classes.postsContainer} aria-label="게시물">
-            {data.allMdx.nodes.map((post) => (
-              <PagePostTemplate key={post.node.id} node={post.node} />
+            {data.allMdx.nodes.map((node) => (
+              <PagePostTemplate key={node.id} node={node} />
             ))}
           </section>
           <nav aria-label="게시물 페이지 네비게이션">
