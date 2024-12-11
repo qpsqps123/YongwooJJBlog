@@ -30,7 +30,7 @@ export default function PagePostTemplate({ node }: { node: TQueryAllMdxNode }) {
           <p className={classes.excerpt}>{node.excerpt}</p>
           <ul className={classes.tagList}>
             {node.frontmatter.tags?.map((tag) => (
-              <li key={tag}>
+              <li key={node.id}>
                 <Tag tagName={tag} className={classes.tag} />
               </li>
             ))}
