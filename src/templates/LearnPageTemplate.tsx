@@ -5,38 +5,12 @@ import * as classes from "@/styles/templates/BlogPageTemplate.module.scss";
 import useRenderPageNavLinks from "@/hooks/useRenderPageNavLinks";
 import { v4 as uuid } from "uuid";
 import { SEO } from "@/components/seo";
-import { IGatsbyImageData } from "gatsby-plugin-image";
 import Header from "@/components/header/Header";
 import PagePostTemplate from "./PagePostTemplate";
 import Footer from "@/components/footer/Footer";
+import { TQueryPageContext, TQueryAllMdx } from "@/types/api/query";
 
-interface AllMdxNodesProps {
-  id: string;
-  excerpt: string;
-  frontmatter: {
-    title: string;
-    date: string;
-    slug: string;
-    post: string;
-    featuredImage: IGatsbyImageData & {
-      childImageSharp: any;
-    };
-  };
-}
-interface AllMdxDataProps {
-  allMdx: {
-    nodes: AllMdxNodesProps[];
-  };
-}
-
-interface PageContextType {
-  limit: number;
-  skip: number;
-  numLearnPages: number;
-  currentPage: number;
-}
-
-const LearnPageTemplate = ({ data, pageContext }: PageProps<AllMdxDataProps, PageContextType>) => {
+const LearnPageTemplate = ({ data, pageContext }: PageProps<TQueryAllMdx, TQueryPageContext>) => {
   const { numLearnPages, currentPage } = pageContext;
   const { renderPageNavLinks } = useRenderPageNavLinks();
 
@@ -157,8 +131,8 @@ const LearnPageTemplate = ({ data, pageContext }: PageProps<AllMdxDataProps, Pag
         <main className={classes.mainContainer}>
           <h2 className="a11yHidden">Learn Board</h2>
           <section className={classes.postsContainer} aria-label="게시물">
-            {data.allMdx.nodes.map((node) => (
-              <PagePostTemplate postNode={node} />
+            {data.allMdx.nodes.map((post) => (
+              <PagePostTemplate key={post.node.id} node={post.node} />
             ))}
           </section>
           <nav aria-label="게시물 페이지 네비게이션">

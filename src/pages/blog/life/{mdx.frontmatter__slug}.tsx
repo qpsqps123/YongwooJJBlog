@@ -20,7 +20,7 @@ const BlogLifePostsTemplate = ({ data, children }: PageProps<TQueryMdx>) => {
           <section className={classes.content}>{children}</section>
           <ul className={classes.tagList}>
             {data.mdx.frontmatter.tags?.map((tag) => (
-              <li>
+              <li key={tag}>
                 <Tag tagName={tag} className={classes.tag} />
               </li>
             ))}

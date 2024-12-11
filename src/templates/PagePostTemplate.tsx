@@ -3,17 +3,18 @@ import * as classes from "@/styles/templates/PagePostTempplate.module.scss";
 import { Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Tag from "@/components/blog/tags/Tag";
+import { TQueryAllMdxNode } from "@/types/api/query";
 
-export default function PagePostTemplate({ postNode }) {
+export default function PagePostTemplate({ node }: TQueryAllMdxNode) {
   return (
-    <article key={postNode.id}>
+    <article key={node.id}>
       <section className={classes.post}>
         <div>
-          {postNode.frontmatter.featuredImage?.childImageSharp ? (
-            <Link to={`/blog/life/${postNode.frontmatter.slug}`}>
+          {node.frontmatter.featuredImage?.childImageSharp ? (
+            <Link to={`/blog/${node.frontmatter.post}/${node.frontmatter.slug}`}>
               <GatsbyImage
-                image={getImage(postNode.frontmatter.featuredImage)}
-                alt={`${postNode.frontmatter.title} thumbnail`}
+                image={getImage(node.frontmatter.featuredImage)}
+                alt={`${node.frontmatter.title} thumbnail`}
                 className={classes.postImage}
               />
             </Link>
@@ -23,13 +24,13 @@ export default function PagePostTemplate({ postNode }) {
         </div>
         <div className={classes.postCaption}>
           <h3>
-            <Link to={`/blog/life/${postNode.frontmatter.slug}`}>{postNode.frontmatter.title}</Link>
+            <Link to={`/blog/${node.frontmatter.post}/${node.frontmatter.slug}`}>{node.frontmatter.title}</Link>
           </h3>
-          <p className={classes.date}>Posted: {postNode.frontmatter.date}</p>
-          <p className={classes.excerpt}>{postNode.excerpt}</p>
+          <p className={classes.date}>Posted: {node.frontmatter.date}</p>
+          <p className={classes.excerpt}>{node.excerpt}</p>
           <ul className={classes.tagList}>
-            {postNode.frontmatter.tags?.map((tag) => (
-              <li>
+            {node.frontmatter.tags?.map((tag) => (
+              <li key={tag}>
                 <Tag tagName={tag} className={classes.tag} />
               </li>
             ))}

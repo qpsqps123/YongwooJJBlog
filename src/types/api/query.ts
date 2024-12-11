@@ -1,19 +1,26 @@
+import { IGatsbyImageData } from "gatsby-plugin-image";
+
 export type TQueryAllMdx = {
   allMdx: {
-    nodes: [
-      {
-        frontmatter: {
-          title: string;
-          date: string;
-          slug: string;
-          post: string;
-          tags: string[];
-        };
-        body: string;
-        id: string;
-        excerpt: string;
-      }
-    ];
+    nodes: TQueryAllMdxNode[];
+  };
+};
+
+export type TQueryAllMdxNode = {
+  node: {
+    frontmatter: {
+      title: string;
+      date: string;
+      slug: string;
+      post: string;
+      tags: string[];
+      featuredImage: IGatsbyImageData & {
+        childImageSharp: any;
+      };
+    };
+    id: string;
+    excerpt: string;
+    body: string;
   };
 };
 
@@ -25,4 +32,12 @@ export type TQueryMdx = {
       tags: string[];
     };
   };
+};
+
+export type TQueryPageContext = {
+  limit: number;
+  skip: number;
+  numLifePages: number;
+  numLearnPages: number;
+  currentPage: number;
 };
