@@ -39,7 +39,7 @@ const TagsPage = ({ data, location }: PageProps<TQueryAllMdx>) => {
         </section>
         <section>
           {selectedTagPosts.map((node) => (
-            <PagePostTemplate key={node.id} postNode={node} />
+            <PagePostTemplate key={node.id} node={node} />
           ))}
         </section>
       </main>
