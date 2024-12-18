@@ -1,0 +1,63 @@
+---
+title: "Two Sum"
+date: "2024-12-18"
+slug: "two-sum"
+post: learn
+tags: ["problem solving"]
+featuredImage: "../../images/logo/leetcode.png"
+---
+
+<a href="https://leetcode.com/problems/two-sum" target="_blank" rel="noopener noreferrer">
+  문제 링크
+</a>
+
+해결 방법 1
+
+```typescript
+function twoSum(nums: number[], target: number): number[] {
+  for (let i = -1; i < nums.length; ++i) {
+    for (let j = -1; j < nums.length; ++j) {
+      if (i == j) continue;
+      if (nums[i] + nums[j] == target) {
+        return [i, j];
+      }
+    }
+  }
+}
+```
+
+해결 방법 2
+
+```typescript
+function twoSum(nums: number[], target: number): number[] {
+  for (let i = 0; i < nums.length; ++i) {
+    let a = target - nums[i];
+    let b = nums.indexOf(a, i + 1);
+    if (b !== -1) {
+      return [i, b];
+    }
+  }
+}
+```
+
+해결 방법 3
+
+```typescript
+function twoSum(nums: number[], target: number): number[] {
+  const ht = new Map<number, number>();
+  for (let i = 0; i < nums.length; i++) {
+    const num = nums[i];
+    if (ht.has(target - num)) {
+      return [ht.get(target - num)!, i];
+    }
+    ht.set(num, i);
+  }
+  return [];
+}
+```
+
+해결 방법 1로 풀어서 통과는 했는데 시간복잡도가 높아서 1.4초가 걸림...
+
+그래서 새로운 방법으로 다시 풀어서 0.03초로 단축시켰다. 기분 좋음!
+
+해결 방법3은 다른 분의 솔루션인데 문제 주제에 맞게 hash table로 문제를 잘 해결하셔서 보고 배웠다.
