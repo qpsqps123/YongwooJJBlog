@@ -1,0 +1,159 @@
+---
+title: "Roman to Integer"
+date: "2024-12-20"
+slug: "roman-to-integer"
+post: learn
+tags: ["problem solving", "leetcode"]
+featuredImage: "../../images/logo/leetcode.png"
+---
+
+<a href="https://leetcode.com/problems/roman-to-integer/description/" target="_blank" rel="noopener noreferrer">
+  문제 링크
+</a>
+
+해결 방법 1
+
+```typescript
+function romanToInt(s: string): number {
+  let str = s;
+  let res = 0;
+
+  if (str.includes("IV")) {
+    res += 4;
+    str = str.replace("IV", "");
+  } else if (str.includes("V")) {
+    res += 5;
+    str = str.replace("V", "");
+  }
+
+  if (str.includes("IX")) {
+    res += 9;
+    str = str.replace("IX", "");
+  }
+
+  if (str.includes("XL")) {
+    res += 40;
+    str = str.replace("XL", "");
+  } else if (str.includes("L")) {
+    res += 50;
+    str = str.replace("L", "");
+  }
+
+  if (str.includes("XC")) {
+    res += 90;
+    str = str.replace("XC", "");
+  }
+
+  if (str.includes("CD")) {
+    res += 400;
+    str = str.replace("CD", "");
+  } else if (str.includes("D")) {
+    res += 500;
+    str = str.replace("D", "");
+  }
+
+  if (str.includes("CM")) {
+    res += 900;
+    str = str.replace("CM", "");
+  }
+
+  if (str.includes("I")) {
+    let arr = [...str.matchAll(/(I)/g)];
+    res += arr.length;
+  }
+
+  if (str.includes("X")) {
+    let arr = [...str.matchAll(/(X)/g)];
+    res += arr.length * 10;
+  }
+
+  if (str.includes("C")) {
+    let arr = [...str.matchAll(/(C)/g)];
+    res += arr.length * 100;
+  }
+
+  if (str.includes("M")) {
+    let arr = [...str.matchAll(/(M)/g)];
+    res += arr.length * 1000;
+  }
+
+  return res;
+}
+```
+
+상당히 코드가 긴 해결 방법이다. 순회 비교 로직도 많이 들어가 있다.
+처음에 직관적으로 switch문을 쓰면 더 좋은 방법이 나올 것 같았는데, 일단은 생각나는대로 하다보니 이런 코드가 나왔다.
+어찌됐든 테스트 통과도 했고 성능도 그리 나쁘게 나오지는 않았지만, 만족스럽지 못한 코드다.
+
+해결 방법 2
+
+```typescript
+function romanToInt(s: string): number {
+  let ans = 0;
+  let num = 0;
+  let prev = 0;
+
+  for (let i = s.length - 1; i >= 0; --i) {
+    /* prettier-ignore */
+    switch (s[i]) {
+      case 'M': num = 1000; break;
+      case 'D': num = 500; break;
+      case 'C': num = 100; break;
+      case 'L': num = 50; break;
+      case 'X': num = 10; break;
+      case 'V': num = 5; break;
+      case 'I': num = 1; break;
+    }
+
+    if (num < prev) {
+      ans -= num;
+    } else {
+      ans += num;
+    }
+    prev = num;
+  }
+
+  return ans;
+}
+```
+
+입력 값을 뒤에서부터 순회하면서 최종 반환 값을 누적시켜 나가는 방법이다.
+로마숫자 표기법의 특징상 I를 제외한 표기들의 이전 값을 나타낼 때,
+자릿수에 따라 자릿수의 최소 표기들(I: 1, X: 10, C: 100. 이 문제의 세계관에서는 M까지 밖에 없음)을 표기 앞에 붙여주는데
+이 경우를 처리해주는 로직을 추가해줘야 한다.
+그래서 이전 값을 담을 변수를 하나 선언하고 다음 값과 비교해서 다음 값이 더 작으면 다음 값을 누적 값에서 빼주는 로직을 추가했다.
+
+이 결과, 가독성도 좋고 성능도 더 좋은 코드가 되었다.
+
+해결 방법 3 (C++)
+
+```cpp
+class Solution {
+public:
+    int romanToInt(string s) {
+        unordered_map<char, int> m;
+
+        m['I'] = 1;
+        m['V'] = 5;
+        m['X'] = 10;
+        m['L'] = 50;
+        m['C'] = 100;
+        m['D'] = 500;
+        m['M'] = 1000;
+
+        int ans = 0;
+
+        for(int i = 0; i < s.length(); i++){
+            if(m[s[i]] < m[s[i+1]]){
+                ans -= m[s[i]];
+            }
+            else{
+                ans += m[s[i]];
+            }
+        }
+        return ans;
+    }
+};
+```
+
+다른 분이 해시맵으로 해결한 방법이다. 좋다.
