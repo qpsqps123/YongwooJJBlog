@@ -26,6 +26,8 @@ function twoSum(nums: number[], target: number): number[] {
 }
 ```
 
+해결 방법 1로 풀어서 통과는 했는데 시간복잡도가 높아서 1.4초가 걸림...
+
 해결 방법 2
 
 ```typescript
@@ -39,6 +41,8 @@ function twoSum(nums: number[], target: number): number[] {
   }
 }
 ```
+
+그래서 새로운 방법으로 다시 풀어서 0.03초로 단축시켰다. 기분 좋음!
 
 해결 방법 3
 
@@ -55,9 +59,5 @@ function twoSum(nums: number[], target: number): number[] {
   return [];
 }
 ```
-
-해결 방법 1로 풀어서 통과는 했는데 시간복잡도가 높아서 1.4초가 걸림...
-
-그래서 새로운 방법으로 다시 풀어서 0.03초로 단축시켰다. 기분 좋음!
 
 해결 방법3은 다른 분의 솔루션인데 문제 주제에 맞게 hash table로 문제를 잘 해결하셔서 보고 배웠다.
