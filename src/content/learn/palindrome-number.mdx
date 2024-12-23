@@ -1,0 +1,51 @@
+---
+title: "Palindrome Number"
+date: "2024-12-19"
+slug: "palindrome-number"
+post: learn
+tags: ["problem solving", "leetcode"]
+featuredImage: "../../images/logo/leetcode.png"
+---
+
+<a href="https://leetcode.com/problems/palindrome-number/description/" target="_blank" rel="noopener noreferrer">
+  문제 링크
+</a>
+
+해결 방법 1
+
+```typescript
+function isPalindrome(x: number): boolean {
+  const strX = x.toString();
+  let revStrX = "";
+  for (let i = strX.length - 1; i >= 0; i--) {
+    revStrX += strX[i];
+  }
+  if (strX === revStrX) {
+    return true;
+  } else {
+    return false;
+  }
+}
+```
+
+해결 방법 2 (Java)
+
+```java
+class Solution {
+    public boolean isPalindrome(int x) {
+        if (x < 0) {
+            return false;
+        }
+        long reversed = 0;
+        long temp = x;
+        while (temp != 0) {
+            int digit = (int) (temp % 10);
+            reversed = reversed * 10 + digit;
+            temp /= 10;
+        }
+        return (reversed == x);
+    }
+}
+```
+
+해결 방법 2는 다른 분의 풀이인데 나누기와 나머지 연산자를 이용해 잘 해결하셨다.
