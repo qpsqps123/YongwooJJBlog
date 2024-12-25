@@ -1,0 +1,80 @@
+---
+title: "Add Two Numbers"
+date: "2024-12-21"
+slug: "leetcode/add-two-numbers"
+post: learn
+tags: ["problem solving", "leetcode"]
+featuredImage: "../../../images/logo/leetcode.png"
+---
+
+<a href="https://leetcode.com/problems/add-two-numbers/description/" target="_blank" rel="noopener noreferrer">
+  문제 링크
+</a>
+
+해결 방법 1
+
+```typescript
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
+  const l1Length = getLength(l1);
+  const l2Length = getLength(l2);
+
+  let l1ToRevStr = "";
+  for (let i = l1Length - 1; i >= 0; --i) {
+    l1ToRevStr = l1.val + l1ToRevStr;
+    l1 = l1.next;
+  }
+
+  let l2ToRevStr = "";
+  for (let i = l2Length - 1; i >= 0; --i) {
+    l2ToRevStr = l2.val + l2ToRevStr;
+    l2 = l2.next;
+  }
+
+  let sumRevLists = BigInt(l1ToRevStr) + BigInt(l2ToRevStr);
+  let revSumRevLists = sumRevLists.toString().split("").reverse().join("");
+
+  let head = new ListNode(Number(revSumRevLists[0]));
+  let tail = head;
+
+  for (let i = 1; i < revSumRevLists.length; ++i) {
+    tail.next = new ListNode(Number(revSumRevLists[i]));
+    tail = tail.next;
+  }
+
+  return head;
+
+  function getLength(head: ListNode | null): number {
+    let count = 0;
+    let current = head;
+
+    while (current) {
+      count++;
+      current = current.next;
+    }
+
+    return count;
+  }
+}
+```
+
+연결리스트 문제다. 먼저 주어진 두 연결리스트 인자의 길이를 구해주는 함수를 만들었다.
+그리고 이를 이용해 두 연결리스트 인자를 뒤집은 문자열로 만들고, 두 문자열을 숫자로 변환해 더한 뒤 문자열로 다시 변환해 뒤집었다.
+최종적으로 이 값을 연결리스트로 만들고 결과 값으로 반환해줘야 한다.
+그러므로 연결리스트의 head를 먼저 만들고 그 뒤로 연결시켜나갈 tail을 만들어 뒤를 이어주고, 해당 최종 값을 반환한다.
+
+연결리스트 자료구조의 개념과 활용 방법을 이번 문제를 풀면서 알게 되었는데, 흥미로웠다.
+처음에는 head와 tail을 사용하는 이유와 방법에 대해서 모르고 있었어서 tail 없이 head만 사용했는데(참고로 이전에는 변수명이 head, tail이 아니었음), 그랬더니 새로 추가한 노드가 계속해서 이전 노드를 덮어쓰는 결과가 나왔다.
+그 이유는 이전 노드를 참조하는 참조 값이 계속해서 덮어씌어지기 때문인데, 이는 참조 연결이 끊어지는 결과를 만든다.
+참조 연결을 유지해 주기 위해서는 연결리스트를 시작하는 노드를 가리키는 포인터와 이동하며 이전 노드와 다음 노드를 연결시키는 포인터로 나누어야 한다.
