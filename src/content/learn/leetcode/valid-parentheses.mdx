@@ -1,0 +1,118 @@
+---
+title: "Valid Parentheses"
+date: "2024-12-23"
+slug: "leetcode/valid-parentheses"
+post: learn
+tags: ["problem solving", "leetcode"]
+featuredImage: "../../../images/logo/leetcode.png"
+---
+
+<a href="https://leetcode.com/problems/valid-parentheses/description/" target="_blank" rel="noopener noreferrer">
+  문제 링크
+</a>
+
+해결 방법 1
+
+```typescript
+function isValid(s: string): boolean {
+  const h = new Map();
+  const a = [];
+
+  h.set("(", 1);
+  h.set("{", 2);
+  h.set("[", 3);
+  h.set(")", "1");
+  h.set("}", "2");
+  h.set("]", "3");
+
+  for (let i = 0; i < s.length; ++i) {
+    if (typeof h.get(s[i]) === "number") {
+      a.push(s[i]);
+      if (s[i + 1]) {
+        continue;
+      } else {
+        return false;
+      }
+    }
+    if (Number(h.get(s[i])) === h.get(a[a.length - 1])) {
+      a.pop();
+    } else {
+      return false;
+    }
+  }
+  if (a.length) {
+    return false;
+  } else {
+    return true;
+  }
+}
+```
+
+스택 자료구조를 활용하는 문제다. 나는 해시 테이블도 활용해서 풀었다. 형변환을 이용했다.
+그런데 이 방법으로 해보니 디버깅이 어려워진다. 로그로 찍었을 때 타입이 달라도 같아보인다. 타입도 확인해야 해서 손이 더 간다.
+해시 테이블을 연습해보고 싶어서 활용해 풀어봤는데 그다지 좋은 방법은 아닌 것 같다.
+
+해결 방법 2
+
+```javascript
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function (s) {
+  let stack = []; // create an empty stack to store opening brackets
+  for (let c of s) {
+    // loop through each character in the string
+    if (c === "(" || c === "{" || c === "[") {
+      // if the character is an opening bracket
+      stack.push(c); // push it onto the stack
+    } else {
+      // if the character is a closing bracket
+      if (
+        !stack.length || // if the stack is empty or
+        (c === ")" && stack[stack.length - 1] !== "(") || // the closing bracket doesn't match the corresponding opening bracket at the top of the stack
+        (c === "}" && stack[stack.length - 1] !== "{") ||
+        (c === "]" && stack[stack.length - 1] !== "[")
+      ) {
+        return false; // the string is not valid, so return false
+      }
+      stack.pop(); // otherwise, pop the opening bracket from the stack
+    }
+  }
+  return !stack.length; // if the stack is empty, all opening brackets have been matched with their corresponding closing brackets,
+  // so the string is valid, otherwise, there are unmatched opening brackets, so return false
+};
+```
+
+다른 분이 푸신 코드다. 해시 테이블이 없으니 더 직관적인 것 같다. 게다가 조건을 더 간결하고 정돈되게 걸어서 가독성이 더 좋다.
+핵심 로직은 같다.
+
+개선된 해결 방법 1
+
+```typescript
+function isValid(s: string): boolean {
+  const h = new Map();
+  const a = [];
+
+  h.set("(", 1);
+  h.set("{", 2);
+  h.set("[", 3);
+  h.set(")", "1");
+  h.set("}", "2");
+  h.set("]", "3");
+
+  for (let i = 0; i < s.length; ++i) {
+    if (typeof h.get(s[i]) === "number") {
+      a.push(s[i]);
+    } else {
+      if (!a.length || Number(h.get(s[i])) !== h.get(a[a.length - 1])) {
+        return false;
+      }
+      a.pop();
+    }
+  }
+  return !a.length;
+}
+```
+
+이 분 코드를 참고해서 조금 더 간결하게 바꿔봤다. 이렇게 보니까 나쁘지 않은 듯?
