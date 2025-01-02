@@ -1,0 +1,39 @@
+---
+title: "Remove Element"
+date: "2024-12-26"
+slug: "leetcode/remove-element"
+post: learn
+tags: ["problem solving", "leetcode"]
+featuredImage: "../../../images/logo/leetcode.png"
+---
+
+<a href="https://leetcode.com/problems/remove-element/description/" target="_blank" rel="noopener noreferrer">
+  문제 링크
+</a>
+
+해결 방법 1
+
+```typescript
+function removeElement(nums: number[], val: number): number {
+  let k = 0;
+
+  for (let i = 0; i < nums.length; ++i) {
+    if (nums[i] !== val) {
+      nums[k] = nums[i];
+      k++;
+    }
+  }
+  return k;
+}
+```
+
+어제 풀었던 Remove Duplicates From Sorted Array 문제와 거의 비슷한 문제다.
+
+필요한 건 다음과 같다.
+
+1. 숫자 배열 nums 요소들 중 두 번째 인자 val 값과 다른 값을 nums 앞쪽으로 배치해야 한다(순서는 상관없음).
+2. 다른 값의 개수를 반환한다.
+
+다른 값의 개수를 담을 변수 k를 선언한다. for 문을 돌면서 val 값과 다르면, k 값을 키 값으로 활용해 nums의 앞쪽부터 값을 할당해준다.
+값이 다를 때마다 k 값을 1 증가시킨다.
+for 문이 종료되면 k 값을 반환한다.
