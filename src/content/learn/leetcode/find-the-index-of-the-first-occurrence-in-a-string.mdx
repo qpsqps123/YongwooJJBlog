@@ -1,0 +1,177 @@
+---
+title: "Find the Index of the First Occurrence in a String"
+date: "2024-12-27"
+slug: "leetcode/find-the-index-of-the-first-occurrence-in-a-string"
+post: learn
+tags: ["problem solving", "leetcode"]
+featuredImage: "../../../images/logo/leetcode.png"
+---
+
+<a
+  href="https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/description/"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  문제 링크
+</a>
+
+해결 방법 1
+
+```typescript
+function strStr(haystack: string, needle: string): number {
+  let result = 0;
+  result = haystack.indexOf(needle);
+  return result;
+}
+```
+
+haystack(건초더미)으로 주어지는 문자열에 needle(바늘)로 주어진 문자열이 있는지 찾는 문제다.
+자바스크립트에서 제공해주는 indexOf를 사용하면 해결되는 아주 기본적인 문제다.
+
+해결 방법 2
+
+```typescript
+function strStr(haystack: string, needle: string): number {
+  let result = -1;
+
+  for (let i = 0; i < haystack.length; ++i) {
+    if (haystack[i] === needle[0]) {
+      let j = i;
+      for (let k = 0; k < needle.length; ++k) {
+        if (needle[needle.length - 1] === haystack[j] && j - i === needle.length - 1) {
+          result = i;
+          return result;
+        } else if (needle[k] === haystack[j]) {
+          ++j;
+          continue;
+        } else {
+          break;
+        }
+      }
+    }
+  }
+
+  return result;
+}
+```
+
+indexOf를 사용하면 너무 간단해서 한 번 indexOf를 사용하지 않고 해결해봤다.
+result 기본 값을 -1을 주고 바늘을 못찾으면 그대로 -1이 반환되도록 했다.
+이중 for문을 사용한 게 마음에 들지는 않지만 다른 방법이 떠오르지 않아 일단 이렇게 해결했다.
+
+로직은 이렇다. haystack을 for 문으로 돌면서 needle의 첫 번째 문자와 같은 게 있는 지 찾는다.
+만약 발견하면 needle을 for 문으로 돌면서 마지막 문자까지 같은지 확인한다.
+만약 마지막까지 일치하면 그 시점의 haystack i(index) 값을 result 값에 할당하고 반환한다.
+
+성능이 안좋을 줄 알았는데, 테스트 케이스에서는 indexOf와 별 차이가 없었다.
+내가 짠 코드의 시간복잡도는 O(n \* m)이다. 최악의 경우 모든 문자열을 비교하기 때문이다.
+indexOf의 코드를 까보지는 않았고, chatGPT한테 물어보니 JS의 indexOf도 O(n \* m)이라고 한다.
+그래서 성능상 별 차이가 없게 나오는 듯하다.
+
+해결 방법 3
+
+```typescript
+function strStr(haystack: string, needle: string): number {
+  const lps = buildLPS(needle);
+
+  let i = 0;
+  let j = 0;
+
+  while (i < haystack.length) {
+    if (haystack[i] === needle[j]) {
+      i++;
+      j++;
+
+      if (j === needle.length) {
+        return i - j; // needle이 모두 일치하면 일치 시작 지점의 인덱스를 반환한다.
+      }
+    } else if (j > 0) {
+      j = lps[j - 1]; // ①
+      // j > 0 && haystack[i] !== needle[j]이면, 이전 인덱스(j - 1)에서 찾은 접두사-접미사 일치 길이를 활용한다.
+      // 그 일치 길이만큼 needle의 인덱스를 앞에서부터 건너뛰고, 거기서부터 다시 일치 비교한다.
+      // 쉽게 얘기해서 일치했던 부분까지 돌아가서 다시 검사하는 것이다.
+    } else {
+      i++;
+    }
+  }
+
+  return -1; // haystack에 일치하는 needle이 없으면 -1 반환한다.
+}
+
+// needle의 최대 일치 길이 값들을 담은 배열을 반환한다.
+function buildLPS(pattern: string): number[] {
+  const lps = new Array(pattern.length).fill(0); // 최대 일치 길이 값들을 담을 배열 생성.
+  let j = 0;
+  let i = 1;
+
+  while (i < pattern.length) {
+    if (pattern[i] === pattern[j]) {
+      j++; // 길이 값을 넣어줘야 하므로 j + 1을 먼저 해준다.
+      lps[i] = j; // 현재 i의 최대 일치 길이가 결정된다.
+      i++;
+    } else if (j > 0) {
+      j = lps[j - 1]; // 위 ①과 같은 맥락.
+    } else {
+      lps[i] = 0; // j = 0 && pattern[i] !== pattern[0]이므로 최대 일치 길이는 0이다.
+      i++;
+    }
+  }
+
+  return lps;
+}
+```
+
+위 방법은 대표적인 문자열 매칭 알고리즘 중 하나인 KMP다.
+KMP를 사용하면 O(n + m)의 시간복잡도로 문자열 매칭이 가능하다.
+haystack과 needle을 한 번씩만 순회하는 정도로 매칭이 가능한 것이다.
+
+KMP의 핵심 포인트는 접두사와 접미사가 같다면 그만큼 중간 비교를 건너뛰어 반복연산을 줄이는 것이다.
+
+A: abcabcabe
+
+B: abcabe
+
+이렇게 있고, A에 B를 비교해서 일치하는 부분을 찾는다고 치자.
+
+보면 앞부분 abcab까지 일치하고 c와 e가 불일치한다.
+앞서 사용했던 방법은 불일치하면 A의 b와 B의 a부터 다시 비교하기 시작한다.
+하지만 KMP는 abcab에서 접두사 ab와 접미사 ab가 일치하기 때문에, 그만큼 건너뛰고 접두사 ab의 뒤부터 다시 일치 매칭을 시작한다.
+
+이게 어떻게 가능할까?
+
+이는 최대 일치 길이(Longest Prefix Suffix, 줄여서 LPS) 테이블을 활용하면 가능하다.
+먼저 배열을 만든다. 그리고 B를 순회하면서, 각 인덱스에서 접두사와 접미사가 일치하는 최대 길이를 구해서 배열에 차례로 넣는다.
+B로 예를 들면 이렇다.
+
+a => 0
+
+ab => 0
+
+abc => 0
+
+abca => 1 (a 일치)
+
+abcab => 2 (ab 일치)
+
+abcabe => 0
+
+그러면 배열은 [0, 0, 0, 1, 2, 0] 으로 만들어진다. 이것이 최대 일치 길이 테이블이다.
+해결 방법 3에서 최대 일치 길이 테이블을 반환하는 함수가 buildLPS다.
+반환된 테이블을 활용해 보다 효율적으로 문자열 매칭을 할 수 있다.
+
+코드에 대한 설명을 주석으로 대략 달아두었다.
+자세한 설명은 다음 자료를 참고하면 좋다.
+영상으로 설명되어 있어 보다 쉽게 이해할 수 있다.
+
+<ul>
+  <li>
+    <a href="https://www.youtube.com/watch?v=yWWbLrV4PZ8&t" target="_blank" rel="noopener noreferrer">
+      동빈나님 유튜브
+    </a>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=pu2aO_3R118&t" target="_blank" rel="noopener noreferrer">
+      Visualization of Knuth-Morris-Pratt Algorithm by G Bhat
+    </a>
+  </li>
+</ul>
