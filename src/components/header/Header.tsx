@@ -29,29 +29,10 @@ const Header = () => {
     searchVisibilityRef,
     themeMenuVisibilityRef,
     themeButtonRef,
-    closeSearchButtonRef,
     tagBtnRef,
-    contactGithubIconRef,
   } = useContext(RefContext);
 
   useEffect(() => {
-    const checkThemeIsDark = document.body.classList.contains("dark-theme");
-
-    if (checkThemeIsDark) {
-      sideMenuButtonRef?.current?.classList.add("invertColor");
-      changeThemeButtonRef?.current?.classList.add("invertColor");
-      searchButtonRef?.current?.classList.add("invertColor");
-      closeSearchButtonRef?.current?.classList.add("invertColor");
-      tagBtnRef?.current?.classList.add("invertColor");
-      contactGithubIconRef?.current?.classList.add("invertColor");
-    } else if (!checkThemeIsDark) {
-      sideMenuButtonRef?.current?.classList.remove("invertColor");
-      changeThemeButtonRef?.current?.classList.remove("invertColor");
-      searchButtonRef?.current?.classList.remove("invertColor");
-      closeSearchButtonRef?.current?.classList.remove("invertColor");
-      tagBtnRef?.current?.classList.remove("invertColor");
-      contactGithubIconRef?.current?.classList.remove("invertColor");
-    }
   }, [themeChange]);
 
   const handleSideMenuClick = () => {
@@ -149,6 +130,7 @@ const Header = () => {
           <button
             type="button"
             ref={sideMenuButtonRef}
+            data-invert
             className={classes.sideMenuButton}
             onClick={handleSideMenuClick}
             aria-label="사이드 메뉴"

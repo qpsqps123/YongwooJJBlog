@@ -48,6 +48,7 @@ const SideMenu = () => {
           <button
             type="button"
             ref={searchButtonRef}
+            data-invert
             onClick={handleSearchButtonClick}
             onKeyDown={(e) => {
               if (!searchVisibilityRef?.current?.classList.contains("hide") && !e.shiftKey && e.key === "Tab") {
@@ -67,6 +68,7 @@ const SideMenu = () => {
           <button
             type="button"
             ref={changeThemeButtonRef}
+            data-invert
             className={classes.changeThemeButton}
             onClick={() => {
               themeMenuVisibilityRef?.current?.classList.toggle("hide");
@@ -86,7 +88,7 @@ const SideMenu = () => {
           <ThemeMenu />
         </li>
         <li>
-          <button type="button" ref={tagBtnRef} className={classes.tagBtn} onClick={() => navigate("/blog/tags")}>
+          <button type="button" ref={tagBtnRef} data-invert className={classes.tagBtn} onClick={() => navigate("/blog/tags")}>
             <StaticImage src="../../images/icon/tag.png" alt="태그 아이콘" width={20} height={20} />
           </button>
         </li>

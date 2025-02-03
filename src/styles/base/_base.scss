@@ -28,6 +28,12 @@ body {
     header[class*="Header"] {
       @include setHeaderBg($theme);
     }
+    
+    *[data-invert] {
+      img {
+        @include setImgInvert($theme);
+      }
+    }
   }
 }
 

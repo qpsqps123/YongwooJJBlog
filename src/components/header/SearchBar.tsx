@@ -40,7 +40,6 @@ const SearchBar = () => {
     searchVisibilityRef,
     searchButtonRef,
     searchInputRef,
-    closeSearchButtonRef,
     changeThemeButtonRef,
   } = useContext(RefContext);
 
@@ -173,7 +172,7 @@ const SearchBar = () => {
           </Formik>
           <button
             type="button"
-            ref={closeSearchButtonRef}
+            data-invert
             className={classes.closeSearchButton}
             onClick={() => {
               searchVisibilityRef?.current?.classList.toggle("hide");

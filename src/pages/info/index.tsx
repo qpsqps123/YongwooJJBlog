@@ -55,6 +55,7 @@ const InfoPage = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       ref={contactGithubIconRef}
+                      data-invert
                       aria-label="정용우 Github"
                     >
                       <StaticImage src="../../images/logo/logo-github-black.svg" alt="Github logo" width={25} height={25} />
