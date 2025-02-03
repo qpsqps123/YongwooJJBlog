@@ -7,6 +7,7 @@ import gdGif from "@/images/projects-thumbnail/thumbnail-gangnam-delivery.gif";
 import bcGif from "@/images/projects-thumbnail/thumbnail-braun-calculator.gif";
 import sgGif from "@/images/projects-thumbnail/thumbnail-simon-game.gif";
 import ybGif from "@/images/projects-thumbnail/thumbnail-yongwoojj-blog.png";
+import pdGif from "@/images/projects-thumbnail/thumbnail-poda.gif";
 import Header from "@/components/header/Header";
 import Project from "@/components/project/Project";
 import Footer from "@/components/footer/Footer";
@@ -19,6 +20,34 @@ const ProjectsPage = () => {
         <h1 className={classes.projectsHeading}>Projects</h1>
         <section className={classes.projectsContainer}>
             <ul className={classes.projects}>
+              <li>
+                <Project
+                  hrefSrc="https://poda.vercel.app/"
+                  linkLabel="PODA 프로젝트 페이지로 연결."
+                  imgSrc={pdGif}
+                  imgAlt="PODA thumbnail"
+                  role={
+                    <React.Fragment>
+                      <li>Development</li>
+                      <li>Design</li>
+                    </React.Fragment>
+                  }
+                  workType={<li>Collaborative work</li>}
+                  title="PODA"
+                  description={<p>일기를 빠르고 간편하게 작성하고, 같은 관심사를 가진 사람들과 교환해 볼 수 있는 메모 웹 앱.</p>}
+                  techStack={
+                    <React.Fragment>
+                      <li>TailwindCSS</li>
+                      <li>TypeScript</li>
+                      <li>React</li>
+                      <li>Next.js</li>
+                      <li>React Query</li>
+                      <li>Zustand</li>
+                      <li>Vercel</li>
+                    </React.Fragment>
+                  }
+                />
+              </li>
               <li>
                 <Project
                   hrefSrc="https://x-mas-gift-4-u-2023.vercel.app/"
