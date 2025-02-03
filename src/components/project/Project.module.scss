@@ -39,6 +39,36 @@
   }
 }
 
+.headingContainer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  gap: 10px;
+
+  h2 {
+    a {
+      color: $primary;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: $accent;
+    }
+
+    a:hover:global {
+      animation: colorPrimaryToAccent 0.3s;
+    }
+  }
+}
+
+.githubLink {
+  margin-right: 10px;
+  min-height: 20px;
+  min-width: 20px;
+}
+
 .title {
   margin-top: 5px;
 }

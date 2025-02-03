@@ -17,10 +17,12 @@ const Project = ({ deployHrefSrc, deployLinkLabel, imgSrc, imgAlt, role, workTyp
         </li>
         {workType}
       </ul>
-      <div>
-        <h2 className={classes.title}>{title}</h2>
-        <a href={githubHrefSrc} target="_blank" rel="noopener noreferrer" aria-label={githubLinkLabel}>
-          <StaticImage src="../../images/logo/logo-github-white.svg" alt="Github logo" width={25} height={25} />
+      <div className={classes.headingContainer}>
+        <h2 className={classes.title}>
+          <a href={deployHrefSrc} target="_blank" rel="noopener noreferrer">{title}</a>
+        </h2>
+        <a href={githubHrefSrc} className={classes.githubLink} target="_blank" rel="noopener noreferrer" aria-label={githubLinkLabel} >
+          <StaticImage src="../../images/logo/logo-github-black.svg" alt="Github logo" width={20} height={20} />
         </a>
       </div>
       {description}
