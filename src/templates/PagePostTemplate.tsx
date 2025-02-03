@@ -23,9 +23,9 @@ export default function PagePostTemplate({ node }: { node: TQueryAllMdxNode }) {
           )}
         </div>
         <div className={classes.postCaption}>
-          <h3>
+          <h2>
             <Link to={`/blog/${node.frontmatter.post}/${node.frontmatter.slug}`}>{node.frontmatter.title}</Link>
-          </h3>
+          </h2>
           <p className={classes.date}>Posted: {node.frontmatter.date}</p>
           <p className={classes.excerpt}>{node.excerpt}</p>
           <ul className={classes.tagList}>

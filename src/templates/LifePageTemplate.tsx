@@ -125,10 +125,9 @@ const LifePageTemplate = ({ data, pageContext }: PageProps<TQueryAllMdx, TQueryP
   return (
     <React.Suspense fallback="Loading...">
       <React.Fragment>
-        <h1 className="a11yHidden">Yongwoo (Jake) Jeong Blog</h1>
         <Header />
         <main className={classes.mainContainer}>
-          <h2 className="a11yHidden">Life Board</h2>
+          <h1 className="a11yHidden">Life Board</h1>
           <section className={classes.postsContainer} aria-label="게시물">
             {data.allMdx.nodes.map((node) => (
               <PagePostTemplate key={node.id} node={node} />

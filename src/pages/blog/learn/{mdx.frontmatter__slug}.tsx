@@ -11,11 +11,10 @@ import { TQueryMdx } from "@/types/api/query";
 const BlogLearnPostsTemplate = ({ data, children }: PageProps<TQueryMdx>) => {
   return (
     <React.Fragment>
-      <h1 className="a11yHidden">Yongwoo (Jake) Jeong Blog</h1>
       <Header />
       <main className={classes.mainContainer}>
         <article className={classes.post}>
-          <h2>{data.mdx.frontmatter.title}</h2>
+          <h1>{data.mdx.frontmatter.title}</h1>
           <p className={classes.date}>{data.mdx.frontmatter.date}</p>
           <section className={classes.content}>{children}</section>
           <ul className={classes.tagList}>
