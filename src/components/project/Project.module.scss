@@ -55,18 +55,7 @@
 }
 
 .githubLink {
-  font-size: 0.8em;
-  color: $secondary;
-  text-decoration: none;
   margin-left: 4px;
-
-  &:hover {
-    color: $accent;
-  }
-
-  &:hover:global {
-    animation: colorSecondaryToAccent 0.3s;
-  }
 }
 
 .title {

@@ -26,7 +26,7 @@ const Project = ({ deployHrefSrc, deployLinkLabel, imgSrc, imgAlt, role, workTyp
       </ul>
       <div>
         <a href={githubHrefSrc} className={classes.githubLink} data-invert target="_blank" rel="noopener noreferrer" aria-label={githubLinkLabel} >
-          github
+          <StaticImage src="../../images/logo/logo-github-black.svg" alt="Github logo" width={20} height={20} />
         </a>
       </div>
     </article>
