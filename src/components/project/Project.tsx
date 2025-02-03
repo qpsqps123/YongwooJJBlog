@@ -16,7 +16,7 @@ const Project = ({ hrefSrc, linkLabel, imgSrc, imgAlt, role, workType, title, de
         </li>
         {workType}
       </ul>
-      <h4 className={classes.title}>{title}</h4>
+      <h2 className={classes.title}>{title}</h2>
       {description}
       <ul className={classes.techStackContainer} aria-label="사용 기술">
         {techStack}

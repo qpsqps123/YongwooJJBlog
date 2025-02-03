@@ -14,10 +14,9 @@ import Footer from "@/components/footer/Footer";
 const ProjectsPage = () => {
   return (
     <React.Fragment>
-      <h1 className="a11yHidden">Yongwoo (Jake) Jeong Blog</h1>
       <Header />
       <main className={classes.mainContainer}>
-        <h2 className={classes.projectsHeading}>Projects</h2>
+        <h1 className={classes.projectsHeading}>Projects</h1>
         <section className={classes.projectsContainer}>
             <ul className={classes.projects}>
               <li>
