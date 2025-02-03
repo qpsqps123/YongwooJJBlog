@@ -12,7 +12,6 @@ const RefProvider = ({ children }: PropsWithChildren<{}>) => {
   const sideMenuButtonRef = useRef<HTMLButtonElement>(null);
   const changeThemeButtonRef = useRef<HTMLButtonElement>(null);
   const searchButtonRef = useRef<HTMLButtonElement>(null);
-  const closeSearchButtonRef = useRef<HTMLButtonElement>(null);
   const themeButtonRef = useRef<HTMLButtonElement[]>([]);
   const tagBtnRef = useRef<HTMLButtonElement>(null);
 
@@ -30,7 +29,6 @@ const RefProvider = ({ children }: PropsWithChildren<{}>) => {
         sideMenuButtonRef,
         changeThemeButtonRef,
         searchButtonRef,
-        closeSearchButtonRef,
         searchInputRef,
         themeButtonRef,
         tagBtnRef,

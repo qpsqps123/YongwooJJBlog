@@ -6,7 +6,6 @@ export interface IRefProps {
   sideMenuButtonRef?: React.RefObject<HTMLButtonElement>;
   changeThemeButtonRef?: React.RefObject<HTMLButtonElement>;
   searchButtonRef?: React.RefObject<HTMLButtonElement>;
-  closeSearchButtonRef?: React.RefObject<HTMLButtonElement>;
   themeButtonRef?: React.RefObject<HTMLButtonElement[]>;
   tagBtnRef?: React.RefObject<HTMLButtonElement>;
   searchInputRef?: React.RefObject<HTMLInputElement>;
