@@ -19,8 +19,6 @@ const ProjectsPage = () => {
       <main className={classes.mainContainer}>
         <h2 className={classes.projectsHeading}>Projects</h2>
         <section className={classes.projectsContainer}>
-          <section>
-            <h3 className={classes.years}>2023</h3>
             <ul className={classes.projects}>
               <li>
                 <Project
@@ -160,11 +158,6 @@ const ProjectsPage = () => {
                   }
                 />
               </li>
-            </ul>
-          </section>
-          <section>
-            <h3 className={classes.years}>2022</h3>
-            <ul className={classes.projects}>
               <li>
                 <Project
                   hrefSrc="https://qpsqps123.github.io/simon-game/"
@@ -193,7 +186,6 @@ const ProjectsPage = () => {
                 />
               </li>
             </ul>
-          </section>
         </section>
       </main>
       <Footer />
