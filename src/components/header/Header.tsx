@@ -100,10 +100,8 @@ const Header = () => {
 
   return (
     <header className={classes.header} ref={headerVisibilityRef}>
-      <h2 className="a11yHidden">Blog Navigation</h2>
       <nav className={classes.navigation}>
         <section className={classes.logo}>
-          <h3 className="a11yHidden">Logo</h3>
           <Link to="/info" aria-label="Yongwoo Jeong - 소개 페이지로 연결.">
             Yongwoo.
             <br />
@@ -111,7 +109,6 @@ const Header = () => {
           </Link>
         </section>
         <section className={classes.menuWrapper}>
-          <h3 className="a11yHidden">Navigation Menu</h3>
           <ul className={classes.menuContainer}>
             <li>
               <Link to="/info" className={infoMenuHoverColor} aria-label="Info - 소개 페이지로 연결.">
@@ -149,7 +146,6 @@ const Header = () => {
           </ul>
         </section>
         <section className={classes.sideMenuContainer}>
-          <h3 className="a11yHidden">Side Menu</h3>
           <button
             type="button"
             ref={sideMenuButtonRef}
