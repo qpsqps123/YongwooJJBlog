@@ -11,27 +11,26 @@ const InfoPage = () => {
 
   return (
     <React.Fragment>
-      <h1 className="a11yHidden">Yongwoo (Jake) Jeong Blog</h1>
       <Header />
       <main className={classes.mainContainer}>
         <section className={classes.introduce}>
-          <h2 className="a11yHidden">Profile</h2>
+          <h1 className="a11yHidden">Profile</h1 >
           <section className={classes.nameContainer}>
-            <h3 className="a11yHidden">Name</h3>
+            <h2 className="a11yHidden">Name</h2>
             <p className={classes.name}>Yongwoo (Jake) Jeong | 정용우</p>
           </section>
           <section className={classes.profilePhoto}>
-            <h3 className="a11yHidden">Profile Photo</h3>
+            <h2 className="a11yHidden">Profile Photo</h2 >
             <StaticImage src="../../images/profile/yongwoo-profile-v1.png" alt="정용우 프로필 사진" width={250} />
           </section>
           <div className={classes.RoleDescriptionContactContainer}>
             <div>
               <section>
-                <h3 className="a11yHidden">Role</h3>
+                <h2 className="a11yHidden">Role</h2 >
                 <p className={classes.role}>Front-end Developer</p>
               </section>
               <section>
-                <h3 className="a11yHidden">Description</h3>
+                <h2 className="a11yHidden">Description</h2 >
                 <p>
                   개발자지만 디자인에도 기웃거리고 기획에도 기웃거립니다.
                   <br />
@@ -49,7 +48,7 @@ const InfoPage = () => {
                 </p>
               </section>
               <section className={classes.contactContainer}>
-                <h3 className="a11yHidden">Contact</h3>
+                <h2 className="a11yHidden">Contact</h2 >
                 <ul>
                   <li>
                     <a
