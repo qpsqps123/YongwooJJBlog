@@ -26,6 +26,16 @@
   }
 }
 
+@keyframes colorSecondaryToAccent {
+  from {
+    color: $secondary;
+  }
+
+  to {
+    color: $accent;
+  }
+}
+
 @keyframes colorAccentToPrimary {
   from {
     color: $accent;
@@ -35,6 +45,7 @@
     color: $primary;
   }
 }
+
 
 @keyframes showSearchButtonAnimation {
   0% {
