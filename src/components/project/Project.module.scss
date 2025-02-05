@@ -6,21 +6,6 @@
   padding: 20px;
   gap: 5px;
 
-  h2 {
-    a {
-      color: $primary;
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: $accent;
-    }
-
-    a:hover:global {
-      animation: colorPrimaryToAccent 0.3s;
-    }
-  }
-
   p {
     font-size: rem(12px);
   }
@@ -60,6 +45,19 @@
 
 .title {
   margin-top: 5px;
+
+    a {
+      color: $primary;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: $accent;
+    }
+
+    a:hover:global {
+      animation: colorPrimaryToAccent 0.3s;
+    }
 }
 
 .techStackContainer {
