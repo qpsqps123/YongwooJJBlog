@@ -40,9 +40,9 @@ const SearchBar = () => {
     searchVisibilityRef,
     searchButtonRef,
     searchInputRef,
-    changeThemeButtonRef,
   } = useContext(RefContext);
 
+  /* 페이지네이션 */
   const { nodes: index } = data.allMdx;
 
   const store = index.filter(
@@ -130,6 +130,12 @@ const SearchBar = () => {
 
   const renderCurrentPageNum = hasCurrentResults && <span aria-label="Current page number">{pageNum}</span>;
 
+
+  /* 접근성 */
+  const handleBlur = () => {
+    searchButtonRef?.current?.focus();
+  }
+
   return (
     <div id="searchWrapper" className={`${"hide"}`} ref={searchVisibilityRef}>
       <search className={classes.searchContainer}>
@@ -177,7 +183,7 @@ const SearchBar = () => {
             onClick={() => {
               searchVisibilityRef?.current?.classList.toggle("hide");
               headerVisibilityRef?.current?.classList.toggle("handleHeaderHeightOverflow");
-              changeThemeButtonRef?.current?.focus();
+              searchButtonRef?.current?.focus();
             }}
             aria-label="검색창 닫기"
           >
@@ -199,9 +205,7 @@ const SearchBar = () => {
       <button
         className="a11yHidden"
         aria-hidden="true"
-        onFocus={() => {
-          changeThemeButtonRef?.current?.focus();
-        }}
+        onFocus={handleBlur}
       ></button>
     </div>
   );
