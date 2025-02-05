@@ -14,7 +14,7 @@ const BlogLearnPostsTemplate = ({ data, children }: PageProps<TQueryMdx>) => {
       <Header />
       <main className={classes.mainContainer}>
         <article className={classes.post}>
-          <h1>{data.mdx.frontmatter.title}</h1>
+          <h1 className={classes.title}>{data.mdx.frontmatter.title}</h1>
           <p className={classes.date}>{data.mdx.frontmatter.date}</p>
           <section className={classes.content}>{children}</section>
           <ul className={classes.tagList}>
