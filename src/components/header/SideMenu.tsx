@@ -10,7 +10,6 @@ const SideMenu = () => {
   const {
     headerVisibilityRef,
     sideMenuVisibilityRef,
-    sideMenuButtonRef,
     searchButtonRef,
     changeThemeButtonRef,
     tagBtnRef,
@@ -29,16 +28,6 @@ const SideMenu = () => {
     );
 
     searchInputRef?.current?.focus();
-  };
-
-  const handleChangeThemeButtonKeyDown = (e: React.KeyboardEvent) => {
-    if (themeMenuVisibilityRef?.current?.classList.contains("hide") && !e.shiftKey && e.key === "Tab") {
-      e.preventDefault();
-      sideMenuButtonRef?.current?.focus();
-    } else if (!searchVisibilityRef?.current?.classList.contains("hide") && e.shiftKey && e.key === "Tab") {
-      e.preventDefault();
-      searchInputRef?.current?.focus();
-    }
   };
 
   return (
@@ -78,7 +67,6 @@ const SideMenu = () => {
                 `${changeThemeButtonRef?.current?.getAttribute("aria-expanded") === "false"}`
               );
             }}
-            onKeyDown={handleChangeThemeButtonKeyDown}
             aria-label="테마 변경 메뉴"
             aria-controls="themeMenuContainer"
             aria-expanded="false"
