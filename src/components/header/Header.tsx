@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { useLocation } from "@reach/router";
 import { Link } from "gatsby";
 import * as classes from "./Header.module.scss";
@@ -28,12 +28,14 @@ const Header = () => {
     tagBtnRef,
   } = useContext(RefContext);
 
+  // 테마가 변경될 때 적용(리렌더링)되도록 만듬.
   useEffect(() => {
   }, [themeChange]);
 
   const handleSideMenuClick = () => {
     sideMenuVisibilityRef?.current?.classList.toggle("sideMenuPoped");
 
+    // 애니메이션 실행 중에 사이드 메뉴 버튼 클릭 방지.
     if (sideMenuButtonRef?.current && searchButtonRef?.current && changeThemeButtonRef?.current && tagBtnRef?.current) {
       preventClick([sideMenuButtonRef.current, searchButtonRef?.current, changeThemeButtonRef?.current, tagBtnRef?.current], 1.3);
     }
@@ -44,6 +46,7 @@ const Header = () => {
       themeMenuVisibilityRef?.current?.classList.add("hide");
       headerVisibilityRef?.current?.classList.remove("handleHeaderHeightOverflow");
 
+      // 애니메이션
       if (searchButtonRef?.current && changeThemeButtonRef?.current && tagBtnRef?.current) {
         animSideMenuFadeAway([searchButtonRef?.current, changeThemeButtonRef?.current, tagBtnRef?.current]);
       }
@@ -53,24 +56,37 @@ const Header = () => {
       }
     }
 
+    // 사이드 메뉴 접근성
     sideMenuButtonRef?.current?.setAttribute(
       "aria-expanded",
       `${sideMenuButtonRef?.current?.getAttribute("aria-expanded") === "false"}`
     );
   };
 
+  const sideMenuAnimInProgress = useRef(false)
+
+  const handleSideMenuButtonKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    // 애니메이션 실행 중 사이드 메뉴 버튼 키 입력 방지.
+    if (e.key === "Enter" || e.key === " ") {
+      if (sideMenuAnimInProgress.current) {
+        e.preventDefault();
+        return;
+      }
+
+      sideMenuAnimInProgress.current = true
+      setTimeout(() => {
+        sideMenuAnimInProgress.current = false
+      }, 1300);
+    }
+  }
+
+  // 헤더 네비게이션 메뉴 Accent 효과
   const infoMenuHoverColor = location.pathname.includes("/info/") ? classes.colorRed : "";
-
   const projectsMenuHoverColor = location.pathname.includes("/projects/") ? classes.colorRed : "";
-
   const blogMenuHoverColor = location.pathname.includes("/blog") ? classes.colorRed : "";
-
   const lifeMenuHoverColor = location.pathname.includes("/blog/life/") ? classes.colorRed : "";
-
   const learnMenuHoverColor = location.pathname.includes("/blog/learn/") ? classes.colorRed : "";
-
   const hideBlogSubmenu = location.pathname.includes("/blog") ? classes.blogSubmenuContainer : "hide";
-
   const blogSubmenuVisibility = location.pathname.includes("/blog") ? "true" : "false";
 
   return (
@@ -130,6 +146,7 @@ const Header = () => {
             aria-label="사이드 메뉴"
             aria-controls="sideMenuContainer"
             aria-expanded="false"
+            onKeyDown={handleSideMenuButtonKeyDown}
           >
             <StaticImage src="../../images/icon/hamburgerMenu.png" alt="햄버거 메뉴 아이콘" width={25} height={25} />
           </button>
