@@ -25,7 +25,6 @@ const Header = () => {
     searchButtonRef,
     searchVisibilityRef,
     themeMenuVisibilityRef,
-    themeButtonRef,
     tagBtnRef,
   } = useContext(RefContext);
 
@@ -131,17 +130,6 @@ const Header = () => {
             aria-label="사이드 메뉴"
             aria-controls="sideMenuContainer"
             aria-expanded="false"
-            onKeyDown={(e) => {
-              if (themeMenuVisibilityRef?.current?.classList.contains("hide") && e.shiftKey && e.key === "Tab") {
-                e.preventDefault();
-                changeThemeButtonRef?.current?.focus();
-              } else if (!themeMenuVisibilityRef?.current?.classList.contains("hide") && e.shiftKey && e.key === "Tab") {
-                e.preventDefault();
-                if (themeButtonRef?.current) {
-                  themeButtonRef.current[2].focus();
-                }
-              }
-            }}
           >
             <StaticImage src="../../images/icon/hamburgerMenu.png" alt="햄버거 메뉴 아이콘" width={25} height={25} />
           </button>
