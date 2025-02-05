@@ -8,9 +8,6 @@ const uiSlice = createSlice({
   name: "ui",
   initialState: initialUiState,
   reducers: {
-    detectThemeChange(state) {
-      state.themeChange = !state.themeChange;
-    },
   },
 });
 

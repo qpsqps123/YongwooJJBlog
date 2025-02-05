@@ -4,17 +4,14 @@ import { Link } from "gatsby";
 import * as classes from "./Header.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/store/store";
+import { RootState } from "@/store/store";
 import { RefContext } from "@/context/ref-context";
 import SideMenu from "@/components/header/SideMenu";
 import SearchBar from "@/components/header/SearchBar";
-import { useDispatch } from "react-redux";
-import uiSlice from "@/store/ui-slice";
 import { animSideMenuFadeAway, animSideMenuPop } from "@/animation/anim-side-menu";
 import { preventClick } from "@/animation/anim-utils";
 
 const Header = () => {
-  const useAppDispatch = useDispatch<AppDispatch>();
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
   const location = useLocation();
 
@@ -61,8 +58,6 @@ const Header = () => {
       "aria-expanded",
       `${sideMenuButtonRef?.current?.getAttribute("aria-expanded") === "false"}`
     );
-
-    useAppDispatch(uiSlice.actions.detectThemeChange());
   };
 
   const infoMenuHoverColor = location.pathname.includes("/info/") ? classes.colorRed : "";

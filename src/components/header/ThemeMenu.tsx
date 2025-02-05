@@ -1,13 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import * as classes from "./ThemeMenu.module.scss";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/store/store";
-import uiSlice from "@/store/ui-slice";
 import { RefContext } from "@/context/ref-context";
 
 const ThemeMenu = () => {
-  const useAppDispatch = useDispatch<AppDispatch>();
-
   const { themeMenuVisibilityRef, themeButtonRef, sideMenuButtonRef } = useContext(RefContext);
 
   useEffect(() => {
@@ -62,8 +57,6 @@ const ThemeMenu = () => {
       darkThemeButtonElement.classList.add(classes.isSelected);
       localStorage.setItem("theme", "dark");
     }
-
-    useAppDispatch(uiSlice.actions.detectThemeChange()); //  사용자 테마 변경 감지
   };
 
   return (
