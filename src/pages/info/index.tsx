@@ -17,9 +17,7 @@ const InfoPage = () => {
           <h1 className="a11yHidden">Profile</h1>
           <section className={classes.nameContainer}>
             <h2 className="a11yHidden">Name</h2>
-            <p className={`${classes.name} a11yHidden`}>
-              Yongwoo (Jake) Jeong | 정용우
-            </p>
+            <p className={classes.name}>정용우 | Yongwoo Jeong </p>
           </section>
           <section className={classes.profilePhoto}>
             <h2 className="a11yHidden">Profile Photo</h2>
@@ -33,11 +31,11 @@ const InfoPage = () => {
             <div>
               <section>
                 <h2 className="a11yHidden">Role</h2>
-                <p className={classes.role}>Front-end Developer</p>
+                <p className={classes.role}>Developer</p>
               </section>
               <section>
                 <h2 className="a11yHidden">Description</h2>
-                <p>개발과 예술을 좋아하는 정용우라고 합니다. 반갑습니다 :-)</p>
+                <p>공학과 예술을 좋아하는 정용우라고 합니다. 반갑습니다 :-)</p>
               </section>
               <section className={classes.contactContainer}>
                 <h2 className="a11yHidden">Contact</h2>
