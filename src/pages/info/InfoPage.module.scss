@@ -71,12 +71,12 @@
 }
 
 .contactContainer {
-  margin-top: 20px;
+  margin-top: 40px;
 
   ul {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: left;
+    justify-content: right;
     gap: 20px;
   }
 }
