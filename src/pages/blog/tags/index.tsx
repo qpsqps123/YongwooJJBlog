@@ -7,6 +7,7 @@ import { graphql, Page, PageProps } from "gatsby";
 import PagePostTemplate from "@/templates/PagePostTemplate";
 import Footer from "@/components/footer/Footer";
 import { TQueryAllMdx } from "@/types/api/query";
+import Layout from "@/components/layout";
 
 const TagsPage = ({ data, location }: PageProps<TQueryAllMdx>) => {
   const [selectedTag, setSeletedTag] = useState<string>("");
@@ -24,7 +25,7 @@ const TagsPage = ({ data, location }: PageProps<TQueryAllMdx>) => {
   const selectedTagPosts = posts?.filter((post) => post.frontmatter.tags?.includes(selectedTag));
 
   return (
-    <React.Fragment>
+    <Layout>
       <Header />
       <main className={classes.mainContainer}>
         <h1 className={classes.title}>Tags</h1>
@@ -44,7 +45,7 @@ const TagsPage = ({ data, location }: PageProps<TQueryAllMdx>) => {
         </section>
       </main>
       <Footer />
-    </React.Fragment>
+    </Layout>
   );
 };
 

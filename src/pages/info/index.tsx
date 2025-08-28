@@ -5,12 +5,13 @@ import { StaticImage } from "gatsby-plugin-image";
 import { RefContext } from "@/context/ref-context";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
+import Layout from "@/components/layout";
 
 const InfoPage = () => {
   const { contactGithubIconRef } = useContext(RefContext);
 
   return (
-    <React.Fragment>
+    <Layout>
       <Header />
       <main className={classes.mainContainer}>
         <section className={classes.introduce}>
@@ -21,11 +22,7 @@ const InfoPage = () => {
           </section>
           <section className={classes.profilePhoto}>
             <h2 className="a11yHidden">Profile Photo</h2>
-            <StaticImage
-              src="../../images/profile/yongwoo-profile-v1.png"
-              alt="정용우 프로필 사진"
-              width={180}
-            />
+            <StaticImage src="../../images/profile/yongwoo-profile-v1.png" alt="정용우 프로필 사진" width={180} />
           </section>
           <div className={classes.RoleDescriptionContactContainer}>
             <div>
@@ -50,12 +47,7 @@ const InfoPage = () => {
                       data-invert
                       aria-label="정용우 Github"
                     >
-                      <StaticImage
-                        src="../../images/logo/logo-github-black.svg"
-                        alt="Github logo"
-                        width={25}
-                        height={25}
-                      />
+                      <StaticImage src="../../images/logo/logo-github-black.svg" alt="Github logo" width={25} height={25} />
                     </a>
                   </li>
                   <li>
@@ -66,12 +58,7 @@ const InfoPage = () => {
                       rel="noopener noreferrer"
                       aria-label="정용우 Linkedin"
                     >
-                      <StaticImage
-                        src="../../images/logo/logo-linkedin.png"
-                        alt="Linkedin logo"
-                        width={25}
-                        height={25}
-                      />
+                      <StaticImage src="../../images/logo/logo-linkedin.png" alt="Linkedin logo" width={25} height={25} />
                     </a>
                   </li>
                   <li>
@@ -82,12 +69,7 @@ const InfoPage = () => {
                       rel="noopener noreferrer"
                       aria-label="정용우 메일"
                     >
-                      <StaticImage
-                        src="../../images/logo/logo-gmail.png"
-                        alt="gmail logo"
-                        width={25}
-                        height={25}
-                      />
+                      <StaticImage src="../../images/logo/logo-gmail.png" alt="gmail logo" width={25} height={25} />
                     </a>
                   </li>
                 </ul>
@@ -97,7 +79,7 @@ const InfoPage = () => {
         </section>
       </main>
       <Footer />
-    </React.Fragment>
+    </Layout>
   );
 };
 

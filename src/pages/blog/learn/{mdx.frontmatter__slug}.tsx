@@ -7,10 +7,11 @@ import Comments from "@/components/blog/Comments";
 import Footer from "@/components/footer/Footer";
 import Tag from "@/components/blog/tags/Tag";
 import { TQueryMdx } from "@/types/api/query";
+import Layout from "@/components/layout";
 
 const BlogLearnPostsTemplate = ({ data, children }: PageProps<TQueryMdx>) => {
   return (
-    <React.Fragment>
+    <Layout>
       <Header />
       <main className={classes.mainContainer}>
         <article className={classes.post}>
@@ -28,7 +29,7 @@ const BlogLearnPostsTemplate = ({ data, children }: PageProps<TQueryMdx>) => {
       </main>
       <Comments />
       <Footer />
-    </React.Fragment>
+    </Layout>
   );
 };
 

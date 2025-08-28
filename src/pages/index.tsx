@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { navigate } from "gatsby";
 import { SEO } from "@/components/seo";
 import Header from "@/components/header/Header";
+import Layout from "@/components/layout";
 
 const HomePage = () => {
   useEffect(() => {
@@ -9,12 +10,12 @@ const HomePage = () => {
   }, []);
 
   return (
-    <React.Fragment>
+    <Layout>
       <Header />
       <main>
         <p>redirecting...</p>
       </main>
-    </React.Fragment>
+    </Layout>
   );
 };
 
