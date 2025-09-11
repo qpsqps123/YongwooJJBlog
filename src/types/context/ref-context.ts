@@ -10,4 +10,7 @@ export interface IRefProps {
   tagBtnRef?: React.RefObject<HTMLButtonElement>;
   searchInputRef?: React.RefObject<HTMLInputElement>;
   contactGithubIconRef?: React.RefObject<HTMLAnchorElement>;
+  $displayedCursorRef?: React.RefObject<HTMLDivElement>;
+  $actualCursorXRef?: React.MutableRefObject<number>;
+  $actualCursorYRef?: React.MutableRefObject<number>;
 }

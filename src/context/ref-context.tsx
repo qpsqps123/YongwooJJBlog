@@ -19,6 +19,10 @@ const RefProvider = ({ children }: PropsWithChildren<{}>) => {
 
   const contactGithubIconRef = useRef<HTMLAnchorElement>(null);
 
+  const $displayedCursorRef = useRef<HTMLDivElement>(null);
+  const $actualCursorXRef = useRef<number>(0);
+  const $actualCursorYRef = useRef<number>(0);
+
   return (
     <RefContext.Provider
       value={{
@@ -33,6 +37,9 @@ const RefProvider = ({ children }: PropsWithChildren<{}>) => {
         themeButtonRef,
         tagBtnRef,
         contactGithubIconRef,
+        $displayedCursorRef,
+        $actualCursorXRef,
+        $actualCursorYRef,
       }}
     >
       {children}
