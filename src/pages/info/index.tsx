@@ -22,17 +22,23 @@ const InfoPage = () => {
           </section>
           <section className={classes.profilePhoto}>
             <h2 className="a11yHidden">Profile Photo</h2>
-            <StaticImage src="../../images/profile/yongwoo-profile-v1.png" alt="정용우 프로필 사진" width={180} />
+            <StaticImage src="../../images/profile/yongwoo-profile-v2.png" alt="정용우 프로필 사진" width={180} />
           </section>
           <div className={classes.RoleDescriptionContactContainer}>
             <div>
               <section>
                 <h2 className="a11yHidden">Role</h2>
-                <p className={classes.role}>Developer</p>
+                <p className={classes.role}>Frontend Developer</p>
               </section>
               <section>
                 <h2 className="a11yHidden">Description</h2>
-                <p>공학과 예술을 좋아하는 정용우라고 합니다. 반갑습니다 :-)</p>
+                <ul>
+                  <li>문제를 보면 해결하고 싶다는 욕구가 본능적으로 듭니다. 그래서 공학도가 되었나 봅니다.</li>
+                  <li>일할 때는 태도가 중요하다고 생각합니다. 태도가 좋은 사람으로 기억되고 싶습니다.</li>
+                  <li>애니메이션을 좋아합니다. 그래서 프론트엔드나 그래픽스 분야에 관심을 가지게 된 것 같습니다.</li>
+                  <li>요리가 취미입니다. 특히 바쁜 주방에서 일하는 걸 좋아합니다. 그런 환경에서 더 희열을 느낍니다.</li>
+                  {/* <li>음악도 좋아합니다. 작업할 때는 EDM을 주로 듣습니다. 음악을 들으며 작업하면 집중력 +10이 됩니다.</li> */}
+                </ul>
               </section>
               <section className={classes.contactContainer}>
                 <h2 className="a11yHidden">Contact</h2>

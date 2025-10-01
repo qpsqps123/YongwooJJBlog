@@ -67,7 +67,7 @@ const ProjectsPage = () => {
                 githubHrefSrc="https://github.com/qpsqps123/x-mas-gift-4-u-2023"
                 githubLinkLabel="크리스마스 랜덤 선물 박스 Github로 이동."
                 title="X-Mas Gift 4 U."
-                description={<p>2023 크리스마스 맞이해, 아내를 위해 준비한 랜덤 추첨 박스 선물 프로젝트.</p>}
+                description={<p>크리스마스 맞이해, 아내를 위해 준비한 랜덤 추첨 박스 선물 프로젝트.</p>}
                 techStack={
                   <React.Fragment>
                     <li>Sass</li>
