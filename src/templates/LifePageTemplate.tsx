@@ -9,6 +9,7 @@ import Header from "@/components/header/Header";
 import PagePostTemplate from "./PagePostTemplate";
 import Footer from "@/components/footer/Footer";
 import { TQueryPageContext, TQueryAllMdx } from "@/types/api/query";
+import Layout from "@/components/layout";
 
 const LifePageTemplate = ({ data, pageContext }: PageProps<TQueryAllMdx, TQueryPageContext>) => {
   const { numLifePages, currentPage } = pageContext;
@@ -124,7 +125,7 @@ const LifePageTemplate = ({ data, pageContext }: PageProps<TQueryAllMdx, TQueryP
 
   return (
     <React.Suspense fallback="Loading...">
-      <React.Fragment>
+      <Layout>
         <Header />
         <main className={classes.mainContainer}>
           <h1 className="a11yHidden">Life Board</h1>
@@ -144,7 +145,7 @@ const LifePageTemplate = ({ data, pageContext }: PageProps<TQueryAllMdx, TQueryP
           </nav>
         </main>
         <Footer />
-      </React.Fragment>
+      </Layout>
     </React.Suspense>
   );
 };

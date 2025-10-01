@@ -1,11 +1,20 @@
 @import "@/styles/abstracts/functions";
 
 .displayedCursor {
-  font-size: 40px;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  pointer-events: none; // 표시용 커서 요소를 무시하고 실제 마우스 커서로 그 뒤에 있는 요소들을 클릭할 수 있게 해줌.
+  mix-blend-mode: difference;
+  z-index: 10000;
+}
+
+.displayedCursorDot {
   top: 0;
   left: 0;
-  width: 40px;
-  height: 40px;
-  background-color: $accent;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
+  background-color: $background;
+  transition: transform 0.3s;
 }

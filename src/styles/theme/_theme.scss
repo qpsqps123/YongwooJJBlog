@@ -47,3 +47,9 @@ $config: (
     filter: invert(100%);
   }
 }
+
+@mixin setDisplayedCursorDotBg($theme) {
+  @if ($theme == dark) {
+    filter: invert(100%);
+  }
+}

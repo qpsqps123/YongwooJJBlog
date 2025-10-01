@@ -4,25 +4,39 @@ import React, { useContext, useEffect, useState } from "react";
 import * as classes from "./layout.module.scss";
 
 export default function Layout({ children }: LayoutProps) {
-  const { $displayedCursorRef, $actualCursorXRef, $actualCursorYRef } = useContext(RefContext);
+  const { $displayedCursorRef, $actualCursorXRef, $actualCursorYRef, $displayedCursorXRef, $displayedCursorYRef } =
+    useContext(RefContext);
 
-  const handleActualCursorPositionSettingInDocument = (event: MouseEvent) => {
-    console.log(event);
-    if ($actualCursorXRef) $actualCursorXRef.current = event.clientX;
+  const handleActualCursorPositionInDocument = (event: MouseEvent) => {
+    if ($actualCursorXRef) $actualCursorXRef.current = event.pageX;
 
-    if ($actualCursorYRef) $actualCursorYRef.current! = event.clientY;
-    console.log($actualCursorXRef, $actualCursorYRef);
+    if ($actualCursorYRef) $actualCursorYRef.current! = event.pageY;
   };
 
   useEffect(() => {
-    document.addEventListener("mousemove", handleActualCursorPositionSettingInDocument);
+    document.addEventListener("mousemove", handleActualCursorPositionInDocument);
+
+    const rAF = () => {
+      if ($actualCursorXRef && $actualCursorYRef) {
+        if ($displayedCursorXRef && $displayedCursorYRef) {
+          $displayedCursorXRef.current -= ($displayedCursorXRef.current - $actualCursorXRef.current) * 0.4;
+          $displayedCursorYRef.current -= ($displayedCursorYRef.current - $actualCursorYRef.current) * 0.4;
+
+          if ($displayedCursorRef) {
+            $displayedCursorRef.current!.style.transform = `translate3D(${$displayedCursorXRef.current}px, ${$displayedCursorYRef.current}px, 0)`;
+          }
+        }
+      }
+      requestAnimationFrame(rAF);
+    };
+    rAF();
   }, []);
 
   return (
     <div>
       {children}
       <div className={classes.displayedCursor} ref={$displayedCursorRef}>
-        123
+        <div className={classes.displayedCursorDot}></div>
       </div>
     </div>
   );

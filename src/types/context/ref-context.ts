@@ -13,4 +13,6 @@ export interface IRefProps {
   $displayedCursorRef?: React.RefObject<HTMLDivElement>;
   $actualCursorXRef?: React.MutableRefObject<number>;
   $actualCursorYRef?: React.MutableRefObject<number>;
+  $displayedCursorXRef?: React.MutableRefObject<number>;
+  $displayedCursorYRef?: React.MutableRefObject<number>;
 }

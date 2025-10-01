@@ -22,6 +22,8 @@ const RefProvider = ({ children }: PropsWithChildren<{}>) => {
   const $displayedCursorRef = useRef<HTMLDivElement>(null);
   const $actualCursorXRef = useRef<number>(0);
   const $actualCursorYRef = useRef<number>(0);
+  const $displayedCursorXRef = useRef<number>(0);
+  const $displayedCursorYRef = useRef<number>(0);
 
   return (
     <RefContext.Provider
@@ -40,6 +42,8 @@ const RefProvider = ({ children }: PropsWithChildren<{}>) => {
         $displayedCursorRef,
         $actualCursorXRef,
         $actualCursorYRef,
+        $displayedCursorXRef,
+        $displayedCursorYRef,
       }}
     >
       {children}

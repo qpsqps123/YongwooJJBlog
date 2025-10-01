@@ -9,6 +9,7 @@ import Header from "@/components/header/Header";
 import PagePostTemplate from "./PagePostTemplate";
 import Footer from "@/components/footer/Footer";
 import { TQueryPageContext, TQueryAllMdx } from "@/types/api/query";
+import Layout from "@/components/layout";
 
 const LearnPageTemplate = ({ data, pageContext }: PageProps<TQueryAllMdx, TQueryPageContext>) => {
   const { numLearnPages, currentPage } = pageContext;
@@ -125,7 +126,7 @@ const LearnPageTemplate = ({ data, pageContext }: PageProps<TQueryAllMdx, TQuery
 
   return (
     <React.Suspense fallback="Loading...">
-      <React.Fragment>
+      <Layout>
         <Header />
         <main className={classes.mainContainer}>
           <h1 className="a11yHidden">Learn Board</h1>
@@ -145,7 +146,7 @@ const LearnPageTemplate = ({ data, pageContext }: PageProps<TQueryAllMdx, TQuery
           </nav>
         </main>
         <Footer />
-      </React.Fragment>
+      </Layout>
     </React.Suspense>
   );
 };

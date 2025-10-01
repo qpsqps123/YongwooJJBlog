@@ -1,6 +1,7 @@
 import "./src/styles/global.scss";
 import "prismjs/themes/prism-okaidia.css";
 import WrapRootProvider from "./src/layout/WrapRootProvider";
+import { useEffect } from "react";
 export const wrapRootElement = WrapRootProvider;
 
 export const onClientEntry = () => {
@@ -20,4 +21,6 @@ export const onClientEntry = () => {
   } else if (localStorageUserTheme === "dark") {
     document.body.classList.add("dark-theme");
   }
+
+  document.querySelector("body").classList.add("noCursor");
 };
