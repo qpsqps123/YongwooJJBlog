@@ -19,6 +19,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: $secondary;
   background-color: $background;
+  overflow-x: hidden;
 }
 
 body.noCursor,
