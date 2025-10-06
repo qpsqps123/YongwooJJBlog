@@ -35,12 +35,7 @@ const SearchBar = () => {
   const query = useAppSelector((state) => state.search.query);
   const pageNum = useAppSelector((state) => state.search.pageNum);
 
-  const {
-    headerVisibilityRef,
-    searchVisibilityRef,
-    searchButtonRef,
-    searchInputRef,
-  } = useContext(RefContext);
+  const { $headerVisibleRef, $searchVisibleRef, $searchBtnRef, $searchInputRef } = useContext(RefContext);
 
   /* 페이지네이션 */
   const { nodes: index } = data.allMdx;
@@ -130,14 +125,13 @@ const SearchBar = () => {
 
   const renderCurrentPageNum = hasCurrentResults && <span aria-label="Current page number">{pageNum}</span>;
 
-
   /* 접근성 */
   const handleBlur = () => {
-    searchButtonRef?.current?.focus();
-  }
+    $searchBtnRef?.current?.focus();
+  };
 
   return (
-    <div id="searchWrapper" className={`${"hide"}`} ref={searchVisibilityRef}>
+    <div id="searchWrapper" className={`${"hide"}`} ref={$searchVisibleRef}>
       <search className={classes.searchContainer}>
         <h2 className="a11yHidden">Search</h2>
         <section className={classes.searchFormContainer}>
@@ -162,13 +156,13 @@ const SearchBar = () => {
                     name="query"
                     className={classes.input}
                     placeholder="Press Enter to search"
-                    ref={searchInputRef}
+                    ref={$searchInputRef}
                     onChange={handleChange}
                     value={values.query}
                     onKeyDown={(e) => {
                       if (e.shiftKey && e.key === "Tab") {
                         e.preventDefault();
-                        searchButtonRef?.current?.focus();
+                        $searchBtnRef?.current?.focus();
                       }
                     }}
                   />
@@ -181,9 +175,9 @@ const SearchBar = () => {
             data-invert
             className={classes.closeSearchButton}
             onClick={() => {
-              searchVisibilityRef?.current?.classList.toggle("hide");
-              headerVisibilityRef?.current?.classList.toggle("handleHeaderHeightOverflow");
-              searchButtonRef?.current?.focus();
+              $searchVisibleRef?.current?.classList.toggle("hide");
+              $headerVisibleRef?.current?.classList.toggle("handleHeaderHeightOverflow");
+              $searchBtnRef?.current?.focus();
             }}
             aria-label="검색창 닫기"
           >
@@ -202,11 +196,7 @@ const SearchBar = () => {
           </nav>
         </section>
       </search>
-      <button
-        className="a11yHidden"
-        aria-hidden="true"
-        onFocus={handleBlur}
-      ></button>
+      <button className="a11yHidden" aria-hidden="true" onFocus={handleBlur}></button>
     </div>
   );
 };

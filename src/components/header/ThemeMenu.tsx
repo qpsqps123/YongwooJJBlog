@@ -3,12 +3,12 @@ import * as classes from "./ThemeMenu.module.scss";
 import { RefContext } from "@/context/ref-context";
 
 const ThemeMenu = () => {
-  const { themeMenuVisibilityRef, themeButtonRef, sideMenuButtonRef } = useContext(RefContext);
+  const { $themeMenuVisibleRef, $themeBtnRef, $sideMenuBtnRef } = useContext(RefContext);
 
   useEffect(() => {
     const localStorageUserTheme = localStorage.getItem("theme");
 
-    const [osThemeButtonElement, defaultThemeButtonElement, darkThemeButtonElement] = themeButtonRef?.current || [];
+    const [osThemeButtonElement, defaultThemeButtonElement, darkThemeButtonElement] = $themeBtnRef?.current || [];
     if (localStorageUserTheme === "osDefault") {
       osThemeButtonElement.classList.add(classes.isSelected);
     } else if (localStorageUserTheme === "default") {
@@ -21,7 +21,7 @@ const ThemeMenu = () => {
   const handleThemeSelected = (e: React.MouseEvent) => {
     const localStorageUserTheme = localStorage.getItem("theme");
     const { name } = e.target as HTMLButtonElement;
-    const [osThemeButtonElement, defaultThemeButtonElement, darkThemeButtonElement] = themeButtonRef?.current || [];
+    const [osThemeButtonElement, defaultThemeButtonElement, darkThemeButtonElement] = $themeBtnRef?.current || [];
 
     if (name === "osDefault") {
       if (localStorageUserTheme === "osDefault") return;
@@ -60,7 +60,7 @@ const ThemeMenu = () => {
   };
 
   return (
-    <ul id="themeMenuContainer" className={`${classes.themeMenuContainer} ${"hide"}`} ref={themeMenuVisibilityRef}>
+    <ul id="themeMenuContainer" className={`${classes.themeMenuContainer} ${"hide"}`} ref={$themeMenuVisibleRef}>
       <li>
         <button
           name="osDefault"
@@ -68,8 +68,8 @@ const ThemeMenu = () => {
           className={classes.osThemeButton}
           onClick={handleThemeSelected}
           ref={(element) => {
-            if (themeButtonRef?.current) {
-              themeButtonRef.current[0] = element as HTMLButtonElement;
+            if ($themeBtnRef?.current) {
+              $themeBtnRef.current[0] = element as HTMLButtonElement;
             }
           }}
         >
@@ -83,8 +83,8 @@ const ThemeMenu = () => {
           className={classes.lightThemeButton}
           onClick={handleThemeSelected}
           ref={(element) => {
-            if (themeButtonRef?.current) {
-              themeButtonRef.current[1] = element as HTMLButtonElement;
+            if ($themeBtnRef?.current) {
+              $themeBtnRef.current[1] = element as HTMLButtonElement;
             }
           }}
         >
@@ -98,8 +98,8 @@ const ThemeMenu = () => {
           className={classes.darkThemeButton}
           onClick={handleThemeSelected}
           ref={(element) => {
-            if (themeButtonRef?.current) {
-              themeButtonRef.current[2] = element as HTMLButtonElement;
+            if ($themeBtnRef?.current) {
+              $themeBtnRef.current[2] = element as HTMLButtonElement;
             }
           }}
         >

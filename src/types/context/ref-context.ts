@@ -1,18 +1,18 @@
 export interface IRefProps {
-  headerVisibilityRef?: React.RefObject<HTMLElement>;
-  sideMenuVisibilityRef?: React.RefObject<HTMLUListElement>;
-  searchVisibilityRef?: React.RefObject<HTMLDivElement>;
-  themeMenuVisibilityRef?: React.RefObject<HTMLUListElement>;
-  sideMenuButtonRef?: React.RefObject<HTMLButtonElement>;
-  changeThemeButtonRef?: React.RefObject<HTMLButtonElement>;
-  searchButtonRef?: React.RefObject<HTMLButtonElement>;
-  themeButtonRef?: React.RefObject<HTMLButtonElement[]>;
-  tagBtnRef?: React.RefObject<HTMLButtonElement>;
-  searchInputRef?: React.RefObject<HTMLInputElement>;
-  contactGithubIconRef?: React.RefObject<HTMLAnchorElement>;
+  $headerVisibleRef?: React.RefObject<HTMLElement>;
+  $sideMenuVisibleRef?: React.RefObject<HTMLUListElement>;
+  $searchVisibleRef?: React.RefObject<HTMLDivElement>;
+  $themeMenuVisibleRef?: React.RefObject<HTMLUListElement>;
+  $sideMenuBtnRef?: React.RefObject<HTMLButtonElement>;
+  $changeThemeBtnRef?: React.RefObject<HTMLButtonElement>;
+  $searchBtnRef?: React.RefObject<HTMLButtonElement>;
+  $themeBtnRef?: React.RefObject<HTMLButtonElement[]>;
+  $tagBtnRef?: React.RefObject<HTMLButtonElement>;
+  $searchInputRef?: React.RefObject<HTMLInputElement>;
+  $contactGithubIconRef?: React.RefObject<HTMLAnchorElement>;
   $displayedCursorRef?: React.RefObject<HTMLDivElement>;
-  $actualCursorXRef?: React.MutableRefObject<number>;
-  $actualCursorYRef?: React.MutableRefObject<number>;
-  $displayedCursorXRef?: React.MutableRefObject<number>;
-  $displayedCursorYRef?: React.MutableRefObject<number>;
+  actualCursorXRef?: React.MutableRefObject<number>;
+  actualCursorYRef?: React.MutableRefObject<number>;
+  displayedCursorXRef?: React.MutableRefObject<number>;
+  displayedCursorYRef?: React.MutableRefObject<number>;
 }

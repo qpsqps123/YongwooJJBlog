@@ -18,52 +18,51 @@ const Header = () => {
   const themeChange = useAppSelector((state) => state.ui.themeChange);
 
   const {
-    headerVisibilityRef,
-    sideMenuButtonRef,
-    sideMenuVisibilityRef,
-    changeThemeButtonRef,
-    searchButtonRef,
-    searchVisibilityRef,
-    themeMenuVisibilityRef,
-    tagBtnRef,
+    $headerVisibleRef,
+    $sideMenuBtnRef,
+    $sideMenuVisibleRef,
+    $changeThemeBtnRef,
+    $searchBtnRef,
+    $searchVisibleRef,
+    $themeMenuVisibleRef,
+    $tagBtnRef,
   } = useContext(RefContext);
 
   // 테마가 변경될 때 적용(리렌더링)되도록 만듬.
-  useEffect(() => {
-  }, [themeChange]);
+  useEffect(() => {}, [themeChange]);
 
   const handleSideMenuClick = () => {
-    sideMenuVisibilityRef?.current?.classList.toggle("sideMenuPoped");
+    $sideMenuVisibleRef?.current?.classList.toggle("sideMenuPoped");
 
     // 애니메이션 실행 중에 사이드 메뉴 버튼 클릭 방지.
-    if (sideMenuButtonRef?.current && searchButtonRef?.current && changeThemeButtonRef?.current && tagBtnRef?.current) {
-      preventClick([sideMenuButtonRef.current, searchButtonRef?.current, changeThemeButtonRef?.current, tagBtnRef?.current], 1.3);
+    if ($sideMenuBtnRef?.current && $searchBtnRef?.current && $changeThemeBtnRef?.current && $tagBtnRef?.current) {
+      preventClick([$sideMenuBtnRef.current, $searchBtnRef?.current, $changeThemeBtnRef?.current, $tagBtnRef?.current], 1.3);
     }
 
-    if (sideMenuVisibilityRef?.current?.classList.contains("sideMenuPoped") === false) {
+    if ($sideMenuVisibleRef?.current?.classList.contains("sideMenuPoped") === false) {
       // 열린 하위 메뉴들 닫기
-      searchVisibilityRef?.current?.classList.add("hide");
-      themeMenuVisibilityRef?.current?.classList.add("hide");
-      headerVisibilityRef?.current?.classList.remove("handleHeaderHeightOverflow");
+      $searchVisibleRef?.current?.classList.add("hide");
+      $themeMenuVisibleRef?.current?.classList.add("hide");
+      $headerVisibleRef?.current?.classList.remove("handleHeaderHeightOverflow");
 
       // 애니메이션
-      if (searchButtonRef?.current && changeThemeButtonRef?.current && tagBtnRef?.current) {
-        animSideMenuFadeAway([searchButtonRef?.current, changeThemeButtonRef?.current, tagBtnRef?.current]);
+      if ($searchBtnRef?.current && $changeThemeBtnRef?.current && $tagBtnRef?.current) {
+        animSideMenuFadeAway([$searchBtnRef?.current, $changeThemeBtnRef?.current, $tagBtnRef?.current]);
       }
-    } else if (sideMenuVisibilityRef?.current?.classList.contains("sideMenuPoped") === true) {
-      if (searchButtonRef?.current && changeThemeButtonRef?.current && tagBtnRef?.current) {
-        animSideMenuPop([searchButtonRef?.current, changeThemeButtonRef?.current, tagBtnRef?.current]);
+    } else if ($sideMenuVisibleRef?.current?.classList.contains("sideMenuPoped") === true) {
+      if ($searchBtnRef?.current && $changeThemeBtnRef?.current && $tagBtnRef?.current) {
+        animSideMenuPop([$searchBtnRef?.current, $changeThemeBtnRef?.current, $tagBtnRef?.current]);
       }
     }
 
     // 사이드 메뉴 접근성
-    sideMenuButtonRef?.current?.setAttribute(
+    $sideMenuBtnRef?.current?.setAttribute(
       "aria-expanded",
-      `${sideMenuButtonRef?.current?.getAttribute("aria-expanded") === "false"}`
+      `${$sideMenuBtnRef?.current?.getAttribute("aria-expanded") === "false"}`
     );
   };
 
-  const sideMenuAnimInProgress = useRef(false)
+  const sideMenuAnimInProgress = useRef(false);
 
   const handleSideMenuButtonKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
     // 애니메이션 실행 중 사이드 메뉴 버튼 키 입력 방지.
@@ -73,12 +72,12 @@ const Header = () => {
         return;
       }
 
-      sideMenuAnimInProgress.current = true
+      sideMenuAnimInProgress.current = true;
       setTimeout(() => {
-        sideMenuAnimInProgress.current = false
+        sideMenuAnimInProgress.current = false;
       }, 1300);
     }
-  }
+  };
 
   // 헤더 네비게이션 메뉴 Accent 효과
   const infoMenuHoverColor = location.pathname.includes("/info/") ? classes.colorRed : "";
@@ -90,7 +89,7 @@ const Header = () => {
   const blogSubmenuVisibility = location.pathname.includes("/blog") ? "true" : "false";
 
   return (
-    <header className={classes.header} ref={headerVisibilityRef}>
+    <header className={classes.header} ref={$headerVisibleRef}>
       <nav className={classes.navigation}>
         <section className={classes.logo}>
           <Link to="/info" aria-label="Yongwoo Jeong - 소개 페이지로 연결.">
@@ -139,7 +138,7 @@ const Header = () => {
         <section className={classes.sideMenuContainer}>
           <button
             type="button"
-            ref={sideMenuButtonRef}
+            ref={$sideMenuBtnRef}
             data-invert
             className={classes.sideMenuButton}
             onClick={handleSideMenuClick}

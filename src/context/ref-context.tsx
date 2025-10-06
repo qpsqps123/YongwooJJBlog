@@ -4,46 +4,46 @@ import React, { useRef, createContext, PropsWithChildren } from "react";
 export const RefContext = createContext<IRefProps>({});
 
 const RefProvider = ({ children }: PropsWithChildren<{}>) => {
-  const headerVisibilityRef = useRef<HTMLElement>(null);
-  const sideMenuVisibilityRef = useRef<HTMLUListElement>(null);
-  const searchVisibilityRef = useRef<HTMLDivElement>(null);
-  const themeMenuVisibilityRef = useRef<HTMLUListElement>(null);
+  const $headerVisibleRef = useRef<HTMLElement>(null);
+  const $sideMenuVisibleRef = useRef<HTMLUListElement>(null);
+  const $searchVisibleRef = useRef<HTMLDivElement>(null);
+  const $themeMenuVisibleRef = useRef<HTMLUListElement>(null);
 
-  const sideMenuButtonRef = useRef<HTMLButtonElement>(null);
-  const changeThemeButtonRef = useRef<HTMLButtonElement>(null);
-  const searchButtonRef = useRef<HTMLButtonElement>(null);
-  const themeButtonRef = useRef<HTMLButtonElement[]>([]);
-  const tagBtnRef = useRef<HTMLButtonElement>(null);
+  const $sideMenuBtnRef = useRef<HTMLButtonElement>(null);
+  const $changeThemeBtnRef = useRef<HTMLButtonElement>(null);
+  const $searchBtnRef = useRef<HTMLButtonElement>(null);
+  const $themeBtnRef = useRef<HTMLButtonElement[]>([]);
+  const $tagBtnRef = useRef<HTMLButtonElement>(null);
 
-  const searchInputRef = useRef<HTMLInputElement>(null);
+  const $searchInputRef = useRef<HTMLInputElement>(null);
 
-  const contactGithubIconRef = useRef<HTMLAnchorElement>(null);
+  const $contactGithubIconRef = useRef<HTMLAnchorElement>(null);
 
   const $displayedCursorRef = useRef<HTMLDivElement>(null);
-  const $actualCursorXRef = useRef<number>(0);
-  const $actualCursorYRef = useRef<number>(0);
-  const $displayedCursorXRef = useRef<number>(0);
-  const $displayedCursorYRef = useRef<number>(0);
+  const actualCursorXRef = useRef<number>(0);
+  const actualCursorYRef = useRef<number>(0);
+  const displayedCursorXRef = useRef<number>(0);
+  const displayedCursorYRef = useRef<number>(0);
 
   return (
     <RefContext.Provider
       value={{
-        headerVisibilityRef,
-        sideMenuVisibilityRef,
-        searchVisibilityRef,
-        themeMenuVisibilityRef,
-        sideMenuButtonRef,
-        changeThemeButtonRef,
-        searchButtonRef,
-        searchInputRef,
-        themeButtonRef,
-        tagBtnRef,
-        contactGithubIconRef,
+        $headerVisibleRef,
+        $sideMenuVisibleRef,
+        $searchVisibleRef,
+        $themeMenuVisibleRef,
+        $sideMenuBtnRef,
+        $changeThemeBtnRef,
+        $searchBtnRef,
+        $searchInputRef,
+        $themeBtnRef,
+        $tagBtnRef,
+        $contactGithubIconRef,
         $displayedCursorRef,
-        $actualCursorXRef,
-        $actualCursorYRef,
-        $displayedCursorXRef,
-        $displayedCursorYRef,
+        actualCursorXRef,
+        actualCursorYRef,
+        displayedCursorXRef,
+        displayedCursorYRef,
       }}
     >
       {children}

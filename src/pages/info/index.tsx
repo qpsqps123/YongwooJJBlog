@@ -8,7 +8,7 @@ import Footer from "@/components/footer/Footer";
 import Layout from "@/components/layout";
 
 const InfoPage = () => {
-  const { contactGithubIconRef } = useContext(RefContext);
+  const { $contactGithubIconRef } = useContext(RefContext);
 
   return (
     <Layout>
@@ -49,7 +49,7 @@ const InfoPage = () => {
                       title="YongwooJJ Github"
                       target="_blank"
                       rel="noopener noreferrer"
-                      ref={contactGithubIconRef}
+                      ref={$contactGithubIconRef}
                       data-invert
                       aria-label="정용우 Github"
                     >
