@@ -16,6 +16,7 @@ exports.onPostBuild = ({ reporter }) => {
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const BlogPageTemplate = path.resolve(`src/templates/BlogPageTemplate.tsx`);
+  const BlogPostTemplate = path.resolve(`src/templates/BlogPostTemplate.tsx`);
   const EmptyPage = path.resolve(`src/templates/EmptyPost.tsx`);
   const result = await graphql(`
     # prettier-ignore
@@ -30,6 +31,9 @@ exports.createPages = async ({ graphql, actions }) => {
             isEmpty
           }
           id
+          internal {
+            contentFilePath
+          }
         }
       }
     }
@@ -70,6 +74,16 @@ exports.createPages = async ({ graphql, actions }) => {
             numPages,
             currentPage: i + 1,
             postType: postType,
+          },
+        });
+      });
+
+      Array.from({ length: typedPosts.length }, (_, i) => {
+        createPage({
+          path: `/blog/${postType}/${typedPosts[i].frontmatter.slug}`,
+          component: `${BlogPostTemplate}?__contentFilePath=${typedPosts[i].internal.contentFilePath}`,
+          context: {
+            slug: typedPosts[i].frontmatter.slug,
           },
         });
       });

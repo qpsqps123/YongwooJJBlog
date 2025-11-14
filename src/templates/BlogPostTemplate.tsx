@@ -1,42 +1,56 @@
-import React from "react";
+import * as React from "react";
+import { PageProps, graphql } from "gatsby";
+import { SEO } from "@/components/seo";
+import Header from "@/components/header/Header";
 import * as classes from "@/styles/templates/BlogPostTemplate.module.scss";
-import { Link } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import Comments from "@/components/blog/Comments";
+import Footer from "@/components/footer/Footer";
 import Tag from "@/components/blog/tags/Tag";
-import { TQueryAllMdxNode } from "@/types/api/query";
+import { TQueryMdx } from "@/types/api/query";
+import Layout from "@/components/layout";
 
-export default function BlogPostTemplate({ node }: { node: TQueryAllMdxNode }) {
+const BlogPostTemplate = ({ data, children }: PageProps<TQueryMdx>) => {
   return (
-    <article key={node.id}>
-      <section className={classes.post}>
-        <div>
-          {node.frontmatter.featuredImage?.childImageSharp ? (
-            <Link to={`/blog/${node.frontmatter.post}/${node.frontmatter.slug}`}>
-              <GatsbyImage
-                image={getImage(node.frontmatter.featuredImage)}
-                alt={`${node.frontmatter.title} thumbnail`}
-                className={classes.postImage}
-              />
-            </Link>
-          ) : (
-            <div aria-label="Thumbnail not uploaded" className={classes.thumbnailNotUploaded}></div>
-          )}
-        </div>
-        <div className={classes.postCaption}>
-          <h2>
-            <Link to={`/blog/${node.frontmatter.post}/${node.frontmatter.slug}`}>{node.frontmatter.title}</Link>
-          </h2>
-          <p className={classes.date}>Posted: {node.frontmatter.date}</p>
-          <p className={classes.excerpt}>{node.excerpt}</p>
+    <Layout>
+      <Header />
+      <main className={classes.mainContainer}>
+        <article className={classes.post}>
+          <h1 className={classes.title}>{data.mdx.frontmatter.title}</h1>
+          <p className={classes.date}>{data.mdx.frontmatter.date}</p>
+          <section className={classes.content}>{children}</section>
           <ul className={classes.tagList}>
-            {node.frontmatter.tags?.map((tag) => (
-              <li key={node.id}>
+            {data.mdx.frontmatter.tags?.map((tag) => (
+              <li key={tag}>
                 <Tag tagName={tag} className={classes.tag} />
               </li>
             ))}
           </ul>
-        </div>
-      </section>
-    </article>
+        </article>
+      </main>
+      <Comments />
+      <Footer />
+    </Layout>
   );
-}
+};
+
+export default BlogPostTemplate;
+
+export const Head = ({ data }: PageProps<TQueryMdx>) => <SEO title={data.mdx.frontmatter.title} />;
+
+export const query = graphql`
+  query ($slug: String) {
+    mdx(frontmatter: { slug: { eq: $slug } }) {
+      frontmatter {
+        title
+        date(formatString: "MMMM D, YYYY")
+        tags
+        featuredImage {
+          publicURL
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }
+    }
+  }
+`;

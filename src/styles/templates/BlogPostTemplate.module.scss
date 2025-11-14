@@ -1,66 +1,28 @@
 @import "../abstracts/functions";
 @import "../base/layout";
 
+.mainContainer {
+  padding: rem(80px) rem(20px) 0;
+}
+
 .post {
-  margin-top: 40px;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  gap: 30px;
+  margin: 80px 20% 30px;
 
-  @include tablet-sm {
-    flex-flow: column nowrap;
+  @include tablet-lg {
+    margin: 80px 10px 30px;
   }
 }
 
-.postImage {
-  width: 150px;
-  height: 150px;
-
-  @include tablet-sm {
-    width: 300px;
-    height: 300px;
-  }
-}
-
-.thumbnailNotUploaded {
-  width: 150px;
-  height: 150px;
-
-  @include tablet-sm {
-    width: 300px;
-    height: 300px;
-  }
-}
-
-.postCaption {
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 10px;
-  font-size: rem(14px);
-
-  h2 {
-    a {
-      color: $primary;
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: $accent;
-    }
-
-    a:hover:global {
-      animation: colorPrimaryToAccent 0.3s;
-    }
-  }
+.title {
+    font-size: rem(38px);
+    font-weight: 500;
+    text-align: center;
 }
 
 .date {
-  font-size: rem(12px);
-}
-
-.excerpt {
-  line-height: 160%;
+  margin: 30px auto 0;
+  text-align: right;
+  color: $tertiary;
 }
 
 .tagList {
@@ -69,6 +31,7 @@
   flex-flow: row wrap;
   justify-content: start;
   gap: 6px;
+  margin-top: 20px;
 }
 
 .tag {
@@ -84,5 +47,64 @@
     background-color: $secondary;
     color: $background;
     transition: 0.3s;
+  }
+}
+
+.content {
+  margin: 30px auto 0;
+
+  * {
+    line-height: 180%;
+  }
+
+  * + * {
+    margin-top: 1.2em;
+  }
+
+  ol,
+  ul {
+    padding-left: 2rem;
+  }
+
+  li + li {
+    margin-top: 0.5em;
+  }
+
+  li + ul {
+    margin-top: 0.5em;
+  }
+
+  p {
+    word-break: break-all;
+  }
+
+  span:has(> span > a > span + img) {
+    // gatsby-remark-image가 자동으로 생성하여 감싸는 span 태그를 선택.
+    display: block;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+
+    span {
+      max-width: 100vw !important; // gatsby-remark-image가 자동 생성하는 이미지 래퍼 요소(span)의 인라인 스타일을 무시하기 위함.
+    }
+
+    + i {
+      font-size: rem(12px);
+      display: block;
+      text-align: center;
+    }
+
+    @include tablet-sm {
+      width: 100%;
+    }
+  }
+
+  iframe[src*="codepen"] {
+    height: 400px !important; //  gatsby-remark-embedder가 자동 생성하는 iframe의 인라인 스타일을 무시하기 위함.
+  }
+
+  pre[class*="language-"] {
+    margin-top: 1.2em;
   }
 }

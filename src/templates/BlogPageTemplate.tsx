@@ -6,7 +6,7 @@ import useRenderPageNavLinks from "@/hooks/useRenderPageNavLinks";
 import { v4 as uuid } from "uuid";
 import { SEO } from "@/components/seo";
 import Header from "@/components/header/Header";
-import BlogPostTemplate from "./BlogPostTemplate";
+import BlogListItemTemplate from "./BlogPostListItemTemplate";
 import Footer from "@/components/footer/Footer";
 import { TQueryPageContext, TQueryAllMdx } from "@/types/api/query";
 import Layout from "@/components/layout";
@@ -132,7 +132,7 @@ const BlogPageTemplate = ({ data, pageContext }: PageProps<TQueryAllMdx, TQueryP
           <h1 className="a11yHidden">Board</h1>
           <section className={classes.postsContainer} aria-label="게시물">
             {data.allMdx.nodes.map((node) => {
-              if (node.frontmatter.isEmpty !== true) return <BlogPostTemplate key={node.id} node={node} />;
+              if (node.frontmatter.isEmpty !== true) return <BlogListItemTemplate key={node.id} node={node} />;
             })}
           </section>
           <nav aria-label="게시물 페이지 네비게이션">

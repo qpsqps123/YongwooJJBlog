@@ -1,4 +1,22 @@
 import type { GatsbyConfig } from "gatsby";
+import * as fs from "fs";
+import * as path from "path";
+
+const contentDir = path.resolve(__dirname, "src/content");
+
+const contentPlugins = fs
+  .readdirSync(contentDir, { withFileTypes: true })
+  .filter((dirent) => dirent.isDirectory()) // 디렉터리만 필터링
+  .map((dirent) => {
+    const folderName = dirent.name;
+    return {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: folderName,
+        path: path.join(contentDir, folderName),
+      },
+    };
+  });
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -50,20 +68,7 @@ const config: GatsbyConfig = {
         path: "./src/pages/",
       },
     },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "life",
-        path: "./src/content/life",
-      },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "learn",
-        path: "./src/content/learn",
-      },
-    },
+    ...contentPlugins,
     {
       resolve: `gatsby-plugin-sharp`,
       options: {

@@ -4,7 +4,7 @@ import Header from "@/components/header/Header";
 import * as classes from "./TagsPage.module.scss";
 import Tag from "@/components/blog/tags/Tag";
 import { graphql, PageProps } from "gatsby";
-import BlogPostTemplate from "@/templates/BlogPostTemplate";
+import BlogPostTemplate from "@/templates/BlogPostListItemTemplate";
 import Footer from "@/components/footer/Footer";
 import { TQueryAllMdx } from "@/types/api/query";
 import Layout from "@/components/layout";
