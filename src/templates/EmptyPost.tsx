@@ -3,16 +3,17 @@ import Header from "@/components/header/Header";
 import { SEO } from "@/components/seo";
 import * as classes from "@/styles/templates/EmptyPost.module.scss";
 import Footer from "@/components/footer/Footer";
+import Layout from "@/components/layout";
 
 const EmptyPost = () => {
   return (
-    <React.Fragment>
+    <Layout>
       <Header />
       <main className={classes.mainContainer}>
         <p className={classes.description}>No post yet...!</p>
       </main>
       <Footer />
-    </React.Fragment>
+    </Layout>
   );
 };
 

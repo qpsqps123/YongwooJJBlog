@@ -1,7 +1,6 @@
 import "./src/styles/global.scss";
 import "prismjs/themes/prism-okaidia.css";
 import WrapRootProvider from "./src/layout/WrapRootProvider";
-import { useEffect } from "react";
 export const wrapRootElement = WrapRootProvider;
 
 export const onClientEntry = () => {

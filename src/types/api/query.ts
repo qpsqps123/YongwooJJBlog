@@ -16,6 +16,7 @@ export type TQueryAllMdxNode = {
     featuredImage: IGatsbyImageData & {
       childImageSharp: any;
     };
+    isEmpty: boolean;
   };
   id: string;
   excerpt: string;
@@ -35,7 +36,7 @@ export type TQueryMdx = {
 export type TQueryPageContext = {
   limit: number;
   skip: number;
-  numLifePages: number;
-  numLearnPages: number;
+  numPages: number;
   currentPage: number;
+  postType: "life" | "learn";
 };

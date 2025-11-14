@@ -15,8 +15,7 @@ exports.onPostBuild = ({ reporter }) => {
 // Create blog pages dynamically
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-  const LearnPageTemplate = path.resolve(`src/templates/LearnPageTemplate.tsx`);
-  const LifePageTemplate = path.resolve(`src/templates/LifePageTemplate.tsx`);
+  const BlogPageTemplate = path.resolve(`src/templates/BlogPageTemplate.tsx`);
   const EmptyPage = path.resolve(`src/templates/EmptyPost.tsx`);
   const result = await graphql(`
     # prettier-ignore
@@ -28,6 +27,7 @@ exports.createPages = async ({ graphql, actions }) => {
             date(formatString: "MMMM DD, YYYY")
             slug
             post
+            isEmpty
           }
           id
         }
@@ -41,45 +41,38 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   const posts = result.data.allMdx.nodes;
-  const lifePosts = posts.filter((node) => node.frontmatter.post === "life");
-  const learnPosts = posts.filter((node) => node.frontmatter.post === "learn");
   const postsPerPage = 5;
-  const numLifePages = Math.ceil(lifePosts.length / postsPerPage);
-  const numLearnPages = Math.ceil(learnPosts.length / postsPerPage);
 
-  numLearnPages > 0
-    ? Array.from({ length: numLearnPages }, (_, i) => {
+  const postsByPostType = posts.reduce((acc, post) => {
+    const postType = post.frontmatter.post;
+    if (!postType) return acc;
+    if (!acc[postType]) {
+      acc[postType] = [];
+    }
+    acc[postType].push(post);
+    return acc;
+  }, {});
+
+  for (const postType in postsByPostType) {
+    const typedPosts = postsByPostType[postType];
+    const numPages = Math.ceil(typedPosts.length / postsPerPage);
+
+    if (typedPosts.length === 1 && typedPosts[0].frontmatter.isEmpty === true) {
+      createPage({ path: `/blog/${postType}/1`, component: EmptyPage });
+    } else if (typedPosts.length > 1) {
+      Array.from({ length: numPages }, (_, i) => {
         createPage({
-          path: `/blog/learn/${i + 1}`,
-          component: LearnPageTemplate,
+          path: `/blog/${postType}/${i + 1}`,
+          component: BlogPageTemplate,
           context: {
             limit: postsPerPage,
             skip: i * postsPerPage,
-            numLearnPages,
+            numPages,
             currentPage: i + 1,
+            postType: postType,
           },
         });
-      })
-    : createPage({
-        path: `/blog/learn/1`,
-        component: EmptyPage,
       });
-
-  numLifePages > 0
-    ? Array.from({ length: numLifePages }, (_, i) => {
-        createPage({
-          path: `/blog/life/${i + 1}`,
-          component: LifePageTemplate,
-          context: {
-            limit: postsPerPage,
-            skip: i * postsPerPage,
-            numLifePages,
-            currentPage: i + 1,
-          },
-        });
-      })
-    : createPage({
-        path: `/blog/life/1`,
-        component: EmptyPage,
-      });
+    }
+  }
 };

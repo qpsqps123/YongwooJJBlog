@@ -3,8 +3,8 @@ import { SEO } from "@/components/seo";
 import Header from "@/components/header/Header";
 import * as classes from "./TagsPage.module.scss";
 import Tag from "@/components/blog/tags/Tag";
-import { graphql, Page, PageProps } from "gatsby";
-import PagePostTemplate from "@/templates/PagePostTemplate";
+import { graphql, PageProps } from "gatsby";
+import BlogPostTemplate from "@/templates/BlogPostTemplate";
 import Footer from "@/components/footer/Footer";
 import { TQueryAllMdx } from "@/types/api/query";
 import Layout from "@/components/layout";
@@ -40,7 +40,7 @@ const TagsPage = ({ data, location }: PageProps<TQueryAllMdx>) => {
         </section>
         <section>
           {selectedTagPosts.map((node) => (
-            <PagePostTemplate key={node.id} node={node} />
+            <BlogPostTemplate key={node.id} node={node} />
           ))}
         </section>
       </main>

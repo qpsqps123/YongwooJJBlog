@@ -2,14 +2,14 @@ import React from "react";
 import { PageProps, graphql } from "gatsby";
 import { SEO } from "@/components/seo";
 import Header from "@/components/header/Header";
-import * as classes from "@/styles/templates/BlogPostTemplate.module.scss";
+import * as classes from "@/styles/templates/BlogPostListTemplate.module.scss";
 import Comments from "@/components/blog/Comments";
 import Footer from "@/components/footer/Footer";
 import Tag from "@/components/blog/tags/Tag";
 import { TQueryMdx } from "@/types/api/query";
 import Layout from "@/components/layout";
 
-const BlogLearnPostsTemplate = ({ data, children }: PageProps<TQueryMdx>) => {
+const BlogLearnPostList = ({ data, children }: PageProps<TQueryMdx>) => {
   return (
     <Layout>
       <Header />
@@ -33,7 +33,7 @@ const BlogLearnPostsTemplate = ({ data, children }: PageProps<TQueryMdx>) => {
   );
 };
 
-export default BlogLearnPostsTemplate;
+export default BlogLearnPostList;
 
 export const Head = ({ data }: PageProps<TQueryMdx>) => <SEO title={data.mdx.frontmatter.title} />;
 
