@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { useLocation } from "@reach/router";
-import { Link } from "gatsby";
+import { graphql, Link, PageProps, useStaticQuery } from "gatsby";
 import * as classes from "./Header.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
@@ -10,8 +10,20 @@ import SideMenu from "@/components/header/SideMenu";
 import SearchBar from "@/components/header/SearchBar";
 import { animSideMenuFadeAway, animSideMenuPop } from "@/animation/anim-side-menu";
 import { preventClick } from "@/animation/anim-utils";
+import { TQueryAllMdx } from "@/types/api/query";
+import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 
 const Header = () => {
+  const data = useStaticQuery<TQueryAllMdx>(graphql`
+    query {
+      allMdx {
+        distinct(field: { frontmatter: { post: SELECT } })
+      }
+    }
+  `);
+
+  const postType = data.allMdx.distinct;
+
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
   const location = useLocation();
 
@@ -83,8 +95,6 @@ const Header = () => {
   const infoMenuHoverColor = location.pathname.includes("/info/") ? classes.colorRed : "";
   const projectsMenuHoverColor = location.pathname.includes("/projects/") ? classes.colorRed : "";
   const blogMenuHoverColor = location.pathname.includes("/blog") ? classes.colorRed : "";
-  const lifeMenuHoverColor = location.pathname.includes("/blog/life/") ? classes.colorRed : "";
-  const learnMenuHoverColor = location.pathname.includes("/blog/learn/") ? classes.colorRed : "";
   const hideBlogSubmenu = location.pathname.includes("/blog") ? classes.blogSubmenuContainer : "hide";
   const blogSubmenuVisibility = location.pathname.includes("/blog") ? "true" : "false";
 
@@ -121,16 +131,17 @@ const Header = () => {
                 Blog
               </Link>
               <ul id="blogSubmenu" className={hideBlogSubmenu}>
-                <li>
-                  <Link to="/blog/life/1" className={lifeMenuHoverColor} aria-label="Life - 일상 게시판으로 연결.">
-                    Life
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/blog/learn/1" className={learnMenuHoverColor} aria-label="Learn - 배움 게시판으로 연결.">
-                    Learn
-                  </Link>
-                </li>
+                {postType.map((post) => (
+                  <li key={post}>
+                    <Link
+                      to={`/blog/${post}/1`}
+                      className={location.pathname.split("/")[2] === post ? classes.colorRed : ""}
+                      aria-label={`${capitalizeFirstLetter(post)} - ${capitalizeFirstLetter(post)} 게시판으로 연결.`}
+                    >
+                      {capitalizeFirstLetter(post)}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </li>
           </ul>

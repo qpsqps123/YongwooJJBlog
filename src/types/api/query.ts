@@ -3,6 +3,7 @@ import { IGatsbyImageData } from "gatsby-plugin-image";
 export type TQueryAllMdx = {
   allMdx: {
     nodes: TQueryAllMdxNode[];
+    distinct: string[];
   };
 };
 
